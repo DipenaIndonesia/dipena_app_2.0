@@ -518,6 +518,22 @@ class _PeluangState extends State<Peluang> {
     });
   }
 
+    _showToastUnfoll(String toast){
+      final snackbar = SnackBar(
+        content: new Text(toast),
+        backgroundColor: Colors.red,
+      );
+      scaffoldKey.currentState.showSnackBar(snackbar);
+    }
+
+    _showToast(String toast){
+      final snackbar = SnackBar(
+        content: new Text(toast),
+        backgroundColor: Colors.green,
+      );
+      scaffoldKey.currentState.showSnackBar(snackbar);
+    }
+
   @override
   Widget build(BuildContext context) {
     var placeholder = CircleAvatar(
@@ -1421,8 +1437,12 @@ class _PeluangState extends State<Peluang> {
                                                                   x.follow_status_user !=
                                                                       null;
                                                                 });
-                                                              } else {
+                                                                _showToast(pesan);
+                                                              } else if(value == 2){
                                                                 print(pesan);
+                                                                _showToastUnfoll(pesan);
+                                                              } else {
+                                                                _showToast(pesan);
                                                               }
                                                               // follow();
                                                             },
