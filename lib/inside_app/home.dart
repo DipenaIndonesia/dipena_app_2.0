@@ -175,14 +175,14 @@ class _HomeState extends State<Home> {
     }
   }
 
-  show_cat(String show_cat){
-    if(show_cat == "1"){
+  show_cat(String show_cat) {
+    if (show_cat == "1") {
       return "Painter";
-    } else if(show_cat == "2"){
+    } else if (show_cat == "2") {
       return "Designer";
-    } else if(show_cat == "3"){
+    } else if (show_cat == "3") {
       return "Photographer";
-    } else{
+    } else {
       return "Others";
     }
   }
@@ -321,182 +321,855 @@ class _HomeState extends State<Home> {
                 list.isEmpty
                     ?
                     //  Center(child: Text("KOSONG"))
-                    Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    // Column(
+                    //     mainAxisAlignment: MainAxisAlignment.center,
+                    //     children: <Widget>[
+                    //       Container(
+                    //         width: MediaQuery.of(context).size.width * 0.8,
+                    //         // color: Colors.blue,
+                    //         child: Center(
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.only(top: 15.0),
+                    //             child: Column(
+                    //               crossAxisAlignment: CrossAxisAlignment.center,
+                    //               children: <Widget>[
+                    //                 // for(var i = 0; i < listLokasi.length; i++)
+                    //                 Text(
+                    //                     "Dear the one who will\nchange the world",
+                    //                     textAlign: TextAlign.center,
+                    //                     style: new TextStyle(
+                    //                         fontSize: 16.0,
+                    //                         color: Colors.black,
+                    //                         fontWeight: FontWeight.bold)),
+                    //                 Padding(
+                    //                   padding: const EdgeInsets.only(top: 8.0),
+                    //                   child: Text(
+                    //                       "Share deals (Designer, Photographer, Painter), or Take deals (whoever you are).",
+                    //                       textAlign: TextAlign.center,
+                    //                       style: new TextStyle(
+                    //                           color: Colors.grey[600])),
+                    //                 ),
+                    //                 Text(
+                    //                     "We need each other in this era where beautiful things will win",
+                    //                     textAlign: TextAlign.center,
+                    //                     style: new TextStyle(
+                    //                         color: Colors.grey[600])),
+                    //                 Padding(
+                    //                   padding: const EdgeInsets.only(top: 3.0),
+                    //                   child: Text(
+                    //                     "We Believe You",
+                    //                     textAlign: TextAlign.center,
+                    //                     style: new TextStyle(
+                    //                         color: Colors.grey[600],
+                    //                         fontWeight: FontWeight.bold),
+                    //                   ),
+                    //                 ),
+                    //                 Row(
+                    //                   mainAxisAlignment:
+                    //                       MainAxisAlignment.center,
+                    //                   crossAxisAlignment:
+                    //                       CrossAxisAlignment.center,
+                    //                   children: <Widget>[
+                    //                     Padding(
+                    //                       padding: const EdgeInsets.only(
+                    //                           right: 20.0, top: 8.0),
+                    //                       child: FlatButton(
+                    //                         shape: RoundedRectangleBorder(
+                    //                           borderRadius:
+                    //                               new BorderRadius.circular(
+                    //                                   18.0),
+                    //                           // side: BorderSide(color: Colors.blu)
+                    //                         ),
+                    //                         color: Colors.black,
+                    //                         onPressed: () async {
+                    //                           var navigationResult =
+                    //                               await Navigator.push(
+                    //                             context,
+                    //                             new MaterialPageRoute(
+                    //                               builder: (context) =>
+                    //                                   MakeDeal(),
+                    //                             ),
+                    //                           );
+                    //                         },
+                    //                         child: Text("Share Deals",
+                    //                             style: new TextStyle(
+                    //                                 color: Colors.white)),
+                    //                       ),
+                    //                     ),
+                    //                     Padding(
+                    //                       padding:
+                    //                           const EdgeInsets.only(top: 8.0),
+                    //                       child: FlatButton(
+                    //                         shape: RoundedRectangleBorder(
+                    //                           borderRadius:
+                    //                               new BorderRadius.circular(
+                    //                                   18.0),
+                    //                           // side: BorderSide(color: Colors.blu)
+                    //                         ),
+                    //                         color: Colors.black,
+                    //                         onPressed: () async {
+                    //                           var navigationResult =
+                    //                               await Navigator.push(
+                    //                             context,
+                    //                             new MaterialPageRoute(
+                    //                               builder: (context) =>
+                    //                                   NavToProfile(),
+                    //                             ),
+                    //                           );
+                    //                         },
+                    //                         child: Text("Take Deals",
+                    //                             style: new TextStyle(
+                    //                                 color: Colors.white)),
+                    //                       ),
+                    //                     )
+                    //                   ],
+                    //                 )
+                    //                 // Padding(
+                    //                 //   padding: const EdgeInsets.only(top: 8.0),
+                    //                 //   child: listLokasi.isEmpty
+                    //                 //       ? ListView.builder(
+                    //                 //           shrinkWrap: true,
+                    //                 //           itemCount: listLokasi.length,
+                    //                 //           itemBuilder: (context, i) {
+                    //                 //             final b = listLokasi[i];
+                    //                 //             return ButtonTheme(
+                    //                 //               child: FlatButton(
+                    //                 //                 shape: RoundedRectangleBorder(
+                    //                 //                   borderRadius:
+                    //                 //                       new BorderRadius.circular(
+                    //                 //                           18.0),
+                    //                 //                   // side: BorderSide(color: Colors.blu)
+                    //                 //                 ),
+                    //                 //                 color: Colors.black,
+                    //                 //                 //  Color.fromRGBO(
+                    //                 //                 //     244, 217, 66, 1),
+                    //                 //                 onPressed: () {
+                    //                 //                   Navigator.of(context).push(
+                    //                 //                       MaterialPageRoute(
+                    //                 //                           builder: (context) =>
+                    //                 //                               EditFromHome(
+                    //                 //                                   LocationModel(
+                    //                 //                                       location_country,
+                    //                 //                                       location_city))));
+                    //                 //                 },
+                    //                 //                 child: Text("Get Started",
+                    //                 //                     style: new TextStyle(
+                    //                 //                         color: Colors.white)),
+                    //                 //               ),
+                    //                 //             );
+                    //                 //           },
+                    //                 //         )
+                    //                 //       : loadingg
+                    //                 //           ? Center(
+                    //                 //               child:
+                    //                 //                   CircularProgressIndicator())
+                    //                 //           : ListView.builder(
+                    //                 //               shrinkWrap: true,
+                    //                 //               itemCount: listLokasi.length,
+                    //                 //               itemBuilder: (context, i) {
+                    //                 //                 final b = listLokasi[i];
+                    //                 //                 return ButtonTheme(
+                    //                 //                   child: FlatButton(
+                    //                 //                     shape:
+                    //                 //                         RoundedRectangleBorder(
+                    //                 //                       borderRadius:
+                    //                 //                           new BorderRadius
+                    //                 //                               .circular(18.0),
+                    //                 //                       // side: BorderSide(color: Colors.blu)
+                    //                 //                     ),
+                    //                 //                     color: Colors.black,
+                    //                 //                     //  Color.fromRGBO(
+                    //                 //                     //     244, 217, 66, 1),
+                    //                 //                     onPressed: () {
+                    //                 //                       Navigator.of(context).push(
+                    //                 //                           MaterialPageRoute(
+                    //                 //                               builder: (context) =>
+                    //                 //                                   EditFromHome(
+                    //                 //                                       b)));
+                    //                 //                     },
+                    //                 //                     child: Text("Get Started",
+                    //                 //                         style: new TextStyle(
+                    //                 //                             color:
+                    //                 //                                 Colors.white)),
+                    //                 //                   ),
+                    //                 //                 );
+                    //                 //               },
+                    //                 //             ),
+                    //                 // ),
+                    //               ],
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   )
+                    ListView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        // itemCount: list.length,
+                        // itemBuilder: (context, i) {
+                        // final x = list[i];
                         children: <Widget>[
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            // color: Colors.blue,
-                            child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8),
                               child: Padding(
-                                padding: const EdgeInsets.only(top: 15.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    // for(var i = 0; i < listLokasi.length; i++)
-                                    Text(
-                                        "Dear the one who will\nchange the world",
-                                        textAlign: TextAlign.center,
-                                        style: new TextStyle(
-                                            fontSize: 16.0,
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold)),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
-                                      child: Text(
-                                          "Share deals (Designer, Photographer, Painter), or Take deals (whoever you are).",
-                                          textAlign: TextAlign.center,
-                                          style: new TextStyle(
-                                              color: Colors.grey[600])),
-                                    ),
-                                    Text(
-                                        "We need each other in this era where beautiful things will win",
-                                        textAlign: TextAlign.center,
-                                        style: new TextStyle(
-                                            color: Colors.grey[600])),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 3.0),
-                                      child: Text(
-                                        "We Believe You",
-                                        textAlign: TextAlign.center,
-                                        style: new TextStyle(
-                                            color: Colors.grey[600],
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 20.0, top: 8.0),
-                                          child: FlatButton(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  new BorderRadius.circular(
-                                                      18.0),
-                                              // side: BorderSide(color: Colors.blu)
-                                            ),
-                                            color: Colors.black,
-                                            onPressed: () async {
-                                              var navigationResult =
-                                                  await Navigator.push(
-                                                context,
-                                                new MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      MakeDeal(),
-                                                ),
-                                              );
-                                            },
-                                            child: Text("Share Deals",
-                                                style: new TextStyle(
-                                                    color: Colors.white)),
-                                          ),
+                                padding: const EdgeInsets.only(
+                                  top: 10,
+                                ),
+                                child: Container(
+                                  width: SizeConfig.safeBlockHorizontal * 100,
+                                  height: SizeConfig.safeBlockVertical * 70,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                  ),
+                                  child: Column(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 2,
                                         ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 8.0),
-                                          child: FlatButton(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  new BorderRadius.circular(
-                                                      18.0),
-                                              // side: BorderSide(color: Colors.blu)
-                                            ),
-                                            color: Colors.black,
-                                            onPressed: () async {
-                                              var navigationResult =
-                                                  await Navigator.push(
-                                                context,
-                                                new MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      NavToProfile(),
+                                        child: Column(
+                                          children: <Widget>[
+                                            ListTile(
+                                              leading: Container(
+                                                width: 50,
+                                                height: 50,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
                                                 ),
-                                              );
-                                            },
-                                            child: Text("Take Deals",
-                                                style: new TextStyle(
-                                                    color: Colors.white)),
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                    // Padding(
-                                    //   padding: const EdgeInsets.only(top: 8.0),
-                                    //   child: listLokasi.isEmpty
-                                    //       ? ListView.builder(
-                                    //           shrinkWrap: true,
-                                    //           itemCount: listLokasi.length,
-                                    //           itemBuilder: (context, i) {
-                                    //             final b = listLokasi[i];
-                                    //             return ButtonTheme(
-                                    //               child: FlatButton(
-                                    //                 shape: RoundedRectangleBorder(
-                                    //                   borderRadius:
-                                    //                       new BorderRadius.circular(
-                                    //                           18.0),
-                                    //                   // side: BorderSide(color: Colors.blu)
-                                    //                 ),
-                                    //                 color: Colors.black,
-                                    //                 //  Color.fromRGBO(
-                                    //                 //     244, 217, 66, 1),
-                                    //                 onPressed: () {
-                                    //                   Navigator.of(context).push(
-                                    //                       MaterialPageRoute(
-                                    //                           builder: (context) =>
-                                    //                               EditFromHome(
-                                    //                                   LocationModel(
-                                    //                                       location_country,
-                                    //                                       location_city))));
-                                    //                 },
-                                    //                 child: Text("Get Started",
-                                    //                     style: new TextStyle(
-                                    //                         color: Colors.white)),
-                                    //               ),
-                                    //             );
-                                    //           },
-                                    //         )
-                                    //       : loadingg
-                                    //           ? Center(
-                                    //               child:
-                                    //                   CircularProgressIndicator())
-                                    //           : ListView.builder(
-                                    //               shrinkWrap: true,
-                                    //               itemCount: listLokasi.length,
-                                    //               itemBuilder: (context, i) {
-                                    //                 final b = listLokasi[i];
-                                    //                 return ButtonTheme(
-                                    //                   child: FlatButton(
-                                    //                     shape:
-                                    //                         RoundedRectangleBorder(
-                                    //                       borderRadius:
-                                    //                           new BorderRadius
-                                    //                               .circular(18.0),
-                                    //                       // side: BorderSide(color: Colors.blu)
-                                    //                     ),
-                                    //                     color: Colors.black,
-                                    //                     //  Color.fromRGBO(
-                                    //                     //     244, 217, 66, 1),
-                                    //                     onPressed: () {
-                                    //                       Navigator.of(context).push(
-                                    //                           MaterialPageRoute(
-                                    //                               builder: (context) =>
-                                    //                                   EditFromHome(
-                                    //                                       b)));
-                                    //                     },
-                                    //                     child: Text("Get Started",
-                                    //                         style: new TextStyle(
-                                    //                             color:
-                                    //                                 Colors.white)),
-                                    //                   ),
-                                    //                 );
-                                    //               },
-                                    //             ),
-                                    // ),
-                                  ],
+                                                child: CircleAvatar(
+                                                  child: ClipOval(
+                                                    child: Image(
+                                                      width: 50,
+                                                      height: 50,
+                                                      image: AssetImage(
+                                                          "assets/images/Logo_Circle.png"),
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              // title: InkWell(
+                                              // child:
+                                              title: Text(
+                                                "Dipena",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              // onTap: () async {
+                                              //   var navigationResult =
+                                              //       await Navigator.push(
+                                              //     context,
+                                              //     new MaterialPageRoute(
+                                              //       builder: (context) =>
+                                              //           AnotherProfileFromHome(
+                                              //               x),
+                                              //     ),
+                                              //   );
+                                              // },
+                                              // ),
+                                              subtitle: Row(
+                                                children: <Widget>[
+                                                  Icon(
+                                                    Icons.location_on,
+                                                    color: Colors.grey[600],
+                                                    size: 11,
+                                                  ),
+                                                  Text(
+                                                    // x.post_location,
+                                                    "Indonesia",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.all(10),
+                                              width: double.infinity,
+                                              height: 200,
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                      "assets/images/WELCOME.png"),
+                                                  fit: BoxFit.fitWidth,
+                                                ),
+                                              ),
+                                            ),
+                                            // Row(
+                                            //   mainAxisAlignment:
+                                            //       MainAxisAlignment
+                                            //           .spaceBetween,
+                                            //   children: <Widget>[
+                                            //     Row(
+                                            //       children: <Widget>[
+                                            //         Row(
+                                            //           children: <Widget>[
+                                            //             // IconButton(
+                                            //             //   icon: Icon(
+                                            //             //     x.like_status ==
+                                            //             //             null
+                                            //             //         ? Icons
+                                            //             //             .favorite_border
+                                            //             //         : Icons
+                                            //             //             .favorite,
+                                            //             //     color: x.like_status ==
+                                            //             //             null
+                                            //             //         ? Colors
+                                            //             //             .black
+                                            //             //         : Color
+                                            //             //             .fromRGBO(
+                                            //             //                 244,
+                                            //             //                 217,
+                                            //             //                 66,
+                                            //             //                 1),
+                                            //             //   ),
+                                            //             //   iconSize: 30,
+                                            //             //   onPressed:
+                                            //             //       () async {
+                                            //             //     await getPref();
+                                            //             //     final response =
+                                            //             //         await http.post(
+                                            //             //             LikeUrl
+                                            //             //                 .addLike,
+                                            //             //             body: {
+                                            //             //           // "post_cat_id" : post_cat_id,
+                                            //             //           "user_id":
+                                            //             //               user_id,
+                                            //             //           "post_id":
+                                            //             //               x.post_id,
+                                            //             //           // "follow_status": followed,
+                                            //             //         });
+                                            //             //     final data =
+                                            //             //         jsonDecode(
+                                            //             //             response
+                                            //             //                 .body);
+                                            //             //     int value = data[
+                                            //             //         'value'];
+                                            //             //     String pesan =
+                                            //             //         data[
+                                            //             //             'message'];
+                                            //             //     if (value ==
+                                            //             //         1) {
+                                            //             //       print(pesan);
+                                            //             //       setState(() {
+                                            //             //         x.like_status !=
+                                            //             //             null;
+                                            //             //       });
+                                            //             //     } else {
+                                            //             //       print(pesan);
+                                            //             //     }
+                                            //             //     // follow();
+                                            //             //   },
+                                            //             // ),
+                                            //             // Text(
+                                            //             //   x.jumlahLike ??
+                                            //             //       '0',
+                                            //             //   style: TextStyle(
+                                            //             //     fontSize: 14,
+                                            //             //     fontWeight:
+                                            //             //         FontWeight
+                                            //             //             .w600,
+                                            //             //   ),
+                                            //             // ),
+                                            //           ],
+                                            //         ),
+                                            //         // SizedBox(
+                                            //         //   width: 10,
+                                            //         // ),
+                                            //         Row(
+                                            //           children: <Widget>[
+                                            //             IconButton(
+                                            //               iconSize: 25,
+                                            //               icon: Icon(
+                                            //                 FontAwesomeIcons
+                                            //                     .comment,
+                                            //               ),
+                                            //               onPressed:
+                                            //                   () async {
+                                            //                 var navigationResult =
+                                            //                     await Navigator
+                                            //                         .push(
+                                            //                   context,
+                                            //                   new MaterialPageRoute(
+                                            //                     builder: (context) =>
+                                            //                         CommentFromHome(
+                                            //                             x),
+                                            //                   ),
+                                            //                 );
+                                            //               },
+                                            //             ),
+                                            //             Text(
+                                            //               x.jumlahKomen ??
+                                            //                   '0',
+                                            //               style: TextStyle(
+                                            //                 fontSize: 14,
+                                            //                 fontWeight:
+                                            //                     FontWeight
+                                            //                         .w600,
+                                            //               ),
+                                            //             ),
+                                            //           ],
+                                            //         ),
+                                            //       ],
+                                            //     ),
+                                            //   ],
+                                            // ),
+                                            // Row(
+                                            //   children: <Widget>[
+                                            //     Container(
+                                            //       margin: EdgeInsets.only(
+                                            //         left: 15,
+                                            //         right: 30,
+                                            //       ),
+                                            //       child: Text(
+                                            //         // x.post_cat_id,
+                                            //         show_cat(x.post_cat_id),
+                                            //         // show_cat,
+                                            //         style: TextStyle(
+                                            //           fontSize: 18,
+                                            //           fontWeight:
+                                            //               FontWeight.w700,
+                                            //         ),
+                                            //       ),
+                                            //     ),
+                                            //   ],
+                                            // ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                top: 10,
+                                              ),
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Container(
+                                                    margin: EdgeInsets.only(
+                                                      left: 15,
+                                                      right: 30,
+                                                    ),
+                                                    child: Text(
+                                                      // x.post_title,
+                                                      "Whoever you are",
+                                                      style: TextStyle(
+                                                        fontSize: 17,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                top: 10,
+                                              ),
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.8,
+                                                    margin: EdgeInsets.only(
+                                                      left: 15,
+                                                      right: 30,
+                                                    ),
+                                                    child: Text(
+                                                      // x.post_description,
+                                                      "Share what you could or Take what you should and change the world",
+                                                      style: TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                top: 10,
+                                                right: 260,
+                                              ),
+                                              child: RaisedButton(
+                                                splashColor:
+                                                    Colors.purpleAccent,
+                                                elevation: 2,
+                                                padding: EdgeInsets.all(12),
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                ),
+                                                color: Colors.black,
+                                                // Color.fromRGBO(
+                                                //     244, 217, 66, 1),
+                                                child: Text(
+                                                  'See Deals',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  // var navigationResult =
+                                                    Navigator.push(
+                                                    context,
+                                                    new MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Welcome()
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 0,
+                                ),
+                                child: Container(
+                                  width: SizeConfig.safeBlockHorizontal * 100,
+                                  height: SizeConfig.safeBlockVertical * 70,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                  ),
+                                  child: Column(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 2,
+                                        ),
+                                        child: Column(
+                                          children: <Widget>[
+                                            ListTile(
+                                              leading: Container(
+                                                width: 50,
+                                                height: 50,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: CircleAvatar(
+                                                  child: ClipOval(
+                                                    child: Image(
+                                                      width: 50,
+                                                      height: 50,
+                                                      image: AssetImage(
+                                                          "assets/images/Logo_Circle.png"),
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              // title: InkWell(
+                                              // child:
+                                              title: Text(
+                                                "Dipena",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              // onTap: () async {
+                                              //   var navigationResult =
+                                              //       await Navigator.push(
+                                              //     context,
+                                              //     new MaterialPageRoute(
+                                              //       builder: (context) =>
+                                              //           AnotherProfileFromHome(
+                                              //               x),
+                                              //     ),
+                                              //   );
+                                              // },
+                                              // ),
+                                              subtitle: Row(
+                                                children: <Widget>[
+                                                  Icon(
+                                                    Icons.location_on,
+                                                    color: Colors.grey[600],
+                                                    size: 11,
+                                                  ),
+                                                  Text(
+                                                    // x.post_location,
+                                                    "Indonesia",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.all(10),
+                                              width: double.infinity,
+                                              height: 200,
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                      "assets/images/HOW.png"),
+                                                  fit: BoxFit.fitWidth,
+                                                ),
+                                              ),
+                                            ),
+                                            // Row(
+                                            //   mainAxisAlignment:
+                                            //       MainAxisAlignment
+                                            //           .spaceBetween,
+                                            //   children: <Widget>[
+                                            //     Row(
+                                            //       children: <Widget>[
+                                            //         Row(
+                                            //           children: <Widget>[
+                                            //             // IconButton(
+                                            //             //   icon: Icon(
+                                            //             //     x.like_status ==
+                                            //             //             null
+                                            //             //         ? Icons
+                                            //             //             .favorite_border
+                                            //             //         : Icons
+                                            //             //             .favorite,
+                                            //             //     color: x.like_status ==
+                                            //             //             null
+                                            //             //         ? Colors
+                                            //             //             .black
+                                            //             //         : Color
+                                            //             //             .fromRGBO(
+                                            //             //                 244,
+                                            //             //                 217,
+                                            //             //                 66,
+                                            //             //                 1),
+                                            //             //   ),
+                                            //             //   iconSize: 30,
+                                            //             //   onPressed:
+                                            //             //       () async {
+                                            //             //     await getPref();
+                                            //             //     final response =
+                                            //             //         await http.post(
+                                            //             //             LikeUrl
+                                            //             //                 .addLike,
+                                            //             //             body: {
+                                            //             //           // "post_cat_id" : post_cat_id,
+                                            //             //           "user_id":
+                                            //             //               user_id,
+                                            //             //           "post_id":
+                                            //             //               x.post_id,
+                                            //             //           // "follow_status": followed,
+                                            //             //         });
+                                            //             //     final data =
+                                            //             //         jsonDecode(
+                                            //             //             response
+                                            //             //                 .body);
+                                            //             //     int value = data[
+                                            //             //         'value'];
+                                            //             //     String pesan =
+                                            //             //         data[
+                                            //             //             'message'];
+                                            //             //     if (value ==
+                                            //             //         1) {
+                                            //             //       print(pesan);
+                                            //             //       setState(() {
+                                            //             //         x.like_status !=
+                                            //             //             null;
+                                            //             //       });
+                                            //             //     } else {
+                                            //             //       print(pesan);
+                                            //             //     }
+                                            //             //     // follow();
+                                            //             //   },
+                                            //             // ),
+                                            //             // Text(
+                                            //             //   x.jumlahLike ??
+                                            //             //       '0',
+                                            //             //   style: TextStyle(
+                                            //             //     fontSize: 14,
+                                            //             //     fontWeight:
+                                            //             //         FontWeight
+                                            //             //             .w600,
+                                            //             //   ),
+                                            //             // ),
+                                            //           ],
+                                            //         ),
+                                            //         // SizedBox(
+                                            //         //   width: 10,
+                                            //         // ),
+                                            //         Row(
+                                            //           children: <Widget>[
+                                            //             IconButton(
+                                            //               iconSize: 25,
+                                            //               icon: Icon(
+                                            //                 FontAwesomeIcons
+                                            //                     .comment,
+                                            //               ),
+                                            //               onPressed:
+                                            //                   () async {
+                                            //                 var navigationResult =
+                                            //                     await Navigator
+                                            //                         .push(
+                                            //                   context,
+                                            //                   new MaterialPageRoute(
+                                            //                     builder: (context) =>
+                                            //                         CommentFromHome(
+                                            //                             x),
+                                            //                   ),
+                                            //                 );
+                                            //               },
+                                            //             ),
+                                            //             Text(
+                                            //               x.jumlahKomen ??
+                                            //                   '0',
+                                            //               style: TextStyle(
+                                            //                 fontSize: 14,
+                                            //                 fontWeight:
+                                            //                     FontWeight
+                                            //                         .w600,
+                                            //               ),
+                                            //             ),
+                                            //           ],
+                                            //         ),
+                                            //       ],
+                                            //     ),
+                                            //   ],
+                                            // ),
+                                            // Row(
+                                            //   children: <Widget>[
+                                            //     Container(
+                                            //       margin: EdgeInsets.only(
+                                            //         left: 15,
+                                            //         right: 30,
+                                            //       ),
+                                            //       child: Text(
+                                            //         // x.post_cat_id,
+                                            //         show_cat(x.post_cat_id),
+                                            //         // show_cat,
+                                            //         style: TextStyle(
+                                            //           fontSize: 18,
+                                            //           fontWeight:
+                                            //               FontWeight.w700,
+                                            //         ),
+                                            //       ),
+                                            //     ),
+                                            //   ],
+                                            // ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                top: 10,
+                                              ),
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Container(
+                                                    margin: EdgeInsets.only(
+                                                      left: 15,
+                                                      right: 30,
+                                                    ),
+                                                    child: Text(
+                                                      // x.post_title,
+                                                      "Painter.Designer.Photographer",
+                                                      style: TextStyle(
+                                                        fontSize: 17,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                top: 10,
+                                              ),
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.8,
+                                                    margin: EdgeInsets.only(
+                                                      left: 15,
+                                                      right: 30,
+                                                    ),
+                                                    child: Text(
+                                                      // x.post_description,
+                                                      "Share an oppurtunities here by showing your art and service deals in one post.",
+                                                      style: TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                top: 10,
+                                                right: 260,
+                                              ),
+                                              child: RaisedButton(
+                                                splashColor:
+                                                    Colors.purpleAccent,
+                                                elevation: 2,
+                                                padding: EdgeInsets.all(12),
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                ),
+                                                color: Colors.black,
+                                                // Color.fromRGBO(
+                                                //     244, 217, 66, 1),
+                                                child: Text(
+                                                  'See Deals',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  // var navigationResult =
+                                                  //     await Navigator.push(
+                                                  //   context,
+                                                  //   new MaterialPageRoute(
+                                                  //     builder: (context) =>
+                                                  //         SeeDealsFromHome(
+                                                  //             x),
+                                                  //   ),
+                                                  // );
+                                                   Navigator.push(
+                                                    context,
+                                                    new MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          How()
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -1135,6 +1808,608 @@ class _LikeTwoState extends State<LikeTwo> {
             ),
             iconSize: 30,
             onPressed: () => _pressed(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Welcome extends StatefulWidget {
+  @override
+  _WelcomeState createState() => _WelcomeState();
+}
+
+class _WelcomeState extends State<Welcome> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              ListView(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                // itemCount: list.length,
+                // itemBuilder: (context, i) {
+                //   final x = list[i];
+                children: <Widget>[
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                          width: SizeConfig.safeBlockHorizontal * 100,
+                          height: SizeConfig.safeBlockVertical * 36,
+                          child: Image.asset("assets/images/WELCOME.png")),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 20,
+                        ),
+                        child: ClipOval(
+                          child: Material(
+                            color: Colors.white,
+                            // Color.fromRGBO(244, 217, 66, 1),
+                            child: InkWell(
+                              splashColor: Colors.purpleAccent,
+                              child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: IconButton(
+                                  color: Colors.black,
+                                  icon: Icon(
+                                    Icons.arrow_back,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context, true);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 230,
+                        ),
+                        child: Container(
+                          width: double.infinity,
+                          height: 500,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(50),
+                              topLeft: Radius.circular(50),
+                            ),
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  top: 30,
+                                  right: 30,
+                                  left: 20,
+                                ),
+                                child: Column(
+                                  children: <Widget>[
+                                    ListTile(
+                                      leading: Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: CircleAvatar(
+                                            child: ClipOval(
+                                              child: Image(
+                                                  width: 50,
+                                                  height: 50,
+                                                  image: AssetImage(
+                                                      "assets/images/Logo_Circle.png")),
+                                            ),
+                                          )),
+                                      title: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            // x.user_username,
+                                            "Dipena",
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        top: 25,
+                                        left: 10,
+                                      ),
+                                      child: Container(
+                                        width: 450,
+                                        height: 2,
+                                        color: Color.fromRGBO(244, 217, 66, 1),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 20,
+                                  left: 30,
+                                ),
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.8,
+                                      child: Text(
+                                        // x.post_title,
+                                        "Whoever you are",
+                                        style: TextStyle(
+                                          fontSize: 21,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 10,
+                                  left: 30,
+                                ),
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.8,
+                                      child: Text(
+                                        // x.post_description,
+                                        "Share what you could or Take what you should and change the world",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 15,
+                                  right: 285,
+                                ),
+                                child: Container(
+                                  color: Color.fromRGBO(244, 217, 66, 1),
+                                  width: 50,
+                                  height: 2,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 15,
+                                  left: 30,
+                                ),
+                                child: Row(
+                                  children: <Widget>[
+                                    Text(
+                                      'Service Deals',
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 15,
+                                  left: 30,
+                                ),
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.8,
+                                      child: Text(
+                                        // x.post_offer,
+                                        "This post will be gone once your following user has posted. Go find something here!",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              // Padding(
+                              //   padding: const EdgeInsets.only(
+                              //     top: 10,
+                              //     left: 30,
+                              //   ),
+                              //   child: Row(
+                              //     children: <Widget>[
+                              //       Text(
+                              //         '• Currently available for projects, \n'
+                              //         'not contracts',
+                              //         style: TextStyle(
+                              //           fontSize: 18,
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
+                              // Padding(
+                              //   padding: const EdgeInsets.only(
+                              //     top: 10,
+                              //     left: 30,
+                              //   ),
+                              //   child: Row(
+                              //     children: <Widget>[
+                              //       Text(
+                              //         '• Have 4 people as my art team for you',
+                              //         style: TextStyle(
+                              //           fontSize: 18,
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 30,
+                                ),
+                                child: SizedBox(
+                                  width: 350,
+                                  height: 50,
+                                  child: RaisedButton(
+                                    splashColor: Colors.purpleAccent,
+                                    elevation: 2,
+                                    padding: EdgeInsets.all(12),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    color: Colors.black,
+                                    // Color.fromRGBO(
+                                    //     244, 217, 66, 1),
+                                    child: Text(
+                                      'Take Deals',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      // submit();
+                                      Navigator.push(
+                                        context,
+                                        new MaterialPageRoute(
+                                          builder: (context) => NavToProfile(),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class How extends StatefulWidget {
+  @override
+  _HowState createState() => _HowState();
+}
+
+class _HowState extends State<How> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              ListView(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                // itemCount: list.length,
+                // itemBuilder: (context, i) {
+                //   final x = list[i];
+                children: <Widget>[
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                          width: SizeConfig.safeBlockHorizontal * 100,
+                          height: SizeConfig.safeBlockVertical * 36,
+                          child: Image.asset("assets/images/HOW.png")),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 20,
+                        ),
+                        child: ClipOval(
+                          child: Material(
+                            color: Colors.white,
+                            // Color.fromRGBO(244, 217, 66, 1),
+                            child: InkWell(
+                              splashColor: Colors.purpleAccent,
+                              child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: IconButton(
+                                  color: Colors.black,
+                                  icon: Icon(
+                                    Icons.arrow_back,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context, true);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 230,
+                        ),
+                        child: Container(
+                          width: double.infinity,
+                          height: 500,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(50),
+                              topLeft: Radius.circular(50),
+                            ),
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  top: 30,
+                                  right: 30,
+                                  left: 20,
+                                ),
+                                child: Column(
+                                  children: <Widget>[
+                                    ListTile(
+                                      leading: Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: CircleAvatar(
+                                            child: ClipOval(
+                                              child: Image(
+                                                  width: 50,
+                                                  height: 50,
+                                                  image: AssetImage(
+                                                      "assets/images/Logo_Circle.png")),
+                                            ),
+                                          )),
+                                      title: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            // x.user_username,
+                                            "Dipena",
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        top: 25,
+                                        left: 10,
+                                      ),
+                                      child: Container(
+                                        width: 450,
+                                        height: 2,
+                                        color: Color.fromRGBO(244, 217, 66, 1),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 20,
+                                  left: 30,
+                                ),
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.8,
+                                      child: Text(
+                                        // x.post_title,
+                                        "Painter.Designer.Photographer",
+                                        style: TextStyle(
+                                          fontSize: 21,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 10,
+                                  left: 30,
+                                ),
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.8,
+                                      child: Text(
+                                        // x.post_description,
+                                        "Share an oppurtunities here by showing your art and service deals in one post.",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 15,
+                                  right: 285,
+                                ),
+                                child: Container(
+                                  color: Color.fromRGBO(244, 217, 66, 1),
+                                  width: 50,
+                                  height: 2,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 15,
+                                  left: 30,
+                                ),
+                                child: Row(
+                                  children: <Widget>[
+                                    Text(
+                                      'Service Deals :',
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 15,
+                                  left: 30,
+                                ),
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.8,
+                                      child: Text(
+                                        // x.post_offer,
+                                        "Put your service here. Millions of people need you but they don't see you.",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              // Padding(
+                              //   padding: const EdgeInsets.only(
+                              //     top: 10,
+                              //     left: 30,
+                              //   ),
+                              //   child: Row(
+                              //     children: <Widget>[
+                              //       Text(
+                              //         '• Currently available for projects, \n'
+                              //         'not contracts',
+                              //         style: TextStyle(
+                              //           fontSize: 18,
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
+                              // Padding(
+                              //   padding: const EdgeInsets.only(
+                              //     top: 10,
+                              //     left: 30,
+                              //   ),
+                              //   child: Row(
+                              //     children: <Widget>[
+                              //       Text(
+                              //         '• Have 4 people as my art team for you',
+                              //         style: TextStyle(
+                              //           fontSize: 18,
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 30,
+                                ),
+                                child: SizedBox(
+                                  width: 350,
+                                  height: 50,
+                                  child: RaisedButton(
+                                    splashColor: Colors.purpleAccent,
+                                    elevation: 2,
+                                    padding: EdgeInsets.all(12),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    color: Colors.black,
+                                    // Color.fromRGBO(
+                                    //     244, 217, 66, 1),
+                                    child: Text(
+                                      'Make Deals',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      // submit();
+                                      Navigator.push(
+                                        context,
+                                        new MaterialPageRoute(
+                                          builder: (context) => MakeDeal(),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              )
+            ],
           ),
         ],
       ),
