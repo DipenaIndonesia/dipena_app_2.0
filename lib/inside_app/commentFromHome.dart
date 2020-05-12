@@ -734,7 +734,7 @@ class _CommentFromHomeState extends State<CommentFromHome> {
   @override
   Widget build(BuildContext context) {
     var placeholder = CircleAvatar(
-        radius: 40, backgroundImage: AssetImage('./img/placeholder.png'));
+         minRadius: 25, backgroundImage: AssetImage('./img/placeholder.png'));
     return Scaffold(
         //  PreferredSize(
         //       preferredSize: Size.fromHeight(62),
