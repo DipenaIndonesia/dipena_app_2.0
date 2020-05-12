@@ -200,6 +200,8 @@ class _CommentState extends State<Comment> {
 
   @override
   Widget build(BuildContext context) {
+    var placeholder = CircleAvatar(
+        radius: 40, backgroundImage: AssetImage('./img/placeholder.png'));
     return Scaffold(
         //  PreferredSize(
         //       preferredSize: Size.fromHeight(62),
@@ -403,7 +405,8 @@ class _CommentState extends State<Comment> {
                                                   left: 8.0,
                                                 ),
                                                 child: Container(
-                                                  child: CircleAvatar(
+                                                  child: post['user_img'] == null ?
+                                                  placeholder : CircleAvatar(
                                                     backgroundImage:
                                                         NetworkImage(ImageUrl
                                                                 .imageProfile +
