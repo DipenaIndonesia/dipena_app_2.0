@@ -806,7 +806,10 @@ class _HomeState extends State<Home> {
                                                   borderRadius:
                                                       BorderRadius.circular(15),
                                                 ),
-                                                color: Colors.black,
+                                                color:
+                                                //  Colors.black,
+                                                 Color.fromRGBO(
+                                                          250, 185, 32, 1),
                                                 // Color.fromRGBO(
                                                 //     244, 217, 66, 1),
                                                 child: Text(
@@ -1134,7 +1137,10 @@ class _HomeState extends State<Home> {
                                                   borderRadius:
                                                       BorderRadius.circular(15),
                                                 ),
-                                                color: Colors.black,
+                                                color: 
+                                                // Colors.black,
+                                                 Color.fromRGBO(
+                                                          250, 185, 32, 1),
                                                 // Color.fromRGBO(
                                                 //     244, 217, 66, 1),
                                                 child: Text(
@@ -1489,7 +1495,10 @@ class _HomeState extends State<Home> {
                                                           BorderRadius.circular(
                                                               15),
                                                     ),
-                                                    color: Colors.black,
+                                                    color: 
+                                                    // Colors.black,
+                                                     Color.fromRGBO(
+                                                          250, 185, 32, 1),
                                                     // Color.fromRGBO(
                                                     //     244, 217, 66, 1),
                                                     child: Text(

@@ -1786,9 +1786,10 @@ class _PeluangState extends State<Peluang> {
                                                             BorderRadius
                                                                 .circular(15),
                                                       ),
-                                                      color: Colors.black,
-                                                      //  Color.fromRGBO(
-                                                      //     244, 217, 66, 1),
+                                                      color: 
+                                                      // Colors.black,
+                                                       Color.fromRGBO(
+                                                          250, 185, 32, 1),
                                                       child: Text(
                                                         'SEE DEAL',
                                                         style: TextStyle(
