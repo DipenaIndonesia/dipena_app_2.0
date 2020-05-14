@@ -724,7 +724,10 @@ class _SeeDealsProfileState extends State<SeeDealsProfile> {
                                                 borderRadius:
                                                     BorderRadius.circular(15),
                                               ),
-                                              color: Colors.black,
+                                              color: 
+                                              Color.fromRGBO(
+                                                          250, 185, 32, 1),
+                                              // Colors.black,
                                                   // Color.fromRGBO(244, 217, 66, 1),
                                               child: Text(
                                                 'TAKE DEAL',

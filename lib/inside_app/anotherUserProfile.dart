@@ -866,7 +866,9 @@ class _AnotherProfileState extends State<AnotherProfile> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
-                              color: Colors.black,
+                              color:
+                                  // Colors.black,
+                                  Color.fromRGBO(250, 185, 32, 1),
                               // Color.fromRGBO(244, 217, 66, 1),
                               child: Text(
                                 'Follow',
@@ -923,7 +925,8 @@ class _AnotherProfileState extends State<AnotherProfile> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
-                              color: Colors.black,
+                              color: Color.fromRGBO(250, 185, 32, 1),
+                              // Colors.black,
                               // Color.fromRGBO(244, 217, 66, 1),
                               child: Text(
                                 'Followed',

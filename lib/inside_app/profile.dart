@@ -74,8 +74,7 @@ class _ProfileState extends State<Profile> {
     setState(() {
       loading = true;
     });
-    final response = await http
-        .post(EditProfileUrl.selectUserLocation, body: {
+    final response = await http.post(EditProfileUrl.selectUserLocation, body: {
       "user_id": user_id,
     });
     if (response.contentLength == 2) {
@@ -113,8 +112,7 @@ class _ProfileState extends State<Profile> {
     setState(() {
       loading = true;
     });
-    final response = await http
-        .post(FollowUrl.countFollow, body: {
+    final response = await http.post(FollowUrl.countFollow, body: {
       "user_id": user_id,
     });
     if (response.contentLength == 2) {
@@ -134,8 +132,7 @@ class _ProfileState extends State<Profile> {
     } else {
       final data = jsonDecode(response.body);
       data.forEach((api) {
-        final ab =
-            new CountFollow(api['following'], api['follower']);
+        final ab = new CountFollow(api['following'], api['follower']);
         listFollow.add(ab);
       });
       setState(() {
@@ -152,11 +149,9 @@ class _ProfileState extends State<Profile> {
     setState(() {
       loading = true;
     });
-    final response = await http.post(
-        PostUrl.selectPostProfile,
-        body: {
-          'user_id': user_id,
-        });
+    final response = await http.post(PostUrl.selectPostProfile, body: {
+      'user_id': user_id,
+    });
     if (response.contentLength == 2) {
       //   await getPref();
       // final response =
@@ -239,18 +234,17 @@ class _ProfileState extends State<Profile> {
         radius: 40, backgroundImage: AssetImage('./img/placeholder.png'));
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black, 
-        // Color.fromRGBO(244, 217, 66, 1),
-        child: Icon(Icons.add),
-        onPressed: () async {
-                          var navigationResult = await Navigator.push(
-                            context,
-                            new MaterialPageRoute(
-                              builder: (context) => MakeDeal(),
-                            ),
-                          );
-         }
-      ),
+          backgroundColor: Colors.black,
+          // Color.fromRGBO(244, 217, 66, 1),
+          child: Icon(Icons.add),
+          onPressed: () async {
+            var navigationResult = await Navigator.push(
+              context,
+              new MaterialPageRoute(
+                builder: (context) => MakeDeal(),
+              ),
+            );
+          }),
       backgroundColor: Colors.white,
       endDrawer: Drawer(
         child: DrawerHeader(
@@ -263,8 +257,7 @@ class _ProfileState extends State<Profile> {
                           ListTile(
                             leading: Icon(
                               Icons.edit,
-                              color: 
-                              Color.fromRGBO(244, 217, 66, 1),
+                              color: Color.fromRGBO(244, 217, 66, 1),
                               size: 30,
                             ),
                             title: Text(
@@ -453,7 +446,7 @@ class _ProfileState extends State<Profile> {
                     'My Profile',
                     style: TextStyle(
                       fontSize: 20,
-                      color: Colors.black, 
+                      color: Colors.black,
                       // Color.fromRGBO(244, 217, 66, 1),
                     ),
                   ),
@@ -481,8 +474,7 @@ class _ProfileState extends State<Profile> {
                           : CircleAvatar(
                               radius: 40,
                               backgroundImage: NetworkImage(
-                                  ImageUrl.imageProfile +
-                                      user_img),
+                                  ImageUrl.imageProfile + user_img),
                             ),
                     ),
                     Padding(
@@ -490,10 +482,9 @@ class _ProfileState extends State<Profile> {
                         left: 30,
                         top: 15,
                       ),
-                      child:  Column(
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          
                           Text(
                             '$user_username',
                             style: TextStyle(
@@ -507,10 +498,8 @@ class _ProfileState extends State<Profile> {
                               top: 8,
                             ),
                             child: Row(
-                              
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
-                                
                                 Icon(
                                   Icons.location_on,
                                   color: Colors.black,
@@ -520,70 +509,71 @@ class _ProfileState extends State<Profile> {
                                   padding: const EdgeInsets.only(
                                     left: 8,
                                   ),
-                                  child: list.isEmpty ?
-                                  Row(
-                                    children: <Widget>[
-                                      
-                                      Text(
-                                        'Country: Unknown \n'
-                                        'City: Unknown',
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.black,
-                                          letterSpacing: 2,
-                                          wordSpacing: 2,
+                                  child: list.isEmpty
+                                      ? Row(
+                                          children: <Widget>[
+                                            Text(
+                                              'Country: Unknown \n'
+                                              'City: Unknown',
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.black,
+                                                letterSpacing: 2,
+                                                wordSpacing: 2,
+                                              ),
+                                            ),
+                                            // Text(
+                                            //   ', ',
+                                            //   style: TextStyle(
+                                            //     color: Colors.black,
+                                            //     letterSpacing: 2,
+                                            //     wordSpacing: 2,
+                                            //   ),
+                                            // ),
+                                            // Text(
+                                            //   '',
+                                            //   style: TextStyle(
+                                            //     color: Colors.black,
+                                            //     letterSpacing: 2,
+                                            //     wordSpacing: 2,
+                                            //   ),
+                                            // ),
+                                          ],
+                                        )
+                                      : Row(
+                                          children: <Widget>[
+                                            for (var i = 0;
+                                                i < list.length;
+                                                i++)
+                                              Text(
+                                                list[0].location_country,
+                                                style: TextStyle(
+                                                  fontSize: 13,
+                                                  color: Colors.black,
+                                                  letterSpacing: 2,
+                                                  wordSpacing: 2,
+                                                ),
+                                              ),
+                                            Text(
+                                              ', ',
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black,
+                                                letterSpacing: 2,
+                                                wordSpacing: 2,
+                                              ),
+                                            ),
+                                            Text(
+                                              list[0].location_city,
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black,
+                                                letterSpacing: 2,
+                                                wordSpacing: 2,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                      // Text(
-                                      //   ', ',
-                                      //   style: TextStyle(
-                                      //     color: Colors.black,
-                                      //     letterSpacing: 2,
-                                      //     wordSpacing: 2,
-                                      //   ),
-                                      // ),
-                                      // Text(
-                                      //   '',
-                                      //   style: TextStyle(
-                                      //     color: Colors.black,
-                                      //     letterSpacing: 2,
-                                      //     wordSpacing: 2,
-                                      //   ),
-                                      // ),
-                                    ],
-                                  )
-                                  : Row(
-                                    children: <Widget>[
-                                      for(var i = 0; i < list.length; i++)
-                                      Text(
-                                        list[0].location_country,
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          color: Colors.black,
-                                          letterSpacing: 2,
-                                          wordSpacing: 2,
-                                        ),
-                                      ),
-                                      Text(
-                                        ', ',
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          color: Colors.black,
-                                          letterSpacing: 2,
-                                          wordSpacing: 2,
-                                        ),
-                                      ),
-                                      Text(
-                                        list[0].location_city,
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          color: Colors.black,
-                                          letterSpacing: 2,
-                                          wordSpacing: 2,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
                                 ),
                               ],
                             ),
@@ -628,99 +618,97 @@ class _ProfileState extends State<Profile> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      listFollow.isEmpty ?
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          // for(var i = 0; i < listFollow.length; i++)
-                          Text(
-                            '0',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
+                      listFollow.isEmpty
+                          ? Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                // for(var i = 0; i < listFollow.length; i++)
+                                Text(
+                                  '0',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Text(
+                                  'Followers',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                for (var i = 0; i < listFollow.length; i++)
+                                  Text(
+                                    listFollow[i].follower ?? '0',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                Text(
+                                  'Followers',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          Text(
-                            'Followers',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      )
-                      :
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          for(var i = 0; i < listFollow.length; i++)
-                          Text(
-                            listFollow[i].follower ?? '0',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Text(
-                            'Followers',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
                       Container(
                         color: Colors.black,
                         width: 0.2,
                         height: 22,
                       ),
-                      listFollow.isEmpty ?
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          // for(var i = 0; i < listFollow.length; i++)
-                          Text(
-                            '0',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
+                      listFollow.isEmpty
+                          ? Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                // for(var i = 0; i < listFollow.length; i++)
+                                Text(
+                                  '0',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Text(
+                                  'Following',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                for (var i = 0; i < listFollow.length; i++)
+                                  Text(
+                                    listFollow[i].following ?? '0',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                Text(
+                                  'Following',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          Text(
-                            'Following',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      )
-                      :
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          for(var i = 0; i < listFollow.length; i++)
-                          Text(
-                            listFollow[i].following ?? '0',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Text(
-                            'Following',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
                       Container(
                         color: Colors.black,
                         width: 0.2,
@@ -733,7 +721,9 @@ class _ProfileState extends State<Profile> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        color: Colors.black, 
+                        color:
+                            // Colors.black,
+                            Color.fromRGBO(250, 185, 32, 1),
                         // Color.fromRGBO(244, 217, 66, 1),
                         child: Text(
                           'Make Deals',
@@ -799,11 +789,10 @@ class _ProfileState extends State<Profile> {
                     //   itemBuilder: (context, i){
                     //     final b = listt[i];
                     //     return Container(
-                   
-                    Container(            child: Wrap(
-                        
+
+                    Container(
+                        child: Wrap(
                           children: <Widget>[
-                            
                             for (var i = 0; i < listt.length; i++)
                               GestureDetector(
                                 child: Container(
@@ -820,19 +809,17 @@ class _ProfileState extends State<Profile> {
                                 ),
                                 onTap: () async {
                                   final x = listt[i];
-                                                    var navigationResult =
-                                                        await Navigator.push(
-                                                      context,
-                                                      new MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            SeeDealsProfile(x),
-                                                      ),
-                                                    );
-                                                  },
+                                  var navigationResult = await Navigator.push(
+                                    context,
+                                    new MaterialPageRoute(
+                                      builder: (context) => SeeDealsProfile(x),
+                                    ),
+                                  );
+                                },
                               ),
                           ],
                         ),
-                    ),
+                      ),
           ]))
           //         );
           //         }

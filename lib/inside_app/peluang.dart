@@ -1297,6 +1297,7 @@ class _PeluangState extends State<Peluang> {
                                           color: Colors.white,
                                         ),
                                         child: Column(
+                                          mainAxisSize: MainAxisSize.min,
                                           children: <Widget>[
                                             Padding(
                                               padding:
