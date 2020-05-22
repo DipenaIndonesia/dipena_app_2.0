@@ -16,6 +16,7 @@ class PostFollow {
   final String like_status;
   final String jumlahKomen;
   final String jumlahLike;
+  final String block_status;
 
   PostFollow(
       this.post_id,
@@ -34,6 +35,7 @@ class PostFollow {
       this.user_img,
       this.like_status,
       this.jumlahKomen,
-      this.jumlahLike
+      this.jumlahLike,
+      this.block_status
       );
 }

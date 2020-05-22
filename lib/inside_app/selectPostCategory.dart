@@ -169,6 +169,7 @@ class _SelectPostCatState extends State<SelectPostCat> {
           api['jumlahLike'],
           api['like_status_user'],
           api['follow_status_user'],
+          api['block_status'],
         );
         list.add(ab);
       });
@@ -483,7 +484,8 @@ class _SelectPostCatState extends State<SelectPostCat> {
                                   itemCount: list.length,
                                   itemBuilder: (context, i) {
                                     final x = list[i];
-                                    return Container(
+                                    return x.block_status == null ?
+                                    Container(
                                       child: Padding(
                                         padding: const EdgeInsets.all(8),
                                         child: Padding(
@@ -1039,7 +1041,10 @@ class _SelectPostCatState extends State<SelectPostCat> {
                                           ),
                                         ),
                                       ),
-                                    );
+                                    )
+                                    // ;
+                                    :
+                                    Container();
                                   }),
                     ),
                   ]),

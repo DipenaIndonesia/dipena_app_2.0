@@ -19,6 +19,7 @@ class PostContent {
   final String jumlahLike;
   final String like_status_user;
   final String follow_status_user;
+  final String block_status;
 
   PostContent(
       this.post_id,
@@ -41,5 +42,6 @@ class PostContent {
       this.jumlahLike,
       this.like_status_user,
       this.follow_status_user,
+      this.block_status,
       );
 }

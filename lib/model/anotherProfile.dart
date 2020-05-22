@@ -1,9 +1,10 @@
 class AnotherProfileData {
+  final String user_id;
   final String user_username;
   final String user_bio;
   final String user_img;
 
-  AnotherProfileData(this.user_username, this.user_bio,this.user_img);
+  AnotherProfileData(this.user_id,this.user_username, this.user_bio,this.user_img);
 }
 
 class AnotherProfileFollowStatus {

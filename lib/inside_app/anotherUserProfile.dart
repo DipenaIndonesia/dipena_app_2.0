@@ -9,6 +9,7 @@ import 'package:dipena/model/location.dart';
 import 'package:dipena/model/post.dart';
 import 'package:dipena/model/profilePost.dart';
 import 'package:dipena/url.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dipena/inside_app/app_data.dart';
 import 'package:dipena/inside_app/user_profile.dart';
@@ -29,6 +30,7 @@ class AnotherProfile extends StatefulWidget {
 }
 
 class _AnotherProfileState extends State<AnotherProfile> {
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   LoginStatus _loginStatus = LoginStatus.notSignIn;
   final GlobalKey<RefreshIndicatorState> _refresh =
       GlobalKey<RefreshIndicatorState>();
@@ -52,7 +54,8 @@ class _AnotherProfileState extends State<AnotherProfile> {
       location_id,
       location_country,
       location_city,
-      user_img;
+      user_img,
+      user_email;
 
   getPref() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -60,6 +63,7 @@ class _AnotherProfileState extends State<AnotherProfile> {
       user_id = preferences.getString("user_id");
       location_user_id = preferences.getString('user_id');
       user_username = preferences.getString("user_username");
+      user_email = preferences.getString("user_email");
       user_bio = preferences.getString("user_bio");
       user_img = preferences.getString("user_img");
     });
@@ -226,7 +230,7 @@ class _AnotherProfileState extends State<AnotherProfile> {
   //     print(pesan);
   //   }
   // }
-  String profile;
+  String profile, report_user_image, block_user_two;
   var another_loading = false;
   final another_list = new List<AnotherProfileData>();
   Future<void> _anotherUserData() async {
@@ -258,13 +262,15 @@ class _AnotherProfileState extends State<AnotherProfile> {
     } else {
       final data = jsonDecode(response.body);
       data.forEach((api) {
-        final ab = new AnotherProfileData(
-            api['user_username'], api['user_bio'], api['user_img']);
+        final ab = new AnotherProfileData(api['user_id'], api['user_username'],
+            api['user_bio'], api['user_img']);
         another_list.add(ab);
       });
       setState(() {
         for (var i = 0; i < another_list.length; i++) {
           profile = another_list[i].user_username;
+          report_user_image = another_list[i].user_img;
+          block_user_two = another_list[i].user_id;
         }
         another_loading = false;
       });
@@ -327,12 +333,229 @@ class _AnotherProfileState extends State<AnotherProfile> {
     _followStatus();
   }
 
+  _showToast(String toast) {
+    final snackbar = SnackBar(
+      content: new Text(toast),
+      backgroundColor: Colors.green,
+    );
+    _scaffoldkey.currentState.showSnackBar(snackbar);
+  }
+
+  String report_user_username, msg;
+  report() async {
+    await getPref();
+    await msg;
+    await profile;
+    await report_user_image;
+    // await report_post_id;
+    // await report_post_img;
+    final response = await http
+        .post("https://dipena.com/flutter/api/user/reportUser.php", body: {
+      "user_username": user_username,
+      // "user_password": user_password,
+      "user_email": user_email,
+      "report_user_username": profile,
+      "report_user_image": report_user_image,
+      "msg": msg
+      // "post_id": report_post_id,
+      // "post_img": report_post_img
+    });
+
+    final data = jsonDecode(response.body);
+    int value = data['value'];
+    // String message = data['message'];
+    String messageEnglish = data['messageEnglish'];
+    // String changeProf = data['changeProf'];
+    // String user_usernameAPI = data['user_username'];
+    // String user_bioAPI = data['user_bio'];
+    // String user_emailAPI = data['user_email'];
+    // String user_id = data['user_id'];
+    // String user_img = data['user_img'];
+
+    if (value == 1) {
+      Navigator.pop(context);
+      // print(report_post_id);
+      _showToast(messageEnglish);
+      print(report_user_image);
+      // setState(() {
+      //   _loginStatus = LoginStatus.signIn;
+      //   savePref(value, user_id, user_username, user_emailAPI, user_bioAPI, user_img);
+      // });
+      // print(message);
+      // _showToast(message);
+    } else {
+      print("fail");
+      _showToast(messageEnglish);
+      // print(message);
+      // _showToast(messageEnglish);
+    }
+  }
+
+  block() async {
+    await getPref();
+    await block_user_two;
+    final response = await http
+        .post("https://dipena.com/flutter/api/block/block.php", body: {
+      "block_user_one": user_id,
+      "block_user_two": block_user_two,
+
+      // "post_cat_id" : post_cat_id,
+      // "user_id":
+      //     user_id,
+      // "follow_user_one":
+      //     user_id,
+      // "valuee": x
+      //     .post_user_id,
+      // "follow_user_two":
+      //     x.post_user_id,
+      // "follow_status": followed,
+    });
+    final data = jsonDecode(response.body);
+    int value = data['value'];
+    String pesan = data['message'];
+    String messageEnglish = data['messageEnglish'];
+    if (value == 1) {
+      Navigator.pop(context);
+      // print(pesan);
+      // setState(() {
+      //   // x.follow_status_user !=
+      //   // null;
+      // });
+      _showToast(messageEnglish);
+    } else if (value == 2) {
+      Navigator.pop(context);
+      // print(pesan);
+      // _showToastUnfoll(
+      // pesan);
+      _showToast(messageEnglish);
+    } else {
+      Navigator.pop(context);
+      // _showToast(pesan);
+      _showToast(messageEnglish);
+    }
+  }
+
+  Widget _popUp(BuildContext context) {
+    return new Transform.scale(
+      scale: 1,
+      child: Opacity(
+        opacity: 1,
+        child: CupertinoAlertDialog(
+            content: Column(
+          // mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            // final x = list[i];
+            FlatButton(
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              padding: EdgeInsets.all(0),
+              onPressed: () {
+                // report();
+                Navigator.pop(context);
+                _popUpReport();
+              },
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Report",
+                    style: TextStyle(fontWeight: FontWeight.normal)),
+              ),
+            ),
+            FlatButton(
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              padding: EdgeInsets.all(0),
+              onPressed: () {
+                // report();
+                block();
+              },
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Block",
+                    style: TextStyle(fontWeight: FontWeight.normal)),
+              ),
+            ),
+            // for(var i = 0; i < list.length; i++)
+            // list[i].post_id == report_post_id ?
+          ],
+        )),
+      ),
+    );
+  }
+
+  Widget _popUpReport() {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+              height: MediaQuery.of(context).size.height / 2,
+              // height: 100,
+              color: Colors.white,
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0, bottom: 10.0),
+                    child: Center(
+                        child: Text("Report",
+                            style: new TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.bold))),
+                  ),
+                  Divider(color: Colors.black),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Why you reporting this account?",
+                            style: new TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.bold))),
+                  ),
+                  FlatButton(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    padding: EdgeInsets.all(0),
+                    onPressed: () {
+                      setState(() {
+                        msg = "This is a spam";
+                      });
+                      report();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("This is a spam",
+                              style: new TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.normal))),
+                    ),
+                  ),
+                  FlatButton(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    padding: EdgeInsets.all(0),
+                    onPressed: () {
+                      setState(() {
+                        msg = "This is inappropriate";
+                      });
+                      report();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0, top: 10.0),
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("This is inappropriate",
+                              style: new TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.normal))),
+                    ),
+                  ),
+                ],
+              ));
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     // ApiService().getProfiles().then((value) => print("value: $value"));
     var placeholder = CircleAvatar(
         radius: 40, backgroundImage: AssetImage('./img/placeholder.png'));
     return Scaffold(
+      key: _scaffoldkey,
       floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.black,
           // Color.fromRGBO(244, 217, 66, 1),
@@ -346,176 +569,176 @@ class _AnotherProfileState extends State<AnotherProfile> {
             );
           }),
       backgroundColor: Colors.white,
-      endDrawer: Drawer(
-        child: DrawerHeader(
-            // child: list.isEmpty ?
-            child:
-                //
-                list.isEmpty
-                    ? Column(
-                        children: <Widget>[
-                          ListTile(
-                            leading: Icon(
-                              Icons.edit,
-                              color: Color.fromRGBO(244, 217, 66, 1),
-                              size: 30,
-                            ),
-                            title: Text(
-                              'Edit Profile',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Edit(LocationModel(
-                                      location_country, location_city))));
-                            },
-                          ),
-                          ListTile(
-                            leading: Icon(
-                              Icons.av_timer,
-                              color: Color.fromRGBO(244, 217, 66, 1),
-                              size: 30,
-                            ),
-                            title: Text(
-                              'History',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                            onTap: () async {
-                              var navigationResult = await Navigator.push(
-                                context,
-                                new MaterialPageRoute(
-                                  builder: (context) => History(),
-                                ),
-                              );
-                              if (navigationResult == true) {
-                                MaterialPageRoute(
-                                  builder: (context) => History(),
-                                );
-                              }
-                            },
-                          ),
-                          Padding(
-                            // padding: MediaQuery.of(context).padding,
-                            padding: EdgeInsets.only(top: 350),
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.supervised_user_circle,
-                                color: Color.fromRGBO(244, 217, 66, 1),
-                                size: 30,
-                              ),
-                              title: Text(
-                                'Logout',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                ),
-                              ),
-                              onTap: () async {
-                                SharedPreferences preferences =
-                                    await SharedPreferences.getInstance();
-                                setState(() {
-                                  preferences.setInt('value', null);
-                                  preferences.commit();
-                                  _loginStatus = LoginStatus.notSignIn;
-                                });
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext ctx) =>
-                                            Login()));
-                              },
-                            ),
-                          ),
-                        ],
-                      )
-                    : loading
-                        ? Center(child: CircularProgressIndicator())
-                        : ListView.builder(
-                            itemCount: list.length,
-                            itemBuilder: (context, i) {
-                              final x = list[i];
-                              return Container(
-                                child: Column(
-                                  children: <Widget>[
-                                    ListTile(
-                                      leading: Icon(
-                                        Icons.edit,
-                                        color: Color.fromRGBO(244, 217, 66, 1),
-                                        size: 30,
-                                      ),
-                                      title: Text(
-                                        'Edit Profile',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) => Edit(x)));
-                                      },
-                                    ),
-                                    ListTile(
-                                      leading: Icon(
-                                        Icons.av_timer,
-                                        color: Color.fromRGBO(244, 217, 66, 1),
-                                        size: 30,
-                                      ),
-                                      title: Text(
-                                        'History',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                      onTap: () async {
-                                        var navigationResult =
-                                            await Navigator.push(
-                                          context,
-                                          new MaterialPageRoute(
-                                            builder: (context) => History(),
-                                          ),
-                                        );
-                                        if (navigationResult == true) {
-                                          MaterialPageRoute(
-                                            builder: (context) => History(),
-                                          );
-                                        }
-                                      },
-                                    ),
-                                    Padding(
-                                      // padding: MediaQuery.of(context).padding,
-                                      padding: EdgeInsets.only(top: 350),
-                                      child: ListTile(
-                                        leading: Icon(
-                                          Icons.supervised_user_circle,
-                                          color:
-                                              Color.fromRGBO(244, 217, 66, 1),
-                                          size: 30,
-                                        ),
-                                        title: Text(
-                                          'Logout',
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                        onTap: () async {
-                                          SharedPreferences preferences =
-                                              await SharedPreferences
-                                                  .getInstance();
-                                          setState(() {
-                                            preferences.setInt('value', null);
-                                            preferences.commit();
-                                            _loginStatus =
-                                                LoginStatus.notSignIn;
-                                          });
-                                          Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (BuildContext ctx) =>
-                                                      Login()));
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            })),
-      ),
+      // endDrawer: Drawer(
+      //   child: DrawerHeader(
+      //       // child: list.isEmpty ?
+      //       child:
+      //           //
+      //           list.isEmpty
+      //               ? Column(
+      //                   children: <Widget>[
+      //                     ListTile(
+      //                       leading: Icon(
+      //                         Icons.edit,
+      //                         color: Color.fromRGBO(244, 217, 66, 1),
+      //                         size: 30,
+      //                       ),
+      //                       title: Text(
+      //                         'Edit Profile',
+      //                         style: TextStyle(fontSize: 18),
+      //                       ),
+      //                       onTap: () {
+      //                         Navigator.of(context).push(MaterialPageRoute(
+      //                             builder: (context) => Edit(LocationModel(
+      //                                 location_country, location_city))));
+      //                       },
+      //                     ),
+      //                     ListTile(
+      //                       leading: Icon(
+      //                         Icons.av_timer,
+      //                         color: Color.fromRGBO(244, 217, 66, 1),
+      //                         size: 30,
+      //                       ),
+      //                       title: Text(
+      //                         'History',
+      //                         style: TextStyle(fontSize: 18),
+      //                       ),
+      //                       onTap: () async {
+      //                         var navigationResult = await Navigator.push(
+      //                           context,
+      //                           new MaterialPageRoute(
+      //                             builder: (context) => History(),
+      //                           ),
+      //                         );
+      //                         if (navigationResult == true) {
+      //                           MaterialPageRoute(
+      //                             builder: (context) => History(),
+      //                           );
+      //                         }
+      //                       },
+      //                     ),
+      //                     Padding(
+      //                       // padding: MediaQuery.of(context).padding,
+      //                       padding: EdgeInsets.only(top: 350),
+      //                       child: ListTile(
+      //                         leading: Icon(
+      //                           Icons.supervised_user_circle,
+      //                           color: Color.fromRGBO(244, 217, 66, 1),
+      //                           size: 30,
+      //                         ),
+      //                         title: Text(
+      //                           'Logout',
+      //                           style: TextStyle(
+      //                             fontSize: 18,
+      //                           ),
+      //                         ),
+      //                         onTap: () async {
+      //                           SharedPreferences preferences =
+      //                               await SharedPreferences.getInstance();
+      //                           setState(() {
+      //                             preferences.setInt('value', null);
+      //                             preferences.commit();
+      //                             _loginStatus = LoginStatus.notSignIn;
+      //                           });
+      //                           Navigator.pushReplacement(
+      //                               context,
+      //                               MaterialPageRoute(
+      //                                   builder: (BuildContext ctx) =>
+      //                                       Login()));
+      //                         },
+      //                       ),
+      //                     ),
+      //                   ],
+      //                 )
+      //               : loading
+      //                   ? Center(child: CircularProgressIndicator())
+      //                   : ListView.builder(
+      //                       itemCount: list.length,
+      //                       itemBuilder: (context, i) {
+      //                         final x = list[i];
+      //                         return Container(
+      //                           child: Column(
+      //                             children: <Widget>[
+      //                               ListTile(
+      //                                 leading: Icon(
+      //                                   Icons.edit,
+      //                                   color: Color.fromRGBO(244, 217, 66, 1),
+      //                                   size: 30,
+      //                                 ),
+      //                                 title: Text(
+      //                                   'Edit Profile',
+      //                                   style: TextStyle(fontSize: 18),
+      //                                 ),
+      //                                 onTap: () {
+      //                                   Navigator.of(context).push(
+      //                                       MaterialPageRoute(
+      //                                           builder: (context) => Edit(x)));
+      //                                 },
+      //                               ),
+      //                               ListTile(
+      //                                 leading: Icon(
+      //                                   Icons.av_timer,
+      //                                   color: Color.fromRGBO(244, 217, 66, 1),
+      //                                   size: 30,
+      //                                 ),
+      //                                 title: Text(
+      //                                   'History',
+      //                                   style: TextStyle(fontSize: 18),
+      //                                 ),
+      //                                 onTap: () async {
+      //                                   var navigationResult =
+      //                                       await Navigator.push(
+      //                                     context,
+      //                                     new MaterialPageRoute(
+      //                                       builder: (context) => History(),
+      //                                     ),
+      //                                   );
+      //                                   if (navigationResult == true) {
+      //                                     MaterialPageRoute(
+      //                                       builder: (context) => History(),
+      //                                     );
+      //                                   }
+      //                                 },
+      //                               ),
+      //                               Padding(
+      //                                 // padding: MediaQuery.of(context).padding,
+      //                                 padding: EdgeInsets.only(top: 350),
+      //                                 child: ListTile(
+      //                                   leading: Icon(
+      //                                     Icons.supervised_user_circle,
+      //                                     color:
+      //                                         Color.fromRGBO(244, 217, 66, 1),
+      //                                     size: 30,
+      //                                   ),
+      //                                   title: Text(
+      //                                     'Logout',
+      //                                     style: TextStyle(
+      //                                       fontSize: 18,
+      //                                     ),
+      //                                   ),
+      //                                   onTap: () async {
+      //                                     SharedPreferences preferences =
+      //                                         await SharedPreferences
+      //                                             .getInstance();
+      //                                     setState(() {
+      //                                       preferences.setInt('value', null);
+      //                                       preferences.commit();
+      //                                       _loginStatus =
+      //                                           LoginStatus.notSignIn;
+      //                                     });
+      //                                     Navigator.pushReplacement(
+      //                                         context,
+      //                                         MaterialPageRoute(
+      //                                             builder: (BuildContext ctx) =>
+      //                                                 Login()));
+      //                                   },
+      //                                 ),
+      //                               ),
+      //                             ],
+      //                           ),
+      //                         );
+      //                       })),
+      // ),
       // body: ListView.builder(
       //   itemCount: list.length,
       //   itemBuilder: (context, i) {
@@ -559,6 +782,20 @@ class _AnotherProfileState extends State<AnotherProfile> {
                     color: Colors.black,
                     //  Color.fromRGBO(244, 217, 61, 1),
                   ),
+                  actions: <Widget>[
+                    IconButton(
+                      icon: Icon(
+                        Icons.more_vert,
+                        size: 25,
+                      ),
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) => _popUp(context));
+                        // _popUpReport();
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),

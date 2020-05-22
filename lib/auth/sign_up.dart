@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dipena/url.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -34,27 +35,29 @@ class _SignUpState extends State<SignUp> {
   }
 
   save() async {
-    final response = await http.post(
-        BaseUrl.register,
-        body: {
-          "user_fullname": user_fullname,
-          "user_email": user_email,
-          "user_username": user_username,
-          "user_password": user_password,
-        });
+    final response = await http.post(BaseUrl.register, body: {
+      "user_fullname": user_fullname,
+      "user_email": user_email,
+      "user_username": user_username,
+      "user_password": user_password,
+    });
 
     final data = jsonDecode(response.body);
     int value = data['value'];
     String message = data['message'];
     String messageEnglish = data['messageEnglish'];
     if (value == 1) {
-      setState(() {
-        Navigator.pop(context);
-      });
+      // setState(() {
+      //   Navigator.pop(context);
+      // });
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => _popUpGallery(context),
+      );
       print(message);
       // _showToast(message);
       // registerToast(message);
-      
+
     } else if (value == 2) {
       print(message);
       _showToast(messageEnglish);
@@ -66,13 +69,13 @@ class _SignUpState extends State<SignUp> {
     }
   }
 
-  _showToast(String toast){
-      final snackbar = SnackBar(
-        content: new Text(toast),
-        backgroundColor: Colors.red,
-      );
-      _scaffoldkey.currentState.showSnackBar(snackbar);
-    }
+  _showToast(String toast) {
+    final snackbar = SnackBar(
+      content: new Text(toast),
+      backgroundColor: Colors.red,
+    );
+    _scaffoldkey.currentState.showSnackBar(snackbar);
+  }
 
   // registerToast(String toast) {
   //   return Fluttertoast.showToast(
@@ -91,6 +94,107 @@ class _SignUpState extends State<SignUp> {
       return 'Enter Valid Email';
     else
       return null;
+  }
+
+  Widget _popUpGallery(BuildContext context) {
+    return new Transform.scale(
+      scale: 1,
+      child: Opacity(
+        opacity: 1,
+        child: CupertinoAlertDialog(
+            content: Column(
+          // mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              "WELCOME TO DIPENA!",
+              style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Text(
+                user_username,
+                style:
+                    new TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
+              ),
+            ),
+            Text(
+                "Ready to Share what you could or Take what you should and change the world ?"),
+            Padding(
+              padding: const EdgeInsets.only(top: 18.0),
+              child: FlatButton(
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                padding: EdgeInsets.all(0),
+                color: Colors.green,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                      builder: (context) => Login(),
+                    ),
+                  );
+                },
+                textColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                        color: Colors.blue, width: 1, style: BorderStyle.none),
+                    borderRadius: BorderRadius.circular(50)),
+                child: Align(
+                    alignment: Alignment.bottomCenter, child: Text("Dismiss")),
+              ),
+              //           DecoratedBox(
+              //              decoration:
+              // ShapeDecoration(shape: CircleBorder(), color: Colors.pinkAccent),
+              //                                 child: new OutlineButton(
+              //                 // color: Colors.green,
+              //                 child: Align(
+              //                   alignment: Alignment.bottomCenter,
+              //                   child: new Text("Dismiss")),
+              //                 onPressed: (){},
+              //                 shape: new RoundedRectangleBorder(
+              //                     borderRadius: new BorderRadius.circular(30.0))),
+              //           ))
+              // final x = list[i];
+              // FlatButton(
+              //   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              //   padding: EdgeInsets.all(0),
+              //   onPressed: () {
+              //     // report();
+              //   },
+              //   child: Align(
+              //     alignment: Alignment.centerLeft,
+              //     child: Text("Report",
+              //         style: TextStyle(fontWeight: FontWeight.normal)),
+              //   ),
+              // ),
+              // // for(var i = 0; i < list.length; i++)
+              // // list[i].post_id == report_post_id ?
+              // FlatButton(
+              //   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              //   padding: EdgeInsets.all(0),
+              //   onPressed: () async {
+              //     // var navigationResult = await Navigator.push(
+              //     //   context,
+              //     //   new MaterialPageRoute(
+              //     //     builder: (context) => AnotherProfile(list[i]),
+              //     //   ),
+              //     // );
+              //     // Navigator.pop(context);
+              //   },
+              //   child: Align(
+              //     alignment: Alignment.centerLeft,
+              //     child: Padding(
+              //       padding: EdgeInsets.only(top: 10.0),
+              //       child: Text("See Profile",
+              //           style: TextStyle(fontWeight: FontWeight.normal)),
+              //     ),
+              //   ),
+              // )
+              // :
+            ) // Container()
+          ],
+        )),
+      ),
+    );
   }
 
   @override

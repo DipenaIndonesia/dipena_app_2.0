@@ -155,6 +155,7 @@ class _HomeState extends State<Home> {
           api['like_status'],
           api['jumlahKomen'],
           api['jumlahLike'],
+          api['block_status'],
         );
         list.add(ab);
       });
