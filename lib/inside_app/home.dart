@@ -808,9 +808,9 @@ class _HomeState extends State<Home> {
                                                       BorderRadius.circular(15),
                                                 ),
                                                 color:
-                                                //  Colors.black,
-                                                 Color.fromRGBO(
-                                                          250, 185, 32, 1),
+                                                    //  Colors.black,
+                                                    Color.fromRGBO(
+                                                        250, 185, 32, 1),
                                                 // Color.fromRGBO(
                                                 //     244, 217, 66, 1),
                                                 child: Text(
@@ -823,12 +823,11 @@ class _HomeState extends State<Home> {
                                                 ),
                                                 onPressed: () {
                                                   // var navigationResult =
-                                                    Navigator.push(
+                                                  Navigator.push(
                                                     context,
                                                     new MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          Welcome()
-                                                    ),
+                                                        builder: (context) =>
+                                                            Welcome()),
                                                   );
                                                 },
                                               ),
@@ -1138,10 +1137,10 @@ class _HomeState extends State<Home> {
                                                   borderRadius:
                                                       BorderRadius.circular(15),
                                                 ),
-                                                color: 
-                                                // Colors.black,
-                                                 Color.fromRGBO(
-                                                          250, 185, 32, 1),
+                                                color:
+                                                    // Colors.black,
+                                                    Color.fromRGBO(
+                                                        250, 185, 32, 1),
                                                 // Color.fromRGBO(
                                                 //     244, 217, 66, 1),
                                                 child: Text(
@@ -1162,12 +1161,11 @@ class _HomeState extends State<Home> {
                                                   //             x),
                                                   //   ),
                                                   // );
-                                                   Navigator.push(
+                                                  Navigator.push(
                                                     context,
                                                     new MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          How()
-                                                    ),
+                                                        builder: (context) =>
+                                                            How()),
                                                   );
                                                 },
                                               ),
@@ -1496,10 +1494,10 @@ class _HomeState extends State<Home> {
                                                           BorderRadius.circular(
                                                               15),
                                                     ),
-                                                    color: 
-                                                    // Colors.black,
-                                                     Color.fromRGBO(
-                                                          250, 185, 32, 1),
+                                                    color:
+                                                        // Colors.black,
+                                                        Color.fromRGBO(
+                                                            250, 185, 32, 1),
                                                     // Color.fromRGBO(
                                                     //     244, 217, 66, 1),
                                                     child: Text(
@@ -2332,7 +2330,9 @@ class _HowState extends State<How> {
                                           0.8,
                                       child: Text(
                                         // x.post_offer,
-                                        "Put your service here. Millions of people need you but they don't see you.",
+                                        // "Put your service here. Millions of people need you but they don't see you.",
+                                        // "Your services/skills are matter for everyone. Let other knows about your service here so everyone can take deals on you and work for something big!.",
+                                        "Let others know about your service here so everyone can take deals on you and work for something big!",
                                         style: TextStyle(
                                           fontSize: 18,
                                         ),
