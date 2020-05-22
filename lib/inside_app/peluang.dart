@@ -594,7 +594,6 @@ class _PeluangState extends State<Peluang> {
   }
 
   Widget _popUpGallery(BuildContext context) {
-    
     return new Transform.scale(
       scale: 1,
       child: Opacity(
@@ -603,7 +602,6 @@ class _PeluangState extends State<Peluang> {
             content: Column(
           // mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            
             // final x = list[i];
             FlatButton(
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -617,31 +615,30 @@ class _PeluangState extends State<Peluang> {
                     style: TextStyle(fontWeight: FontWeight.normal)),
               ),
             ),
-            for(var i = 0; i < list.length; i++)
-            list[i].post_id == report_post_id ?
-            FlatButton(
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              padding: EdgeInsets.all(0),
-              onPressed: () async {
-                var navigationResult = await Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                    builder: (context) => AnotherProfile(list[i]),
-                  ),
-                );
-                Navigator.pop(context);
-              },
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Text("See Profile",
-                      style: TextStyle(fontWeight: FontWeight.normal)),
-                ),
-              ),
-            )
-            :
-            Container()
+            for (var i = 0; i < list.length; i++)
+              list[i].post_id == report_post_id
+                  ? FlatButton(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      padding: EdgeInsets.all(0),
+                      onPressed: () async {
+                        var navigationResult = await Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                            builder: (context) => AnotherProfile(list[i]),
+                          ),
+                        );
+                        Navigator.pop(context);
+                      },
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 10.0),
+                          child: Text("See Profile",
+                              style: TextStyle(fontWeight: FontWeight.normal)),
+                        ),
+                      ),
+                    )
+                  : Container()
           ],
         )),
       ),
@@ -1417,378 +1414,617 @@ class _PeluangState extends State<Peluang> {
                             itemCount: list.length,
                             itemBuilder: (context, i) {
                               final x = list[i];
-                              return x.block_status == null ?
-                              Container(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                      top: 1,
-                                    ),
-                                    child: Container(
-                                      width:
-                                          SizeConfig.safeBlockHorizontal * 100,
-                                      height:
-                                          SizeConfig.safeBlockVertical * 110,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              vertical: 2,
+                              return x.block_status == null
+                                  ? Container(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                            top: 1,
+                                          ),
+                                          child: Container(
+                                            width:
+                                                SizeConfig.safeBlockHorizontal *
+                                                    100,
+                                            height:
+                                                SizeConfig.safeBlockVertical *
+                                                    110,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
                                             ),
                                             child: Column(
+                                              mainAxisSize: MainAxisSize.min,
                                               children: <Widget>[
-                                                // RefreshIndicator(
-                                                // onRefresh: _followStatus,
-                                                // key: _refreshFollow,
-                                                // child: Container(),
-                                                // ),
-                                                ListTile(
-                                                  leading: Container(
-                                                    width: 50,
-                                                    height: 50,
-                                                    decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: x.user_img == null
-                                                        ? placeholder
-                                                        : CircleAvatar(
-                                                            radius: 40,
-                                                            backgroundImage:
-                                                                NetworkImage(ImageUrl
-                                                                        .imageProfile +
-                                                                    x.user_img),
-                                                            // child: ClipOval(
-                                                            //   child: Image(
-                                                            //     width: 50,
-                                                            //     height: 50,
-                                                            //     image: AssetImage(
-                                                            //       widget.icon,
-                                                            //     ),
-                                                            //     fit: BoxFit.cover,
-                                                            //   ),
-                                                            // ),
-                                                          ),
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                    vertical: 2,
                                                   ),
-                                                  title: InkWell(
-                                                    child: Text(
-                                                      x.user_username,
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                    onTap: () async {
-                                                      var navigationResult =
-                                                          await Navigator.push(
-                                                        context,
-                                                        new MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              AnotherProfile(x),
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      // RefreshIndicator(
+                                                      // onRefresh: _followStatus,
+                                                      // key: _refreshFollow,
+                                                      // child: Container(),
+                                                      // ),
+                                                      ListTile(
+                                                        leading: Container(
+                                                          width: 50,
+                                                          height: 50,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
+                                                          ),
+                                                          child: x.user_img ==
+                                                                  null
+                                                              ? InkWell(
+                                                                  onTap:
+                                                                      () async {
+                                                                    var navigationResult =
+                                                                        await Navigator
+                                                                            .push(
+                                                                      context,
+                                                                      new MaterialPageRoute(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                AnotherProfile(x),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                  child:
+                                                                      placeholder)
+                                                              : InkWell(
+                                                                  onTap:
+                                                                      () async {
+                                                                    var navigationResult =
+                                                                        await Navigator
+                                                                            .push(
+                                                                      context,
+                                                                      new MaterialPageRoute(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                AnotherProfile(x),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                  child:
+                                                                      CircleAvatar(
+                                                                    radius: 40,
+                                                                    backgroundImage:
+                                                                        NetworkImage(ImageUrl.imageProfile +
+                                                                            x.user_img),
+                                                                    // child: ClipOval(
+                                                                    //   child: Image(
+                                                                    //     width: 50,
+                                                                    //     height: 50,
+                                                                    //     image: AssetImage(
+                                                                    //       widget.icon,
+                                                                    //     ),
+                                                                    //     fit: BoxFit.cover,
+                                                                    //   ),
+                                                                    // ),
+                                                                  ),
+                                                                ),
                                                         ),
-                                                      );
-                                                    },
-                                                  ),
-                                                  trailing: user_id ==
-                                                          x.post_user_id
-                                                      ? PopupMenuButton<String>(
-                                                          onSelected:
-                                                              choiceAction,
-                                                          itemBuilder:
-                                                              (BuildContext
-                                                                  context) {
-                                                            return MoreButton
-                                                                .choices
-                                                                .map((String
-                                                                    choice) {
-                                                              return PopupMenuItem<
-                                                                      String>(
-                                                                  value: choice,
-                                                                  child: Text(
-                                                                      choice));
-                                                            }).toList();
-                                                          })
-                                                      // ? IconButton(
-                                                      //     icon: Icon(Icons.more),
-                                                      //     onPressed: () {})
-                                                      : IconButton(
-                                                          icon: Icon(
-                                                            x.follow_status_user ==
-                                                                    null
-                                                                ? FontAwesomeIcons
-                                                                    .userPlus
-                                                                : FontAwesomeIcons
-                                                                    .userCheck,
-                                                            color:
-                                                                x.follow_status_user ==
-                                                                        null
-                                                                    ? Color
-                                                                        .fromRGBO(
-                                                                            244,
-                                                                            217,
-                                                                            66,
-                                                                            1)
-                                                                    : Colors
-                                                                        .black,
+                                                        title: InkWell(
+                                                          child: Text(
+                                                            x.user_username,
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
                                                           ),
-                                                          iconSize: 25,
-                                                          onPressed: () async {
-                                                            await getPref();
-                                                            final response =
-                                                                await http.post(
-                                                                    FollowUrl
-                                                                        .follow,
-                                                                    body: {
-                                                                  // "post_cat_id" : post_cat_id,
-                                                                  "user_id":
-                                                                      user_id,
-                                                                  "follow_user_one":
-                                                                      user_id,
-                                                                  "valuee": x
-                                                                      .post_user_id,
-                                                                  "follow_user_two":
-                                                                      x.post_user_id,
-                                                                  // "follow_status": followed,
-                                                                });
-                                                            final data =
-                                                                jsonDecode(
-                                                                    response
-                                                                        .body);
-                                                            int value =
-                                                                data['value'];
-                                                            String pesan =
-                                                                data['message'];
-                                                            if (value == 1) {
-                                                              print(pesan);
-                                                              setState(() {
-                                                                x.follow_status_user !=
-                                                                    null;
-                                                              });
-                                                              _showToast(pesan);
-                                                            } else if (value ==
-                                                                2) {
-                                                              print(pesan);
-                                                              _showToastUnfoll(
-                                                                  pesan);
-                                                            } else {
-                                                              _showToast(pesan);
-                                                            }
-                                                            // follow();
+                                                          onTap: () async {
+                                                            var navigationResult =
+                                                                await Navigator
+                                                                    .push(
+                                                              context,
+                                                              new MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        AnotherProfile(
+                                                                            x),
+                                                              ),
+                                                            );
                                                           },
                                                         ),
-                                                  // IconButton(
-                                                  //     icon: Icon(
-                                                  //       follow ==
-                                                  //               null
-                                                  //           ? FontAwesomeIcons
-                                                  //               .userPlus
-                                                  //           : FontAwesomeIcons
-                                                  //               .userCheck,
-                                                  //       color: follow ==
-                                                  //               null
-                                                  //           ? Color
-                                                  //               .fromRGBO(
-                                                  //                   244,
-                                                  //                   217,
-                                                  //                   66,
-                                                  //                   1)
-                                                  //           : Colors
-                                                  //               .black,
-                                                  //     ),
-                                                  //     iconSize: 25,
-                                                  //     onPressed:
-                                                  //         () async {
-                                                  //       await getPref();
-                                                  //       final response =
-                                                  //           await http.post(
-                                                  //               FollowUrl
-                                                  //                   .follow,
-                                                  //               body: {
-                                                  //             // "post_cat_id" : post_cat_id,
-                                                  //             "user_id":
-                                                  //                 user_id,
-                                                  //             "follow_user_one":
-                                                  //                 user_id,
-                                                  //             "valuee": x
-                                                  //                 .post_user_id,
-                                                  //             "follow_user_two":
-                                                  //                 x.post_user_id,
-                                                  //             // "follow_status": followed,
-                                                  //           });
-                                                  //       final data =
-                                                  //           jsonDecode(
-                                                  //               response
-                                                  //                   .body);
-                                                  //       int value =
-                                                  //           data['value'];
-                                                  //       String pesan =
-                                                  //           data[
-                                                  //               'message'];
-                                                  //       if (value == 1) {
-                                                  //         print(pesan);
-                                                  //         // setState(() {
-                                                  //         //   // x.follow_status_user !=
-                                                  //         //   //     null;
-                                                  //         // });
-                                                  //         _refreshFollow.currentState.show();
-                                                  //       } else {
-                                                  //         print(pesan);
-                                                  //       }
-                                                  //       // follow();
-                                                  //     },
-                                                  //   ),
-                                                  subtitle: Row(
-                                                    children: <Widget>[
-                                                      Icon(
-                                                        Icons.location_on,
-                                                        color: Colors.grey[600],
-                                                        size: 11,
-                                                      ),
-                                                      Text(
-                                                        x.post_location,
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                        trailing: user_id ==
+                                                                x.post_user_id
+                                                            ? PopupMenuButton<
+                                                                    String>(
+                                                                onSelected:
+                                                                    choiceAction,
+                                                                itemBuilder:
+                                                                    (BuildContext
+                                                                        context) {
+                                                                  return MoreButton
+                                                                      .choices
+                                                                      .map((String
+                                                                          choice) {
+                                                                    return PopupMenuItem<
+                                                                            String>(
+                                                                        value:
+                                                                            choice,
+                                                                        child: Text(
+                                                                            choice));
+                                                                  }).toList();
+                                                                })
+                                                            // ? IconButton(
+                                                            //     icon: Icon(Icons.more),
+                                                            //     onPressed: () {})
+                                                            : IconButton(
+                                                                icon: Icon(
+                                                                  x.follow_status_user ==
+                                                                          null
+                                                                      ? FontAwesomeIcons
+                                                                          .userPlus
+                                                                      : FontAwesomeIcons
+                                                                          .userCheck,
+                                                                  color: x.follow_status_user ==
+                                                                          null
+                                                                      ? Color.fromRGBO(
+                                                                          244,
+                                                                          217,
+                                                                          66,
+                                                                          1)
+                                                                      : Colors
+                                                                          .black,
+                                                                ),
+                                                                iconSize: 25,
+                                                                onPressed:
+                                                                    () async {
+                                                                  await getPref();
+                                                                  final response =
+                                                                      await http.post(
+                                                                          FollowUrl
+                                                                              .follow,
+                                                                          body: {
+                                                                        // "post_cat_id" : post_cat_id,
+                                                                        "user_id":
+                                                                            user_id,
+                                                                        "follow_user_one":
+                                                                            user_id,
+                                                                        "valuee":
+                                                                            x.post_user_id,
+                                                                        "follow_user_two":
+                                                                            x.post_user_id,
+                                                                        // "follow_status": followed,
+                                                                      });
+                                                                  final data =
+                                                                      jsonDecode(
+                                                                          response
+                                                                              .body);
+                                                                  int value = data[
+                                                                      'value'];
+                                                                  String pesan =
+                                                                      data[
+                                                                          'message'];
+                                                                  if (value ==
+                                                                      1) {
+                                                                    print(
+                                                                        pesan);
+                                                                    setState(
+                                                                        () {
+                                                                      x.follow_status_user !=
+                                                                          null;
+                                                                    });
+                                                                    _showToast(
+                                                                        pesan);
+                                                                  } else if (value ==
+                                                                      2) {
+                                                                    print(
+                                                                        pesan);
+                                                                    _showToastUnfoll(
+                                                                        pesan);
+                                                                  } else {
+                                                                    _showToast(
+                                                                        pesan);
+                                                                  }
+                                                                  // follow();
+                                                                },
+                                                              ),
+                                                        // IconButton(
+                                                        //     icon: Icon(
+                                                        //       follow ==
+                                                        //               null
+                                                        //           ? FontAwesomeIcons
+                                                        //               .userPlus
+                                                        //           : FontAwesomeIcons
+                                                        //               .userCheck,
+                                                        //       color: follow ==
+                                                        //               null
+                                                        //           ? Color
+                                                        //               .fromRGBO(
+                                                        //                   244,
+                                                        //                   217,
+                                                        //                   66,
+                                                        //                   1)
+                                                        //           : Colors
+                                                        //               .black,
+                                                        //     ),
+                                                        //     iconSize: 25,
+                                                        //     onPressed:
+                                                        //         () async {
+                                                        //       await getPref();
+                                                        //       final response =
+                                                        //           await http.post(
+                                                        //               FollowUrl
+                                                        //                   .follow,
+                                                        //               body: {
+                                                        //             // "post_cat_id" : post_cat_id,
+                                                        //             "user_id":
+                                                        //                 user_id,
+                                                        //             "follow_user_one":
+                                                        //                 user_id,
+                                                        //             "valuee": x
+                                                        //                 .post_user_id,
+                                                        //             "follow_user_two":
+                                                        //                 x.post_user_id,
+                                                        //             // "follow_status": followed,
+                                                        //           });
+                                                        //       final data =
+                                                        //           jsonDecode(
+                                                        //               response
+                                                        //                   .body);
+                                                        //       int value =
+                                                        //           data['value'];
+                                                        //       String pesan =
+                                                        //           data[
+                                                        //               'message'];
+                                                        //       if (value == 1) {
+                                                        //         print(pesan);
+                                                        //         // setState(() {
+                                                        //         //   // x.follow_status_user !=
+                                                        //         //   //     null;
+                                                        //         // });
+                                                        //         _refreshFollow.currentState.show();
+                                                        //       } else {
+                                                        //         print(pesan);
+                                                        //       }
+                                                        //       // follow();
+                                                        //     },
+                                                        //   ),
+                                                        subtitle: Row(
+                                                          children: <Widget>[
+                                                            Icon(
+                                                              Icons.location_on,
+                                                              color: Colors
+                                                                  .grey[600],
+                                                              size: 11,
+                                                            ),
+                                                            Text(
+                                                              x.post_location,
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Container(
-                                                  margin: EdgeInsets.all(10),
-                                                  width: double.infinity,
-                                                  height: 350,
-                                                  decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                      image: NetworkImage(
-                                                          ImageUrl.imageContent +
-                                                              x.post_img),
-                                                      fit: BoxFit.fitWidth,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: <Widget>[
-                                                    // Row(
-                                                    // children: <Widget>[
-                                                    // Like(
-                                                    //     stream:
-                                                    //         _controller
-                                                    //             .stream
-                                                    //             ),
-                                                    // Row(
-                                                    //   children: <Widget>[
-                                                    //     // RefreshIndicator(
-                                                    //     //   onRefresh: _lihatDataPost,
-                                                    //     //   key: _refreshLike,
-                                                    //     //   child:
-                                                    //     //       IconButton(
-                                                    //     //     icon: Icon(
-                                                    //     //       x.like_status_user ==
-                                                    //     //               null
-                                                    //     //           ? Icons
-                                                    //     //               .favorite_border
-                                                    //     //           : Icons
-                                                    //     //               .favorite,
-                                                    //     //       color: x.like_status_user ==
-                                                    //     //               null
-                                                    //     //           ? Colors
-                                                    //     //               .black
-                                                    //     //           : Color.fromRGBO(
-                                                    //     //               244,
-                                                    //     //               217,
-                                                    //     //               66,
-                                                    //     //               1),
-                                                    //     //     ),
-                                                    //     //     iconSize: 30,
-                                                    //     //     onPressed:
-                                                    //     //         () async {
-                                                    //     //       // setState(
-                                                    //     //       //     () async {
-                                                    //     //       //   dipencet_addlike =
-                                                    //     //       //       x.post_id;
-                                                    //     //       // });
-                                                    //     //       // addLike();
-                                                    //     //       await getPref();
-                                                    //     //       final response =
-                                                    //     //           await http.post(
-                                                    //     //               LikeUrl
-                                                    //     //                   .addLike,
-                                                    //     //               body: {
-                                                    //     //             // "post_cat_id" : post_cat_id,
-                                                    //     //             "user_id":
-                                                    //     //                 user_id,
-                                                    //     //             "post_id":
-                                                    //     //                 x.post_id,
-                                                    //     //             // "follow_status": followed,
-                                                    //     //           });
-                                                    //     //       final data =
-                                                    //     //           jsonDecode(
-                                                    //     //               response
-                                                    //     //                   .body);
-                                                    //     //       int value = data[
-                                                    //     //           'value'];
-                                                    //     //       String pesan =
-                                                    //     //           data[
-                                                    //     //               'message'];
-                                                    //     //       if (value ==
-                                                    //     //           1) {
-                                                    //     //         print(
-                                                    //     //             pesan);
-                                                    //     //         // setState(() {
-                                                    //     //         //   // liked = !liked;
-                                                    //     //         //   x.like_status_user !=
-                                                    //     //         //       null;
-                                                    //     //         // });
-                                                    //     //       } else {
-                                                    //     //         print(
-                                                    //     //             pesan);
-                                                    //     //       }
-                                                    //     //       _refreshLike.currentState.show();
-                                                    //     //       // likeStatus();
-                                                    //     //       // follow();
-                                                    //     //     },
-                                                    //     //   ),
-                                                    //     // // ),
-                                                    //     // Text(
-                                                    //     //   x.jumlahLike ??
-                                                    //     //       '0',
-                                                    //     //   style:
-                                                    //     //       TextStyle(
-                                                    //     //     fontSize: 14,
-                                                    //     //     fontWeight:
-                                                    //     //         FontWeight
-                                                    //     //             .w600,
-                                                    //     //   ),
-                                                    //     // ),
-                                                    //     // LikeTwo(),
-                                                    //     // Text(
-                                                    //     //   x.post_like_id,
-                                                    //     //   style: TextStyle(
-                                                    //     //     fontSize: 14,
-                                                    //     //     fontWeight:
-                                                    //     //         FontWeight.w600,
-                                                    //     //   ),
-                                                    //     // ),
-                                                    //   ],
-                                                    // ),
-                                                    // SizedBox(
-                                                    //   width: 10,
-                                                    // ),
-                                                    Row(
-                                                      children: <Widget>[
-                                                        IconButton(
-                                                          iconSize: 25,
-                                                          icon: Icon(
-                                                            FontAwesomeIcons
-                                                                .comment,
+                                                      Container(
+                                                        margin:
+                                                            EdgeInsets.all(10),
+                                                        width: double.infinity,
+                                                        height: 350,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          image:
+                                                              DecorationImage(
+                                                            image: NetworkImage(
+                                                                ImageUrl.imageContent +
+                                                                    x.post_img),
+                                                            fit:
+                                                                BoxFit.fitWidth,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: <Widget>[
+                                                          // Row(
+                                                          // children: <Widget>[
+                                                          // Like(
+                                                          //     stream:
+                                                          //         _controller
+                                                          //             .stream
+                                                          //             ),
+                                                          // Row(
+                                                          //   children: <Widget>[
+                                                          //     // RefreshIndicator(
+                                                          //     //   onRefresh: _lihatDataPost,
+                                                          //     //   key: _refreshLike,
+                                                          //     //   child:
+                                                          //     //       IconButton(
+                                                          //     //     icon: Icon(
+                                                          //     //       x.like_status_user ==
+                                                          //     //               null
+                                                          //     //           ? Icons
+                                                          //     //               .favorite_border
+                                                          //     //           : Icons
+                                                          //     //               .favorite,
+                                                          //     //       color: x.like_status_user ==
+                                                          //     //               null
+                                                          //     //           ? Colors
+                                                          //     //               .black
+                                                          //     //           : Color.fromRGBO(
+                                                          //     //               244,
+                                                          //     //               217,
+                                                          //     //               66,
+                                                          //     //               1),
+                                                          //     //     ),
+                                                          //     //     iconSize: 30,
+                                                          //     //     onPressed:
+                                                          //     //         () async {
+                                                          //     //       // setState(
+                                                          //     //       //     () async {
+                                                          //     //       //   dipencet_addlike =
+                                                          //     //       //       x.post_id;
+                                                          //     //       // });
+                                                          //     //       // addLike();
+                                                          //     //       await getPref();
+                                                          //     //       final response =
+                                                          //     //           await http.post(
+                                                          //     //               LikeUrl
+                                                          //     //                   .addLike,
+                                                          //     //               body: {
+                                                          //     //             // "post_cat_id" : post_cat_id,
+                                                          //     //             "user_id":
+                                                          //     //                 user_id,
+                                                          //     //             "post_id":
+                                                          //     //                 x.post_id,
+                                                          //     //             // "follow_status": followed,
+                                                          //     //           });
+                                                          //     //       final data =
+                                                          //     //           jsonDecode(
+                                                          //     //               response
+                                                          //     //                   .body);
+                                                          //     //       int value = data[
+                                                          //     //           'value'];
+                                                          //     //       String pesan =
+                                                          //     //           data[
+                                                          //     //               'message'];
+                                                          //     //       if (value ==
+                                                          //     //           1) {
+                                                          //     //         print(
+                                                          //     //             pesan);
+                                                          //     //         // setState(() {
+                                                          //     //         //   // liked = !liked;
+                                                          //     //         //   x.like_status_user !=
+                                                          //     //         //       null;
+                                                          //     //         // });
+                                                          //     //       } else {
+                                                          //     //         print(
+                                                          //     //             pesan);
+                                                          //     //       }
+                                                          //     //       _refreshLike.currentState.show();
+                                                          //     //       // likeStatus();
+                                                          //     //       // follow();
+                                                          //     //     },
+                                                          //     //   ),
+                                                          //     // // ),
+                                                          //     // Text(
+                                                          //     //   x.jumlahLike ??
+                                                          //     //       '0',
+                                                          //     //   style:
+                                                          //     //       TextStyle(
+                                                          //     //     fontSize: 14,
+                                                          //     //     fontWeight:
+                                                          //     //         FontWeight
+                                                          //     //             .w600,
+                                                          //     //   ),
+                                                          //     // ),
+                                                          //     // LikeTwo(),
+                                                          //     // Text(
+                                                          //     //   x.post_like_id,
+                                                          //     //   style: TextStyle(
+                                                          //     //     fontSize: 14,
+                                                          //     //     fontWeight:
+                                                          //     //         FontWeight.w600,
+                                                          //     //   ),
+                                                          //     // ),
+                                                          //   ],
+                                                          // ),
+                                                          // SizedBox(
+                                                          //   width: 10,
+                                                          // ),
+                                                          Row(
+                                                            children: <Widget>[
+                                                              IconButton(
+                                                                iconSize: 25,
+                                                                icon: Icon(
+                                                                  FontAwesomeIcons
+                                                                      .comment,
+                                                                ),
+                                                                onPressed:
+                                                                    () async {
+                                                                  var navigationResult =
+                                                                      await Navigator
+                                                                          .push(
+                                                                    context,
+                                                                    new MaterialPageRoute(
+                                                                      builder: (context) =>
+                                                                          Comment(
+                                                                              x),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ),
+                                                              Text(
+                                                                x.jumlahKomen ??
+                                                                    '0',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                              ),
+                                                              // Spacer(flex: 2),
+                                                            ],
+                                                          ),
+                                                          IconButton(
+                                                            icon: Icon(Icons
+                                                                .more_vert),
+                                                            onPressed: () {
+                                                              setState(() {
+                                                                report_post_id =
+                                                                    x.post_id;
+                                                                report_post_img =
+                                                                    x.post_img;
+                                                              });
+                                                              showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder: (BuildContext
+                                                                        context) =>
+                                                                    _popUpGallery(
+                                                                        context),
+                                                              );
+                                                              // _openCustomDialog(BuildContext context);
+                                                            },
+                                                          ),
+                                                          // Spacer(flex: 1),
+                                                          // Row(
+                                                          // mainAxisAlignment: MainAxisAlignment.end,
+                                                          // children: <Widget>[
+
+                                                          // ],
+                                                          // )
+                                                        ],
+                                                        // ),
+                                                        // ],
+                                                      ),
+                                                      Row(
+                                                        children: <Widget>[
+                                                          Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                              left: 15,
+                                                              right: 30,
+                                                            ),
+                                                            child:
+                                                                //  x.post_cat_id == "1" ?
+                                                                Text(
+                                                              // x.post_sub_cat_id,
+                                                              show_cat(x
+                                                                  .post_cat_id),
+                                                              style: TextStyle(
+                                                                fontSize: 18,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w700,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                          top: 10,
+                                                        ),
+                                                        child: Row(
+                                                          children: <Widget>[
+                                                            Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                left: 15,
+                                                                right: 30,
+                                                              ),
+                                                              child: Text(
+                                                                x.post_title,
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 17,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                          top: 10,
+                                                        ),
+                                                        child: Row(
+                                                          children: <Widget>[
+                                                            Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.8,
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                left: 15,
+                                                                right: 30,
+                                                              ),
+                                                              child: Text(
+                                                                x.post_description ??
+                                                                    'null',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 15,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                          top: 10,
+                                                          right: 260,
+                                                        ),
+                                                        child: RaisedButton(
+                                                          splashColor: Colors
+                                                              .purpleAccent,
+                                                          elevation: 2,
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  12),
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                          ),
+                                                          color:
+                                                              // Colors.black,
+                                                              Color.fromRGBO(
+                                                                  250,
+                                                                  185,
+                                                                  32,
+                                                                  1),
+                                                          child: Text(
+                                                            'SEE DEAL',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 15,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
                                                           ),
                                                           onPressed: () async {
                                                             var navigationResult =
@@ -1798,183 +2034,23 @@ class _PeluangState extends State<Peluang> {
                                                               new MaterialPageRoute(
                                                                 builder:
                                                                     (context) =>
-                                                                        Comment(
-                                                                            x),
+                                                                        Deal(x),
                                                               ),
                                                             );
                                                           },
                                                         ),
-                                                        Text(
-                                                          x.jumlahKomen ?? '0',
-                                                          style: TextStyle(
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                        ),
-                                                        // Spacer(flex: 2),
-                                                      ],
-                                                    ),
-                                                    IconButton(
-                                                      icon:
-                                                          Icon(Icons.more_vert),
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          report_post_id =
-                                                              x.post_id;
-                                                          report_post_img =
-                                                              x.post_img;
-                                                        });
-                                                        showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                                  context) =>
-                                                              _popUpGallery(
-                                                                  context),
-                                                        );
-                                                        // _openCustomDialog(BuildContext context);
-                                                      },
-                                                    ),
-                                                    // Spacer(flex: 1),
-                                                    // Row(
-                                                    // mainAxisAlignment: MainAxisAlignment.end,
-                                                    // children: <Widget>[
-
-                                                    // ],
-                                                    // )
-                                                  ],
-                                                  // ),
-                                                  // ],
-                                                ),
-                                                Row(
-                                                  children: <Widget>[
-                                                    Container(
-                                                      margin: EdgeInsets.only(
-                                                        left: 15,
-                                                        right: 30,
-                                                      ),
-                                                      child:
-                                                          //  x.post_cat_id == "1" ?
-                                                          Text(
-                                                        // x.post_sub_cat_id,
-                                                        show_cat(x.post_cat_id),
-                                                        style: TextStyle(
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                    top: 10,
-                                                  ),
-                                                  child: Row(
-                                                    children: <Widget>[
-                                                      Container(
-                                                        margin: EdgeInsets.only(
-                                                          left: 15,
-                                                          right: 30,
-                                                        ),
-                                                        child: Text(
-                                                          x.post_title,
-                                                          style: TextStyle(
-                                                            fontSize: 17,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                        ),
                                                       ),
                                                     ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                    top: 10,
-                                                  ),
-                                                  child: Row(
-                                                    children: <Widget>[
-                                                      Container(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.8,
-                                                        margin: EdgeInsets.only(
-                                                          left: 15,
-                                                          right: 30,
-                                                        ),
-                                                        child: Text(
-                                                          x.post_description ??
-                                                              'null',
-                                                          style: TextStyle(
-                                                            fontSize: 15,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                    top: 10,
-                                                    right: 260,
-                                                  ),
-                                                  child: RaisedButton(
-                                                    splashColor:
-                                                        Colors.purpleAccent,
-                                                    elevation: 2,
-                                                    padding: EdgeInsets.all(12),
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15),
-                                                    ),
-                                                    color:
-                                                        // Colors.black,
-                                                        Color.fromRGBO(
-                                                            250, 185, 32, 1),
-                                                    child: Text(
-                                                      'SEE DEAL',
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                    onPressed: () async {
-                                                      var navigationResult =
-                                                          await Navigator.push(
-                                                        context,
-                                                        new MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              Deal(x),
-                                                        ),
-                                                      );
-                                                    },
                                                   ),
                                                 ),
                                               ],
                                             ),
                                           ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                              // ;
-                              :
-                              Container();
+                                    )
+                                  // ;
+                                  : Container();
                             }),
               ),
               // : StreamBuilder(

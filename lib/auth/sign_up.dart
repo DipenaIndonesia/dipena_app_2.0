@@ -139,7 +139,7 @@ class _SignUpState extends State<SignUp> {
                         color: Colors.blue, width: 1, style: BorderStyle.none),
                     borderRadius: BorderRadius.circular(50)),
                 child: Align(
-                    alignment: Alignment.bottomCenter, child: Text("Dismiss")),
+                    alignment: Alignment.bottomCenter, child: Text("Ready")),
               ),
               //           DecoratedBox(
               //              decoration:

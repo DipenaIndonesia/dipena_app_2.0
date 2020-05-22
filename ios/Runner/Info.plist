@@ -23,11 +23,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Enable Dipena to access your camera roll to upload your project</string>
+	<string>Need to upload image</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Need to use microphone</string>
+	<string>Need to upload image</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Enable Dipena to access your photo library to upload your project</string>
+	<string>Need to upload image</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
