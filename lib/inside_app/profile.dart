@@ -2129,11 +2129,11 @@ class _BlockingAccountState extends State<BlockingAccount> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text("1.	Go to Profile Tab in the bottom right corner",
+                      Text("1.	Go to Profile Tab in the bottom right ",
                           textAlign: TextAlign.justify),
                       Padding(
                         padding: const EdgeInsets.only(left: 15.0),
-                        child: Text("of the screen.",
+                        child: Text("corner of the screen.",
                             textAlign: TextAlign.justify),
                       ),
                       Row(
@@ -2307,11 +2307,11 @@ class _ReportingAccountOrPostState extends State<ReportingAccountOrPost> {
                         child: Text("of the screen.",
                             textAlign: TextAlign.justify),
                       ),
-                      Text('3.	Then choose "Report" to report Account/',
+                      Text('3.	Then choose "Report" to report ',
                           textAlign: TextAlign.justify),
                       Padding(
                         padding: const EdgeInsets.only(left: 15.0),
-                        child: Text("User.", textAlign: TextAlign.justify),
+                        child: Text("Account/User.", textAlign: TextAlign.justify),
                       ),
                       Text(
                           '4.	Then choose the reason why you reported the account.',
