@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'login.dart';
+import 'package:flutter/gestures.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -197,6 +198,257 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
+  Widget _dataPolicy(BuildContext context) {
+    return new Transform.scale(
+        scale: 1,
+        child: Opacity(
+            opacity: 1,
+            child: CupertinoAlertDialog(
+              content:
+                  //  ListView(
+                  // primary: true,
+                  // children: <Widget>[
+                  SingleChildScrollView(
+                child: Column(
+                  // shrinkWrap: true,
+                  // physics: const NeverScrollableScrollPhysics(),
+                  children: <Widget>[
+                    Container(
+                        color: Color.fromRGBO(244, 217, 66, 4),
+                        height: MediaQuery.of(context).size.height / 5,
+                        child: Center(
+                            child: Image.asset(
+                                "assets/images/dipena_logo_square2.png"))),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0, bottom: 10.0),
+                      child: Center(
+                          child: Text("Data Policy",
+                              style: new TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.0))),
+                    ),
+                    Divider(
+                      color: Colors.black,
+                    ),
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 10.0, left: 25.0, right: 25.0),
+                        child: Text(
+                            "We collect the content, communications and other information you provide when you use dipena, including when you sign up for an account, create or share content, and message or communicate with others. We collect such data as name, email address, country, city, IP address, mobile device ID, and any content and communications through dipena. ",
+                            textAlign: TextAlign.justify,
+                            style: new TextStyle(
+                                fontSize: 15.0, color: Colors.black)),
+                      ),
+                    ),
+                    Container(
+                      child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 10.0, left: 25.0, right: 25.0),
+                          child: RichText(
+                            text: TextSpan(
+                                text:
+                                    'Please feel free to have any inquiries regarding on terms of use or data policy on ',
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 13.0),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: 'halo@dipena.com',
+                                      style: TextStyle(color: Colors.blue)),
+                                ]),
+                          )
+                          // Text(
+                          //     "Please feel free to have any inquiries regarding on terms of use or data policy on halo@dipena.com",
+                          //     style: new TextStyle(fontSize: 15.0)),
+                          ),
+                    )
+                  ],
+                  // )
+                  // ],
+                ),
+              ),
+            )));
+  }
+
+  Widget _termsOfUse(BuildContext context) {
+    return new Transform.scale(
+        scale: 1,
+        child: Opacity(
+            opacity: 1,
+            child: CupertinoAlertDialog(
+              content:
+                  //  ListView(
+                  // primary: true,
+                  // children: <Widget>[
+                  SingleChildScrollView(
+                child: Column(
+                  // shrinkWrap: true,
+                  // physics: const NeverScrollableScrollPhysics(),
+                  children: <Widget>[
+                    Container(
+                        color: Color.fromRGBO(244, 217, 66, 4),
+                        height: MediaQuery.of(context).size.height / 5,
+                        child: Center(
+                            child: Image.asset(
+                                "assets/images/dipena_logo_square2.png"))),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0, bottom: 10.0),
+                      child: Center(
+                        child: Text("Terms of Use",
+                            style: new TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20.0)),
+                      ),
+                    ),
+                    Divider(
+                      color: Colors.black,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, left: 25.0, right: 25.0),
+                      child: Text(
+                        "Dear the one who will change the world",
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, left: 25.0, right: 25.0),
+                      child: Text("Welcome to dipena!"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, left: 25.0, right: 25.0),
+                      child: Text(
+                          "We, as a social network in the scope of creative industry, are doing our best on connecting people with opportunities. And this terms of use will guide you on how we govern the community of dipena to create a sustainable ecosystem. When you signed up for dipena and join the community, you agree with all the terms of use below.",
+                          textAlign: TextAlign.justify),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 15.0, left: 25.0, right: 25.0),
+                      child: Text("HOW CAN YOU USE DIPENA?",
+                          style: new TextStyle(
+                              fontSize: 15.0, fontWeight: FontWeight.bold)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, left: 25.0, right: 25.0),
+                      child: Text(
+                          "We are providing a platform for creative people can share their art in a way people can see it as an opportunities, not only an art. We are doing our best to connecting creative people to the society on business purposes, because we believe that every single thing need to be shaped beautifully. And dipena is all about connecting an opportunities in the scope of creative industry.",
+                          textAlign: TextAlign.justify),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, left: 35.0, right: 25.0),
+                      child: Text("•	For painter, designer, and photographer.",
+                          textAlign: TextAlign.justify),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, left: 25.0, right: 25.0),
+                      child: Text(
+                          "Share your vision and prove it with your art. We genuinely believe that you are not only deserve likes and comments on every post that have posted in your othe social media, but you should get more project and meet with new potential people that could change your life. And so, being as a social network that push you to express yourself on business purposes is what we’re interested in. You’ll be guided on creating a post that will be implified as an opportunities by the society, because you will fill up your service deals every time you want to post your art. ",
+                          textAlign: TextAlign.justify),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, left: 35.0, right: 25.0),
+                      child:
+                          Text("•	For everyone", textAlign: TextAlign.justify),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, left: 25.0, right: 25.0),
+                      child: Text(
+                          "We bring you closer to the poeple that might work with you to change the world. And we encourage you to “take deals” on every post that you might interest on and communicate with them on our platform. Help us to create this sustainable ecosystem and together change this messy world to be a better place to live. ",
+                          textAlign: TextAlign.justify),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 20.0, left: 25.0, right: 25.0),
+                      child: Text("HOW CAN'T YOU USE DIPENA?",
+                          style: new TextStyle(
+                              fontSize: 15.0, fontWeight: FontWeight.bold)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, left: 35.0, right: 25.0),
+                      child: Text("•	We are not e-commerce",
+                          textAlign: TextAlign.justify),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, left: 25.0, right: 25.0),
+                      child: Text(
+                          "As a social network, it means that we’re connecting the society. Please be conscious that this is not an e-commerce where you can sell goods to your audience and it’s a pleasure for us if you can use it the way it should be. ",
+                          textAlign: TextAlign.justify),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, left: 35.0, right: 25.0),
+                      child: Text("•	Content prohibited",
+                          textAlign: TextAlign.justify),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, left: 25.0, right: 25.0),
+                      child: Text(
+                          "We don’t give a tolerance for any content that consist any of :",
+                          textAlign: TextAlign.justify),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(
+                            top: 10.0, left: 35.0, right: 25.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text("1.	Pornographic content",
+                                textAlign: TextAlign.justify),
+                            Text("2.	Highly explicit nudity",
+                                textAlign: TextAlign.justify),
+                            Text("3.	Hate speech post or comment",
+                                textAlign: TextAlign.justify),
+                            Text("4.	Harrassment and threats",
+                                textAlign: TextAlign.justify),
+                            Text("5.	Illegal activities or goods",
+                                textAlign: TextAlign.justify),
+                            Text("6.	Graphic violence",
+                                textAlign: TextAlign.justify),
+                            Text("7.	Spam", textAlign: TextAlign.justify),
+                          ],
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, left: 25.0, right: 25.0),
+                      child: RichText(
+                        text: TextSpan(
+                            text:
+                                'Please note that we will abolish every post which consist any one of above criteria, and we will act less than 24 hours on ',
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 13.0),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: 'report ',
+                                  style: TextStyle(color: Colors.black)),
+                              TextSpan(
+                                  text:
+                                      'from our users that indicate content prohibited.',
+                                  style: TextStyle(color: Colors.black)),
+                            ]),
+                      ),
+                      // ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 30.0, left: 25.0, right: 25.0),
+                      child: Container(),
+                    )
+                  ],
+                  // )
+                  // ],
+                ),
+              ),
+            )));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -366,9 +618,62 @@ class _SignUpState extends State<SignUp> {
                                 ],
                               ),
                             ),
+                            Opacity(
+                              opacity: 0.8,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 30,
+                                  right: 30,
+                                  top: 20,
+                                ),
+                                child: RichText(
+                                  text: TextSpan(
+                                      text:
+                                          'By signing up your account, you agree with our ',
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 13.0),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                            text: 'terms of use ',
+                                            recognizer:
+                                                new TapGestureRecognizer()
+                                                  ..onTap = () => showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            _termsOfUse(
+                                                                context),
+                                                      ),
+                                            style:
+                                                TextStyle(color: Colors.blue)),
+                                        TextSpan(
+                                            text: 'and have read our ',
+                                            style:
+                                                TextStyle(color: Colors.black)),
+                                        TextSpan(
+                                            text: 'data policy',
+                                            recognizer:
+                                                new TapGestureRecognizer()
+                                                  ..onTap = () => showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            _dataPolicy(
+                                                                context),
+                                                      ),
+                                            style:
+                                                TextStyle(color: Colors.blue)),
+                                        TextSpan(
+                                            text: '.',
+                                            style:
+                                                TextStyle(color: Colors.black)),
+                                      ]),
+                                ),
+                              ),
+                            ),
                             Container(
                               padding: EdgeInsets.only(
-                                top: 50,
+                                top: 20,
                               ),
                               width: 250,
                               child: RaisedButton(
