@@ -476,7 +476,7 @@ class _SignUpState extends State<SignUp> {
                     child: Padding(
                       padding: const EdgeInsets.only(
                         top: 170,
-                        left: 45,
+                        // left: 45,
                       ),
                       child: Text(
                         // 'Bergabung bersama yang lainnya!',
