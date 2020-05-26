@@ -452,13 +452,17 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // resizeToAvoidBottomPadding: false,
       key: _scaffoldkey,
       backgroundColor: Color.fromRGBO(244, 217, 66, 4),
       body: ListView(
+        primary: true,
         children: <Widget>[
-          Column(
+          ListView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             children: <Widget>[
-              Stack(
+              Column(
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
@@ -475,9 +479,10 @@ class _SignUpState extends State<SignUp> {
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.only(
-                        top: 170,
-                        // left: 45,
-                      ),
+                          // top: 170,
+                          top: 20
+                          // left: 45,
+                          ),
                       child: Text(
                         // 'Bergabung bersama yang lainnya!',
                         'Join with others!',
@@ -492,7 +497,8 @@ class _SignUpState extends State<SignUp> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
-                      top: 230,
+                      top: 30,
+                      // top: 230,
                     ),
                     child: Form(
                       key: _key,
@@ -697,36 +703,38 @@ class _SignUpState extends State<SignUp> {
                                 },
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                top: 8,
-                              ),
-                              width: 200,
-                              child: FlatButton(
-                                padding: EdgeInsets.all(1),
-                                color: Colors.white,
-                                child: Text(
-                                  'Already have an account?',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400,
-                                    letterSpacing: 1,
-                                  ),
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.only(
+                                  top: 8,
                                 ),
-                                onPressed: () async {
-                                  var navigationResult = await Navigator.push(
-                                    context,
-                                    new MaterialPageRoute(
-                                      builder: (context) => Login(),
+                                width: 200,
+                                child: FlatButton(
+                                  padding: EdgeInsets.all(1),
+                                  color: Colors.white,
+                                  child: Text(
+                                    'Already have an account?',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400,
+                                      letterSpacing: 1,
                                     ),
-                                  );
-                                  if (navigationResult == true) {
-                                    MaterialPageRoute(
-                                      builder: (context) => Login(),
+                                  ),
+                                  onPressed: () async {
+                                    var navigationResult = await Navigator.push(
+                                      context,
+                                      new MaterialPageRoute(
+                                        builder: (context) => Login(),
+                                      ),
                                     );
-                                  }
-                                },
+                                    if (navigationResult == true) {
+                                      MaterialPageRoute(
+                                        builder: (context) => Login(),
+                                      );
+                                    }
+                                  },
+                                ),
                               ),
                             ),
                           ],
