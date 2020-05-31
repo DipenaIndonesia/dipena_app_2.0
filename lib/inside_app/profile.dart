@@ -1276,6 +1276,8 @@ class _BlockedAccountsState extends State<BlockedAccounts> {
 
   @override
   Widget build(BuildContext context) {
+    var placeholder = CircleAvatar(
+        minRadius: 20, backgroundImage: AssetImage('./img/placeholder.png'));
     return Scaffold(
         key: _scaffoldkey,
         body: ListView(
@@ -1354,7 +1356,7 @@ class _BlockedAccountsState extends State<BlockedAccounts> {
                                 children: <Widget>[
                                   Row(
                                     children: <Widget>[
-                                      CircleAvatar(
+                                      x.user_img == null ? placeholder : CircleAvatar(
                                         backgroundImage: NetworkImage(
                                             ImageUrl.imageProfile + x.user_img),
                                         minRadius: 20,

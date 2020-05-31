@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dipena/inside_app/anotherUserProfile.dart';
 import 'package:dipena/inside_app/makedeal.dart';
 import 'package:dipena/inside_app/profile.dart';
+import 'package:dipena/inside_app/searchNav.dart';
 import 'package:dipena/inside_app/selectPostCategory.dart';
 import 'package:dipena/model/location.dart';
 import 'package:dipena/model/moreButton.dart';
@@ -696,72 +697,107 @@ class _PeluangState extends State<Peluang> {
           primary: true,
           children: <Widget>[
             Column(children: <Widget>[
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 25,
-                    right: 25,
-                  ),
-                  child: Container(
-                    width: SizeConfig.safeBlockHorizontal * 395,
-                    height: SizeConfig.safeBlockVertical * 10,
-                    // decoration: BoxDecoration(
-                    //   color: Colors.white,
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       width: 3,
-                    //       color: Colors.black,
-                    //       // Color.fromRGBO(244, 217, 66, 1),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        bottom: 1,
-                        left: 15,
-                        right: 15,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            'Dipena',
-                            style: TextStyle(
-                              color: Colors.black,
-                              //  Color.fromRGBO(244, 217, 66, 1),
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Roboto',
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 1,
-                              vertical: 5,
-                            ),
-                            child: IconButton(
-                              color: Colors.black,
-                              // Color.fromRGBO(244, 217, 66, 1),
-                              iconSize: 25,
-                              icon: Icon(
-                                Icons.message,
-                              ),
-                              onPressed: () async {
-                                var navigationResult = await Navigator.push(
-                                  context,
-                                  new MaterialPageRoute(
-                                    builder: (context) => ChatList(),
-                                  ),
-                                );
-                                if (navigationResult == true) {
-                                  MaterialPageRoute(
-                                    builder: (context) => ChatList(),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                      builder: (context) => SearchNav(),
+                    ),
+                  );
+                },
+                child: Container(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                      right: 25,
+                    ),
+                    child: Container(
+                      width: SizeConfig.safeBlockHorizontal * 395,
+                      height: SizeConfig.safeBlockVertical * 10,
+                      // decoration: BoxDecoration(
+                      //   color: Colors.white,
+                      //   border: Border(
+                      //     bottom: BorderSide(
+                      //       width: 3,
+                      //       color: Colors.black,
+                      //       // Color.fromRGBO(244, 217, 66, 1),
+                      //     ),
+                      //   ),
+                      // ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          bottom: 1,
+                          // left: 10,
+                          right: 15,
+                        ),
+                        child: Row(
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Icon(Icons.search),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: InkWell(
+                                onTap: () {
+                                  // print("terpencet");
+                                  Navigator.push(
+                                    context,
+                                    new MaterialPageRoute(
+                                      builder: (context) => SearchNav(),
+                                    ),
                                   );
-                                }
-                              },
+                                },
+                                child: Text(
+                                  "Search",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    //  Color.fromRGBO(244, 217, 66, 1),
+                                    fontSize: 20,
+                                    // fontWeight: FontWeight.w500,
+                                    fontFamily: 'Roboto',
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
+                            // Text(
+                            //   'Dipena',
+                            //   style: TextStyle(
+                            //     color: Colors.black,
+                            //     //  Color.fromRGBO(244, 217, 66, 1),
+                            //     fontSize: 20,
+                            //     fontWeight: FontWeight.w500,
+                            //     fontFamily: 'Roboto',
+                            //   ),
+                            // ),
+                            // Padding(
+                            //   padding: const EdgeInsets.symmetric(
+                            //     horizontal: 1,
+                            //     vertical: 5,
+                            //   ),
+                            //   child: IconButton(
+                            //     color: Colors.black,
+                            //     // Color.fromRGBO(244, 217, 66, 1),
+                            //     iconSize: 25,
+                            //     icon: Icon(
+                            //       Icons.message,
+                            //     ),
+                            //     onPressed: () async {
+                            //       var navigationResult = await Navigator.push(
+                            //         context,
+                            //         new MaterialPageRoute(
+                            //           builder: (context) => ChatList(),
+                            //         ),
+                            //       );
+                            //       if (navigationResult == true) {
+                            //         MaterialPageRoute(
+                            //           builder: (context) => ChatList(),
+                            //         );
+                            //       }
+                            //     },
+                            //   ),
+                            // ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

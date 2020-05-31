@@ -40,12 +40,10 @@ class _LoginState extends State<Login> {
   }
 
   login() async {
-    final response = await http.post(
-        BaseUrl.login,
-        body: {
-          "user_username": user_username,
-          "user_password": user_password,
-        });
+    final response = await http.post(BaseUrl.login, body: {
+      "user_username": user_username,
+      "user_password": user_password,
+    });
 
     final data = jsonDecode(response.body);
     int value = data['value'];
@@ -61,7 +59,8 @@ class _LoginState extends State<Login> {
     if (value == 1) {
       setState(() {
         _loginStatus = LoginStatus.signIn;
-        savePref(value, user_id, user_username, user_emailAPI, user_bioAPI, user_img);
+        savePref(value, user_id, user_username, user_emailAPI, user_bioAPI,
+            user_img);
       });
       print(message);
       // _showToast(message);
@@ -72,13 +71,13 @@ class _LoginState extends State<Login> {
     }
   }
 
-  _showToast(String toast){
-      final snackbar = SnackBar(
-        content: new Text(toast),
-        backgroundColor: Colors.red,
-      );
-      _scaffoldkey.currentState.showSnackBar(snackbar);
-    }
+  _showToast(String toast) {
+    final snackbar = SnackBar(
+      content: new Text(toast),
+      backgroundColor: Colors.red,
+    );
+    _scaffoldkey.currentState.showSnackBar(snackbar);
+  }
 
   //  void _showToast(BuildContext context) {
   //   final scaffold = Scaffold.of(context);
@@ -101,7 +100,8 @@ class _LoginState extends State<Login> {
   //       textColor: Colors.white);
   // }
 
-  savePref(int value, String user_id, String user_username, String user_email, String user_bio, String user_img) async {
+  savePref(int value, String user_id, String user_username, String user_email,
+      String user_bio, String user_img) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       preferences.setInt("value", value);
@@ -272,7 +272,7 @@ class _LoginState extends State<Login> {
                                 ),
                                 Container(
                                   padding: EdgeInsets.only(
-                                    top: 60,
+                                    top: 50,
                                   ),
                                   width: 250,
                                   child: RaisedButton(
@@ -298,20 +298,36 @@ class _LoginState extends State<Login> {
                                 ),
                                 Container(
                                   padding: EdgeInsets.only(
-                                    top: 8,
+                                    top: 12,
                                   ),
                                   width: 200,
                                   child: FlatButton(
                                     padding: EdgeInsets.all(1),
                                     color: Colors.white,
-                                    child: Text(
-                                      'Doesn\'t have an account?',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w400,
-                                        letterSpacing: 1,
-                                      ),
+                                    child: Column(
+                                      children: <Widget>[
+                                        Text(
+                                          'Doesn\'t have an account?',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w400,
+                                            letterSpacing: 1,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text(
+                                            "Sign Up/Register Here!",
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w400,
+                                              letterSpacing: 1,
+                                            ),
+                                          ),
+                                        )
+                                      ],
                                     ),
                                     onPressed: () async {
                                       var navigationResult =

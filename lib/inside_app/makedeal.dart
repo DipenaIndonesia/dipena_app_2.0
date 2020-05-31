@@ -130,7 +130,11 @@ class _MakeDealState extends State<MakeDeal> {
     }
   }
 
+  bool loading;
   submit() async {
+    setState(() {
+      loading = true;
+    });
     try {
       var stream =
           http.ByteStream(DelegatingStream.typed(_imageFile.openRead()));
@@ -151,6 +155,7 @@ class _MakeDealState extends State<MakeDeal> {
       if (response.statusCode > 2) {
         print("Image uploaded");
         setState(() {
+          loading = false;
           Navigator.pop(context);
         });
       } else {
@@ -224,9 +229,14 @@ class _MakeDealState extends State<MakeDeal> {
           title: Text(
             'Create Deal',
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
             ),
           ),
+          leading: InkWell(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back, color: Colors.black)),
         ),
       ),
       body: Form(
@@ -244,19 +254,19 @@ class _MakeDealState extends State<MakeDeal> {
                       border: Border(
                         bottom: BorderSide(
                           width: 3,
-                          color: Colors.blue,
+                          color: Colors.black,
                         ),
                         top: BorderSide(
                           width: 3,
-                          color: Colors.blue,
+                          color: Colors.black,
                         ),
                         left: BorderSide(
                           width: 3,
-                          color: Colors.blue,
+                          color: Colors.black,
                         ),
                         right: BorderSide(
                           width: 3,
-                          color: Colors.blue,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -298,25 +308,27 @@ class _MakeDealState extends State<MakeDeal> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 30,
-                      right: 180,
-                    ),
-                    child: DropdownButton(
-                      items: data.map((item) {
-                        return new DropdownMenuItem(
-                          child: new Text(item['category_name']),
-                          value: item['category_id'].toString(),
-                        );
-                      }).toList(),
-                      hint: Text('Select Category'),
-                      onChanged: (newVal) {
-                        setState(() {
-                          _mySelection = newVal;
-                        });
-                      },
-                      value: _mySelection,
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        top: 10,
+                        // right: 180,
+                      ),
+                      child: DropdownButton(
+                        items: data.map((item) {
+                          return new DropdownMenuItem(
+                            child: new Text(item['category_name']),
+                            value: item['category_id'].toString(),
+                          );
+                        }).toList(),
+                        hint: Text('Select Category'),
+                        onChanged: (newVal) {
+                          setState(() {
+                            _mySelection = newVal;
+                          });
+                        },
+                        value: _mySelection,
+                      ),
                     ),
                   ),
 
@@ -349,6 +361,11 @@ class _MakeDealState extends State<MakeDeal> {
                       style: TextStyle(
                         fontSize: 18,
                       ),
+                      validator: (e) {
+                        if (e.isEmpty) {
+                          return "Please Insert Title";
+                        }
+                      },
                       onSaved: (e) => post_title = e,
                       decoration: InputDecoration(
                         labelText: 'Title',
@@ -366,6 +383,11 @@ class _MakeDealState extends State<MakeDeal> {
                       style: TextStyle(
                         fontSize: 18,
                       ),
+                      validator: (e) {
+                        if (e.isEmpty) {
+                          return "Please Insert Location";
+                        }
+                      },
                       onSaved: (e) => post_location = e,
                       decoration: InputDecoration(
                         labelText: 'Location',
@@ -380,8 +402,8 @@ class _MakeDealState extends State<MakeDeal> {
                       horizontal: 30,
                     ),
                     child: TextFormField(
-                       keyboardType: TextInputType.multiline,
-                    maxLines: null,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
                       style: TextStyle(
                         fontSize: 18,
                       ),
@@ -400,16 +422,21 @@ class _MakeDealState extends State<MakeDeal> {
                     ),
                     child: TextFormField(
                       keyboardType: TextInputType.multiline,
-                    maxLines: null,
+                      maxLines: null,
                       style: TextStyle(
                         fontSize: 18,
                       ),
+                      validator: (e) {
+                        if (e.isEmpty) {
+                          return "Please Insert Service Deals";
+                        }
+                      },
                       // controller: controller,
                       // keyboardType: TextInputType.multiline,
                       // maxLines: null,
                       onSaved: (e) => post_offer = e,
                       decoration: InputDecoration(
-                        labelText: 'Service Deals',
+                        labelText: 'Service Deals',  hintText: "e.g landscape"
                       ),
                       // onFieldSubmitted:
                       // (String str) {
@@ -451,7 +478,7 @@ class _MakeDealState extends State<MakeDeal> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.pop(context);
+                          // Navigator.pop(context);
                           check();
                         },
                       ),
