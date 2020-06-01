@@ -1290,11 +1290,21 @@ class _HomeState extends State<Home> {
                                                         color: Colors.grey[600],
                                                         size: 11,
                                                       ),
-                                                      Text(
-                                                        x.post_location,
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                      Flexible(
+                                                        child: Container(
+                                                          child: Text(
+                                                            x.post_location,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            maxLines: 1,
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                            softWrap: false,
+                                                          ),
                                                         ),
                                                       ),
                                                     ],
@@ -3006,11 +3016,13 @@ class _ChatHomeState extends State<ChatHome> {
                         //         isMe: false,
                         //       ),
                         Bubble(
-                          message: "Hay! Love what you’re doing and i want to talk further more about the deal.",
+                          message:
+                              "Hay! Love what you’re doing and i want to talk further more about the deal.",
                           isMe: true,
                         ),
                         Bubble(
-                          message: "This is what happen when press the “Take Deal” button. We bring you closer to every opportunity.",
+                          message:
+                              "This is what happen when press the “Take Deal” button. We bring you closer to every opportunity.",
                           isMe: false,
                         )
                         // Text("Gk ada gambar ")
