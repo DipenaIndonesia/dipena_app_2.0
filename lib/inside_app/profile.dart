@@ -611,39 +611,66 @@ class _ProfileState extends State<Profile> {
                                             // ),
                                           ],
                                         )
-                                      : Row(
-                                          children: <Widget>[
-                                            for (var i = 0;
-                                                i < list.length;
-                                                i++)
-                                              Text(
-                                                list[0].location_country,
-                                                style: TextStyle(
-                                                  fontSize: 13,
-                                                  color: Colors.black,
-                                                  letterSpacing: 2,
-                                                  wordSpacing: 2,
+                                      : Container(
+                                          width: 165,
+                                          child: Row(
+                                            children: <Widget>[
+                                              for (var i = 0;
+                                                  i < list.length;
+                                                  i++)
+                                                Expanded(
+                                                  child: RichText(
+                                                    text: TextSpan(
+                                                        text: list[0]
+                                                            .location_country,
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 13.0),
+                                                        children: <TextSpan>[
+                                                          TextSpan(
+                                                              text: ', ',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black)),
+                                                          TextSpan(
+                                                              text: list[0]
+                                                                  .location_city,
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black)),
+                                                        ]),
+                                                  ),
                                                 ),
-                                              ),
-                                            Text(
-                                              ', ',
-                                              style: TextStyle(
-                                                fontSize: 13,
-                                                color: Colors.black,
-                                                letterSpacing: 2,
-                                                wordSpacing: 2,
-                                              ),
-                                            ),
-                                            Text(
-                                              list[0].location_city,
-                                              style: TextStyle(
-                                                fontSize: 13,
-                                                color: Colors.black,
-                                                letterSpacing: 2,
-                                                wordSpacing: 2,
-                                              ),
-                                            ),
-                                          ],
+                                              // Text(
+                                              //   list[0].location_country,
+                                              //   // overflow: TextOverflow.ellipsis,
+                                              //   style: TextStyle(
+                                              //     fontSize: 13,
+                                              //     color: Colors.black,
+                                              //     letterSpacing: 2,
+                                              //     wordSpacing: 2,
+                                              //   ),
+                                              // ),
+                                              // Text(
+                                              //   ', ',
+                                              //   style: TextStyle(
+                                              //     fontSize: 13,
+                                              //     color: Colors.black,
+                                              //     letterSpacing: 2,
+                                              //     wordSpacing: 2,
+                                              //   ),
+                                              // ),
+                                              // Text(list[0].location_city,
+                                              //     // overflow: TextOverflow.ellipsis,
+                                              //     style: TextStyle(
+                                              //       fontSize: 13,
+                                              //       color: Colors.black,
+                                              //       letterSpacing: 2,
+                                              //       wordSpacing: 2,
+                                              //     ),
+                                              //     softWrap: false),
+                                            ],
+                                          ),
                                         ),
                                 ),
                               ],
@@ -1356,11 +1383,14 @@ class _BlockedAccountsState extends State<BlockedAccounts> {
                                 children: <Widget>[
                                   Row(
                                     children: <Widget>[
-                                      x.user_img == null ? placeholder : CircleAvatar(
-                                        backgroundImage: NetworkImage(
-                                            ImageUrl.imageProfile + x.user_img),
-                                        minRadius: 20,
-                                      ),
+                                      x.user_img == null
+                                          ? placeholder
+                                          : CircleAvatar(
+                                              backgroundImage: NetworkImage(
+                                                  ImageUrl.imageProfile +
+                                                      x.user_img),
+                                              minRadius: 20,
+                                            ),
                                       Padding(
                                         padding:
                                             const EdgeInsets.only(left: 12.0),
@@ -2313,7 +2343,8 @@ class _ReportingAccountOrPostState extends State<ReportingAccountOrPost> {
                           textAlign: TextAlign.justify),
                       Padding(
                         padding: const EdgeInsets.only(left: 15.0),
-                        child: Text("Account/User.", textAlign: TextAlign.justify),
+                        child:
+                            Text("Account/User.", textAlign: TextAlign.justify),
                       ),
                       Text(
                           '4.	Then choose the reason why you reported the account.',

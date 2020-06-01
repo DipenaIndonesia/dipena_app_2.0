@@ -436,7 +436,9 @@ class _MakeDealState extends State<MakeDeal> {
                       // maxLines: null,
                       onSaved: (e) => post_offer = e,
                       decoration: InputDecoration(
-                        labelText: 'Service Deals',  hintText: "e.g landscape"
+                        labelText: 'Service Deals',
+                        
+                          // hintText: "e.g landscape"
                       ),
                       // onFieldSubmitted:
                       // (String str) {

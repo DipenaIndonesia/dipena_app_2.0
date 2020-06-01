@@ -300,33 +300,48 @@ class _LoginState extends State<Login> {
                                   padding: EdgeInsets.only(
                                     top: 12,
                                   ),
-                                  width: 200,
+                                  // width: 200,s
                                   child: FlatButton(
                                     padding: EdgeInsets.all(1),
                                     color: Colors.white,
                                     child: Column(
                                       children: <Widget>[
-                                        Text(
-                                          'Doesn\'t have an account?',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w400,
-                                            letterSpacing: 1,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text(
-                                            "Sign Up/Register Here!",
-                                            style: TextStyle(
-                                              color: Colors.blue,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w400,
-                                              letterSpacing: 1,
-                                            ),
-                                          ),
+                                        // Text(
+                                        //   'Doesn\'t have an account?',
+                                        //   style: TextStyle(
+                                        //     color: Colors.black,
+                                        //     fontSize: 15,
+                                        //     fontWeight: FontWeight.w400,
+                                        //     letterSpacing: 1,
+                                        //   ),
+                                        // ),
+                                        RichText(
+                                          text: TextSpan(
+                                              text:
+                                                  'Doesn\'t have an account? ',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 13.0, fontWeight: FontWeight.w400,
+                                            letterSpacing: 1),
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                    text: 'Sign Up',
+                                                    style: TextStyle(
+                                                        color: Colors.blue)),
+                                              ]),
                                         )
+                                        // Padding(
+                                        //   padding: const EdgeInsets.only(top: 5.0),
+                                        //   child: Text(
+                                        //     "Sign Up/Register Here!",
+                                        //     style: TextStyle(
+                                        //       color: Colors.blue,
+                                        //       fontSize: 15,
+                                        //       fontWeight: FontWeight.w400,
+                                        //       letterSpacing: 1,
+                                        //     ),
+                                        //   ),
+                                        // )
                                       ],
                                     ),
                                     onPressed: () async {

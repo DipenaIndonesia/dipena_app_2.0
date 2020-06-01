@@ -31,6 +31,7 @@ class DealUrl {
 
 class EditProfileUrl {
   static String updateProfile = "https://dipena.com/flutter/api/updateProfile.php";
+  static String updateProfileOnly = "https://dipena.com/flutter/api/updateProfileOnly.php";
   static String selectUserLocation = "https://dipena.com/flutter/api/user/userLocation.php";
   // static String anotherUserData = "https://dipena.com/flutter/api/user/selectAnotherUserProfile.php";
 }

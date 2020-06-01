@@ -89,42 +89,67 @@ class _EditState extends State<Edit> {
   }
 
   submit() async {
-    try {
-      var stream =
-          http.ByteStream(DelegatingStream.typed(_imageFile.openRead()));
-      var length = await _imageFile.length();
-      var uri = Uri.parse(EditProfileUrl.updateProfile);
-      final request = http.MultipartRequest("POST", uri);
-      request.fields['user_username'] = user_username;
-      request.fields['user_bio'] = user_bio;
-      request.fields['user_id'] = user_id;
-      request.fields['location_country'] = location_country;
-      request.fields['location_city'] = location_city;
-      request.fields['location_user_id'] = user_id;
-
-      request.files.add(http.MultipartFile("user_img", stream, length,
-          filename: path.basename(_imageFile.path)));
-      var response = await request.send();
-      final respStr = await response.stream.bytesToString();
+    if (_imageFile == null) {
+      await getPref();
+      final response = await http.post(EditProfileUrl.updateProfileOnly, body: {
+        'user_username': user_username,
+        'user_bio': user_bio,
+        'user_id': user_id,
+        'location_country': location_country,
+        'location_city': location_city,
+        'location_user_id': user_id,
+        'user_img': user_img
+      });
+      final data = jsonDecode(response.body);
+      int value = data['value'];
+      String pesan = data['message'];
       if (response.statusCode > 2) {
-        final data = jsonDecode(respStr);
-        // final data = jsonDecode(uri.toString());
-        String bio = data['bio'];
-        // String location_country = data['location_country'];
-        // print(bio);
-        String user_imgApi = data['user_img'];
-        savePref(bio, user_imgApi);
-        print("Image uploaded");
+        Navigator.pop(context);
+        print(pesan);
         setState(() {
-          Navigator.pop(context);
+          // txtChat.clear();
         });
       } else {
-        print("Image failed to be upload");
+        print(pesan);
       }
-    } catch (e) {
-      debugPrint("Error $e");
+    } else {
+      try {
+        var stream =
+            http.ByteStream(DelegatingStream.typed(_imageFile.openRead()));
+        var length = await _imageFile.length();
+        var uri = Uri.parse(EditProfileUrl.updateProfile);
+        final request = http.MultipartRequest("POST", uri);
+        request.fields['user_username'] = user_username;
+        request.fields['user_bio'] = user_bio;
+        request.fields['user_id'] = user_id;
+        request.fields['location_country'] = location_country;
+        request.fields['location_city'] = location_city;
+        request.fields['location_user_id'] = user_id;
+
+        request.files.add(http.MultipartFile("user_img", stream, length,
+            filename: path.basename(_imageFile.path)));
+        var response = await request.send();
+        final respStr = await response.stream.bytesToString();
+        if (response.statusCode > 2) {
+          final data = jsonDecode(respStr);
+          // final data = jsonDecode(uri.toString());
+          String bio = data['bio'];
+          // String location_country = data['location_country'];
+          // print(bio);
+          String user_imgApi = data['user_img'];
+          savePref(bio, user_imgApi);
+          print("Image uploaded");
+          setState(() {
+            Navigator.pop(context);
+          });
+        } else {
+          print("Image failed to be upload");
+        }
+      } catch (e) {
+        debugPrint("Error $e");
+      }
+      //
     }
-    // 
   }
 
   savePref(String user_bio, String user_img) async {
@@ -186,6 +211,35 @@ class _EditState extends State<Edit> {
     setup();
   }
 
+  show_cat() {
+    // if (user_img != null) {
+    //   return CircleAvatar(
+    //     radius: 60,
+    //     backgroundImage: NetworkImage(
+    //         "https://dipena.com/flutter/image_profile/" + user_img),
+    //   );
+    // }
+    if (_imageFile != null) {
+      return CircleAvatar(
+        radius: 60,
+        // backgroundImage: NetworkImage("https://dipena.com/flutter/image_profile/"+user_img),
+        backgroundImage: new FileImage(_imageFile),
+      );
+    } else if (user_img != null) {
+      return CircleAvatar(
+        radius: 60,
+        backgroundImage: NetworkImage(
+            "https://dipena.com/flutter/image_profile/" + user_img),
+      );
+    } else if (_imageFile == null) {
+      return placeholder;
+      // backgroundImage: new FileImage(_imageFile),;
+    }
+  }
+
+  var placeholder = CircleAvatar(
+      radius: 60, backgroundImage: AssetImage('./img/placeholder.png'));
+
   @override
   Widget build(BuildContext context) {
     // var placeholder = Container(
@@ -193,8 +247,7 @@ class _EditState extends State<Edit> {
     //   height: 150.0,
     //   child: Image.asset('./img/placeholder.png'),
     // );
-    var placeholder = CircleAvatar(
-        radius: 60, backgroundImage: AssetImage('./img/placeholder.png'));
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -221,48 +274,50 @@ class _EditState extends State<Edit> {
         key: _key,
         child: SingleChildScrollView(
           child: Container(
-            height: 600,
+            // height: 600,
+            height: MediaQuery.of(context).size.height,
             child: Column(
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Container(
                       child: InkWell(
-                    onTap: () {
-                      _pilihCamera();
-                    },
-                    // child: _imageFile == null
-                    //     ? placeholder
-                    //     : CircleAvatar(
-                    //         radius: 60,
-                    //         backgroundImage: new FileImage(_imageFile),
-                    //         // child: Image.file(
-                    //         //   _imageFile,
-                    //         //   fit: BoxFit.fill,
-                    //         // ),
-                    //       ),
-                    //   child: _imageFile == null
-                    // ? placeholder
-                    // : CircleAvatar(
-                    //     radius: 60,
-                    //     backgroundImage: new FileImage(_imageFile),
-                    //     // child: Image.file(
-                    //     //   _imageFile,
-                    //     //   fit: BoxFit.fill,
-                    //     // ),
-                    //   ),
-                    child: _imageFile == null
-                        ? placeholder
-                        : CircleAvatar(
-                            radius: 60,
-                            // backgroundImage: NetworkImage("https://dipena.com/flutter/image_profile/"+user_img),
-                            backgroundImage: new FileImage(_imageFile),
-                            // child: Image.file(
-                            //   _imageFile,
-                            //   fit: BoxFit.fill,
-                            // ),
-                          ),
-                  )
+                          onTap: () {
+                            _pilihCamera();
+                          },
+                          // child: _imageFile == null
+                          //     ? placeholder
+                          //     : CircleAvatar(
+                          //         radius: 60,
+                          //         backgroundImage: new FileImage(_imageFile),
+                          //         // child: Image.file(
+                          //         //   _imageFile,
+                          //         //   fit: BoxFit.fill,
+                          //         // ),
+                          //       ),
+                          //   child: _imageFile == null
+                          // ? placeholder
+                          // : CircleAvatar(
+                          //     radius: 60,
+                          //     backgroundImage: new FileImage(_imageFile),
+                          //     // child: Image.file(
+                          //     //   _imageFile,
+                          //     //   fit: BoxFit.fill,
+                          //     // ),
+                          //   ),
+                          child: show_cat()
+                          // _imageFile == null
+                          //     ? placeholder
+                          //     : CircleAvatar(
+                          //         radius: 60,
+                          //         // backgroundImage: NetworkImage("https://dipena.com/flutter/image_profile/"+user_img),
+                          //         backgroundImage: new FileImage(_imageFile),
+                          //         // child: Image.file(
+                          //         //   _imageFile,
+                          //         //   fit: BoxFit.fill,
+                          //         // ),
+                          //       ),
+                          )
                       //                 Padding(
                       //   padding: const EdgeInsets.only(
                       //     top: 20,
@@ -277,7 +332,7 @@ class _EditState extends State<Edit> {
                       ),
                 ),
                 Row(
-                   mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     FlatButton(
                       child: Text(
@@ -338,6 +393,11 @@ class _EditState extends State<Edit> {
                     style: TextStyle(
                       fontSize: 18,
                     ),
+                    validator: (e) {
+                      if (e.isEmpty) {
+                        return "Please Insert Location Country";
+                      }
+                    },
                     controller: txtLocationCountry,
                     onSaved: (e) => location_country = e,
                     decoration: InputDecoration(
@@ -359,6 +419,11 @@ class _EditState extends State<Edit> {
                     style: TextStyle(
                       fontSize: 18,
                     ),
+                    validator: (e) {
+                      if (e.isEmpty) {
+                        return "Please Insert Location City";
+                      }
+                    },
                     controller: txtLocationCity,
                     onSaved: (e) => location_city = e,
                     decoration: InputDecoration(
