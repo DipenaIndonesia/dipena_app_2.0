@@ -3006,11 +3006,11 @@ class _ChatHomeState extends State<ChatHome> {
                         //         isMe: false,
                         //       ),
                         Bubble(
-                          message: "",
+                          message: "Hay! Love what you’re doing and i want to talk further more about the deal.",
                           isMe: true,
                         ),
                         Bubble(
-                          message: "",
+                          message: "This is what happen when press the “Take Deal” button. We bring you closer to every opportunity.",
                           isMe: false,
                         )
                         // Text("Gk ada gambar ")
