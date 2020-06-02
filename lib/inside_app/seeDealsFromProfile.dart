@@ -245,7 +245,7 @@ class _SeeDealsProfileState extends State<SeeDealsProfile> {
                                   ),
                                   child: Container(
                                     width: double.infinity,
-                                    height: 500,
+                                    // height: 500,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.only(
@@ -499,7 +499,7 @@ class _SeeDealsProfileState extends State<SeeDealsProfile> {
                                   ),
                                   child: Container(
                                     width: double.infinity,
-                                    height: 500,
+                                    // height: 500,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.only(
@@ -712,6 +712,7 @@ class _SeeDealsProfileState extends State<SeeDealsProfile> {
                                         Padding(
                                           padding: const EdgeInsets.only(
                                             top: 30,
+                                            bottom: 30,
                                           ),
                                           child: SizedBox(
                                             width: 350,

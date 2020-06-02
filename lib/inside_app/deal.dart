@@ -236,7 +236,7 @@ class _DealState extends State<Deal> {
                                     ),
                                     child: Container(
                                       width: double.infinity,
-                                      height: 500,
+                                      // height: 500,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius: BorderRadius.only(
@@ -495,7 +495,7 @@ class _DealState extends State<Deal> {
                                         ),
                                         child: Container(
                                           width: double.infinity,
-                                          height: 500,
+                                          // height: 500,
                                           decoration: BoxDecoration(
                                             color: Colors.white,
                                             borderRadius: BorderRadius.only(
@@ -722,6 +722,7 @@ class _DealState extends State<Deal> {
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                   top: 30,
+                                                  bottom: 30
                                                 ),
                                                 child: SizedBox(
                                                   width: 350,

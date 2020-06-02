@@ -37,6 +37,7 @@ class _EditState extends State<Edit> {
       location_city,
       location_user_id,
       user_img,
+      user_img_user,
       value;
   File _imageFile;
 
@@ -67,6 +68,7 @@ class _EditState extends State<Edit> {
       user_username = preferences.getString("user_username");
       user_bio = preferences.getString("user_bio");
       user_img = preferences.getString("user_img");
+      user_img_user = preferences.getString("user_img");
       txtUsername = TextEditingController(text: user_username);
       txtBio = TextEditingController(text: user_bio);
     });
@@ -89,28 +91,80 @@ class _EditState extends State<Edit> {
   }
 
   submit() async {
-    if (_imageFile == null) {
-      await getPref();
-      final response = await http.post(EditProfileUrl.updateProfileOnly, body: {
-        'user_username': user_username,
-        'user_bio': user_bio,
-        'user_id': user_id,
-        'location_country': location_country,
-        'location_city': location_city,
-        'location_user_id': user_id,
-        'user_img': user_img
-      });
-      final data = jsonDecode(response.body);
-      int value = data['value'];
-      String pesan = data['message'];
-      if (response.statusCode > 2) {
-        Navigator.pop(context);
-        print(pesan);
-        setState(() {
-          // txtChat.clear();
-        });
-      } else {
-        print(pesan);
+    if (_imageFile == null && user_img == null) {
+      try {
+        // var stream =
+        //     http.ByteStream(DelegatingStream.typed(_imageFile.openRead()));
+        // var length = await _imageFile.length();
+        var uri = Uri.parse(EditProfileUrl.updateProfileImageNull);
+        final request = http.MultipartRequest("POST", uri);
+        request.fields['user_username'] = user_username;
+        request.fields['user_bio'] = user_bio;
+        request.fields['user_id'] = user_id;
+        request.fields['location_country'] = location_country;
+        request.fields['location_city'] = location_city;
+        request.fields['location_user_id'] = user_id;
+        // request.fields['user_img'] = user_img_user;
+
+        // request.files.add(http.MultipartFile("user_img", stream, length,
+        //     filename: path.basename(_imageFile.path)));
+        var response = await request.send();
+        final respStr = await response.stream.bytesToString();
+        if (response.statusCode > 2) {
+          final data = jsonDecode(respStr);
+          // final data = jsonDecode(uri.toString());
+          String bio = data['bio'];
+          // String location_country = data['location_country'];
+          // print(bio);
+          String user_imgApi = data['user_img'];
+          savePref(bio, user_imgApi);
+          print(user_bio);
+          setState(() {
+            Navigator.pop(context);
+          });
+        } else {
+          print("Image failed to be upload");
+        }
+      } catch (e) {
+        debugPrint("Error $e");
+      }
+    } else if (user_img != null && _imageFile == null) {
+       try {
+        // await getPref();
+        // var stream =
+        //     http.ByteStream(DelegatingStream.typed(_imageFile.openRead()));
+        // var length = await _imageFile.length();
+        var uri = Uri.parse(EditProfileUrl.updateProfileOnly);
+        final request = http.MultipartRequest("POST", uri);
+        request.fields['user_username'] = user_username;
+        request.fields['user_bio'] = user_bio;
+        request.fields['user_id'] = user_id;
+        request.fields['location_country'] = location_country;
+        request.fields['location_city'] = location_city;
+        request.fields['location_user_id'] = user_id;
+        request.fields['user_img'] = user_img;
+
+        // request.files.add(http.MultipartFile("user_img", stream, length,
+        //     filename: path.basename(_imageFile.path)));
+        var response = await request.send();
+        final respStr = await response.stream.bytesToString();
+        if (response.statusCode > 2) {
+          final data = jsonDecode(respStr);
+          // final data = jsonDecode(uri.toString());
+          String bio = data['bio'];
+          // String location_country = data['location_country'];
+          // print(bio);
+          String user_imgApi = data['user_img'];
+          savePref(bio, user_imgApi);
+          print(user_bio);
+          setState(() {
+            Navigator.pop(context);
+          });
+        } else {
+          print("Image failed to be upload");
+        }
+      } catch (e) {
+        debugPrint("Error $e");
       }
     } else {
       try {
@@ -125,6 +179,7 @@ class _EditState extends State<Edit> {
         request.fields['location_country'] = location_country;
         request.fields['location_city'] = location_city;
         request.fields['location_user_id'] = user_id;
+        
 
         request.files.add(http.MultipartFile("user_img", stream, length,
             filename: path.basename(_imageFile.path)));
@@ -479,6 +534,9 @@ class _EditState extends State<Edit> {
                         ),
                       ),
                       onPressed: () {
+                        print(user_img);
+                        print(_imageFile);
+                        print(user_bio);
                         check();
                       }),
                 ),

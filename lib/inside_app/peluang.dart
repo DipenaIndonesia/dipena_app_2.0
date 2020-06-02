@@ -1727,7 +1727,8 @@ class _PeluangState extends State<Peluang> {
                                                           child: Row(
                                                             children: <Widget>[
                                                               Icon(
-                                                                Icons.location_on,
+                                                                Icons
+                                                                    .location_on,
                                                                 color: Colors
                                                                     .grey[600],
                                                                 size: 11,
@@ -1735,17 +1736,22 @@ class _PeluangState extends State<Peluang> {
                                                               // Expanded(
                                                               // child:
                                                               Flexible(
-                                                                                                                              child: Container(
+                                                                child:
+                                                                    Container(
                                                                   child: Text(
                                                                     x.post_location,
-                                                                    overflow: TextOverflow.ellipsis,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
                                                                     maxLines: 1,
-                                                                    style: TextStyle(
+                                                                    style:
+                                                                        TextStyle(
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold,
                                                                     ),
-                                                                    softWrap: false,
+                                                                    softWrap:
+                                                                        false,
                                                                   ),
                                                                 ),
                                                               ),
@@ -1919,30 +1925,31 @@ class _PeluangState extends State<Peluang> {
                                                             ],
                                                           ),
                                                           user_id ==
-                                                                x.post_user_id
-                                                            ?
-                                                          Container() :
-                                                          IconButton(
-                                                            icon: Icon(Icons
-                                                                .more_vert),
-                                                            onPressed: () {
-                                                              setState(() {
-                                                                report_post_id =
-                                                                    x.post_id;
-                                                                report_post_img =
-                                                                    x.post_img;
-                                                              });
-                                                              showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder: (BuildContext
-                                                                        context) =>
-                                                                    _popUpGallery(
-                                                                        context),
-                                                              );
-                                                              // _openCustomDialog(BuildContext context);
-                                                            },
-                                                          ),
+                                                                  x.post_user_id
+                                                              ? Container()
+                                                              : IconButton(
+                                                                  icon: Icon(Icons
+                                                                      .more_vert),
+                                                                  onPressed:
+                                                                      () {
+                                                                    setState(
+                                                                        () {
+                                                                      report_post_id =
+                                                                          x.post_id;
+                                                                      report_post_img =
+                                                                          x.post_img;
+                                                                    });
+                                                                    showDialog(
+                                                                      context:
+                                                                          context,
+                                                                      builder: (BuildContext
+                                                                              context) =>
+                                                                          _popUpGallery(
+                                                                              context),
+                                                                    );
+                                                                    // _openCustomDialog(BuildContext context);
+                                                                  },
+                                                                ),
                                                           // Spacer(flex: 1),
                                                           // Row(
                                                           // mainAxisAlignment: MainAxisAlignment.end,
@@ -2035,6 +2042,11 @@ class _PeluangState extends State<Peluang> {
                                                                       FontWeight
                                                                           .w500,
                                                                 ),
+                                                                maxLines: 5,
+                                                                softWrap: false,
+                                                                overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
                                                               ),
                                                             ),
                                                           ],

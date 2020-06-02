@@ -137,7 +137,9 @@ class _SearchPageState extends State<SearchPage> {
     }
 
     _list.forEach((f) {
-      if (f.user_username.contains(text)) _search.add(f);
+      if (f.user_username.contains(text) ||
+          f.user_fullname.contains(text) ||
+          f.user_email.contains(text)) _search.add(f);
     });
 
     setState(() {});
@@ -257,21 +259,30 @@ class _SearchPageState extends State<SearchPage> {
                                               const EdgeInsets.only(left: 12.0),
                                           child: Align(
                                             alignment: Alignment.centerLeft,
-                                            child: Column(
-                                              // mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Text(b.user_username,
+                                            child: Container(
+                                              width: 165,
+                                              child: Column(
+                                                // mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Text(b.user_username,
+                                                      textAlign: TextAlign.left,
+                                                      style: new TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold)),
+                                                  // Flexible(
+                                                  // child:
+                                                  Text(
+                                                    b.user_bio ?? '',
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
                                                     textAlign: TextAlign.left,
-                                                    style: new TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                                Text(
-                                                  b.user_bio ?? '',
-                                                  textAlign: TextAlign.left,
-                                                )
-                                              ],
+                                                    softWrap: false,
+                                                    // ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         )

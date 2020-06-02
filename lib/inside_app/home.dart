@@ -1283,31 +1283,35 @@ class _HomeState extends State<Home> {
                                                       );
                                                     },
                                                   ),
-                                                  subtitle: Row(
-                                                    children: <Widget>[
-                                                      Icon(
-                                                        Icons.location_on,
-                                                        color: Colors.grey[600],
-                                                        size: 11,
-                                                      ),
-                                                      Flexible(
-                                                        child: Container(
-                                                          child: Text(
-                                                            x.post_location,
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            maxLines: 1,
-                                                            style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
+                                                  subtitle: Container(
+                                                    width: 165,
+                                                    child: Row(
+                                                      children: <Widget>[
+                                                        Icon(
+                                                          Icons.location_on,
+                                                          color:
+                                                              Colors.grey[600],
+                                                          size: 11,
+                                                        ),
+                                                        Flexible(
+                                                          child: Container(
+                                                            child: Text(
+                                                              x.post_location,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              maxLines: 1,
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                              softWrap: false,
                                                             ),
-                                                            softWrap: false,
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                                 Container(
@@ -1510,6 +1514,10 @@ class _HomeState extends State<Home> {
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                           ),
+                                                          maxLines: 5,
+                                                          softWrap: false,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
                                                         ),
                                                       ),
                                                     ],
