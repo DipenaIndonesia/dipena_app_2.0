@@ -745,7 +745,7 @@ class _DealState extends State<Deal> {
                                                     // Color.fromRGBO(
                                                     //     244, 217, 66, 1),
                                                     child: Text(
-                                                      'TAKE DEAL',
+                                                      'KOLABS',
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 20,

@@ -814,7 +814,7 @@ class _PeluangState extends State<Peluang> {
               //   child: Container(),
               // ),
               Container(
-                height: 88,
+                height: 60,
                 width: 350,
                 color: Colors.white,
                 child: ListView.builder(
@@ -1453,37 +1453,40 @@ class _PeluangState extends State<Peluang> {
                               return x.block_status == null
                                   ? Container(
                                       child: Padding(
-                                        padding: const EdgeInsets.all(8),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                            top: 1,
+                                      padding: const EdgeInsets.only(top: 8, bottom: 8),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 1,
+                                          // bottom: 8,
+                                        ),
+                                        child: Container(
+                                          // width:
+                                          //     SizeConfig.safeBlockHorizontal *
+                                          //         100,
+                                          // height:
+                                          //     SizeConfig.safeBlockVertical *
+                                          //         110,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
                                           ),
-                                          child: Container(
-                                            width:
-                                                SizeConfig.safeBlockHorizontal *
-                                                    100,
-                                            height:
-                                                SizeConfig.safeBlockVertical *
-                                                    110,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                    vertical: 2,
-                                                  ),
-                                                  child: Column(
-                                                    children: <Widget>[
-                                                      // RefreshIndicator(
-                                                      // onRefresh: _followStatus,
-                                                      // key: _refreshFollow,
-                                                      // child: Container(),
-                                                      // ),
-                                                      ListTile(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  vertical: 2,
+                                                ),
+                                                child: Column(
+                                                  children: <Widget>[
+                                                    // RefreshIndicator(
+                                                    // onRefresh: _followStatus,
+                                                    // key: _refreshFollow,
+                                                    // child: Container(),
+                                                    // ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(left: 8.0, right: 8),
+                                                      child: ListTile(
                                                         leading: Container(
                                                           width: 50,
                                                           height: 50,
@@ -1502,9 +1505,9 @@ class _PeluangState extends State<Peluang> {
                                                                             .push(
                                                                       context,
                                                                       new MaterialPageRoute(
-                                                                        builder:
-                                                                            (context) =>
-                                                                                AnotherProfile(x),
+                                                                        builder: (context) =>
+                                                                            AnotherProfile(
+                                                                                x),
                                                                       ),
                                                                     );
                                                                   },
@@ -1518,18 +1521,20 @@ class _PeluangState extends State<Peluang> {
                                                                             .push(
                                                                       context,
                                                                       new MaterialPageRoute(
-                                                                        builder:
-                                                                            (context) =>
-                                                                                AnotherProfile(x),
+                                                                        builder: (context) =>
+                                                                            AnotherProfile(
+                                                                                x),
                                                                       ),
                                                                     );
                                                                   },
                                                                   child:
                                                                       CircleAvatar(
+                                                                    backgroundColor: Color.fromRGBO(244, 217, 66, 1), 
                                                                     radius: 40,
                                                                     backgroundImage:
-                                                                        NetworkImage(ImageUrl.imageProfile +
-                                                                            x.user_img),
+                                                                        NetworkImage(
+                                                                            ImageUrl.imageProfile +
+                                                                                x.user_img),
                                                                     // child: ClipOval(
                                                                     //   child: Image(
                                                                     //     width: 50,
@@ -1548,8 +1553,7 @@ class _PeluangState extends State<Peluang> {
                                                             x.user_username,
                                                             style: TextStyle(
                                                               fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
+                                                                  FontWeight.bold,
                                                             ),
                                                           ),
                                                           onTap: () async {
@@ -1558,10 +1562,9 @@ class _PeluangState extends State<Peluang> {
                                                                     .push(
                                                               context,
                                                               new MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        AnotherProfile(
-                                                                            x),
+                                                                builder: (context) =>
+                                                                    AnotherProfile(
+                                                                        x),
                                                               ),
                                                             );
                                                           },
@@ -1600,11 +1603,12 @@ class _PeluangState extends State<Peluang> {
                                                                           .userCheck,
                                                                   color: x.follow_status_user ==
                                                                           null
-                                                                      ? Color.fromRGBO(
-                                                                          244,
-                                                                          217,
-                                                                          66,
-                                                                          1)
+                                                                      ? Color
+                                                                          .fromRGBO(
+                                                                              244,
+                                                                              217,
+                                                                              66,
+                                                                              1)
                                                                       : Colors
                                                                           .black,
                                                                 ),
@@ -1639,10 +1643,8 @@ class _PeluangState extends State<Peluang> {
                                                                           'message'];
                                                                   if (value ==
                                                                       1) {
-                                                                    print(
-                                                                        pesan);
-                                                                    setState(
-                                                                        () {
+                                                                    print(pesan);
+                                                                    setState(() {
                                                                       x.follow_status_user !=
                                                                           null;
                                                                     });
@@ -1650,8 +1652,7 @@ class _PeluangState extends State<Peluang> {
                                                                         pesan);
                                                                   } else if (value ==
                                                                       2) {
-                                                                    print(
-                                                                        pesan);
+                                                                    print(pesan);
                                                                     _showToastUnfoll(
                                                                         pesan);
                                                                   } else {
@@ -1727,8 +1728,7 @@ class _PeluangState extends State<Peluang> {
                                                           child: Row(
                                                             children: <Widget>[
                                                               Icon(
-                                                                Icons
-                                                                    .location_on,
+                                                                Icons.location_on,
                                                                 color: Colors
                                                                     .grey[600],
                                                                 size: 11,
@@ -1736,8 +1736,7 @@ class _PeluangState extends State<Peluang> {
                                                               // Expanded(
                                                               // child:
                                                               Flexible(
-                                                                child:
-                                                                    Container(
+                                                                child: Container(
                                                                   child: Text(
                                                                     x.post_location,
                                                                     overflow:
@@ -1760,24 +1759,24 @@ class _PeluangState extends State<Peluang> {
                                                           ),
                                                         ),
                                                       ),
-                                                      Container(
-                                                        margin:
-                                                            EdgeInsets.all(10),
-                                                        width: double.infinity,
-                                                        height: 350,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          image:
-                                                              DecorationImage(
-                                                            image: NetworkImage(
-                                                                ImageUrl.imageContent +
-                                                                    x.post_img),
-                                                            fit:
-                                                                BoxFit.fitWidth,
-                                                          ),
+                                                    ),
+                                                    Container(
+                                                      margin: EdgeInsets.only(
+                                                          top: 10, bottom: 10),
+                                                      width: double.infinity,
+                                                      height: 350,
+                                                      decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                          image: NetworkImage(
+                                                              ImageUrl.imageContent +
+                                                                  x.post_img),
+                                                          fit: BoxFit.fitWidth,
                                                         ),
                                                       ),
-                                                      Row(
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(left: 10.0, right: 8),
+                                                      child: Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .spaceBetween,
@@ -1913,8 +1912,7 @@ class _PeluangState extends State<Peluang> {
                                                               Text(
                                                                 x.jumlahKomen ??
                                                                     '0',
-                                                                style:
-                                                                    TextStyle(
+                                                                style: TextStyle(
                                                                   fontSize: 14,
                                                                   fontWeight:
                                                                       FontWeight
@@ -1930,10 +1928,8 @@ class _PeluangState extends State<Peluang> {
                                                               : IconButton(
                                                                   icon: Icon(Icons
                                                                       .more_vert),
-                                                                  onPressed:
-                                                                      () {
-                                                                    setState(
-                                                                        () {
+                                                                  onPressed: () {
+                                                                    setState(() {
                                                                       report_post_id =
                                                                           x.post_id;
                                                                       report_post_img =
@@ -1961,7 +1957,38 @@ class _PeluangState extends State<Peluang> {
                                                         // ),
                                                         // ],
                                                       ),
-                                                      Row(
+                                                    ),
+                                                    Row(
+                                                      children: <Widget>[
+                                                        Container(
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                            left: 23,
+                                                            right: 30,
+                                                          ),
+                                                          child:
+                                                              //  x.post_cat_id == "1" ?
+                                                              Text(
+                                                            // x.post_sub_cat_id,
+                                                            show_cat(
+                                                                x.post_cat_id),
+                                                            style: TextStyle(
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                        top: 10,
+                                                        left: 8,
+                                                      ),
+                                                      child: Row(
                                                         children: <Widget>[
                                                           Container(
                                                             margin:
@@ -1969,96 +1996,67 @@ class _PeluangState extends State<Peluang> {
                                                               left: 15,
                                                               right: 30,
                                                             ),
-                                                            child:
-                                                                //  x.post_cat_id == "1" ?
-                                                                Text(
-                                                              // x.post_sub_cat_id,
-                                                              show_cat(x
-                                                                  .post_cat_id),
+                                                            child: Text(
+                                                              x.post_title,
                                                               style: TextStyle(
-                                                                fontSize: 18,
+                                                                fontSize: 17,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w700,
+                                                                        .w500,
                                                               ),
                                                             ),
                                                           ),
                                                         ],
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                          top: 10,
-                                                        ),
-                                                        child: Row(
-                                                          children: <Widget>[
-                                                            Container(
-                                                              margin: EdgeInsets
-                                                                  .only(
-                                                                left: 15,
-                                                                right: 30,
-                                                              ),
-                                                              child: Text(
-                                                                x.post_title,
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize: 17,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                        top: 10,
+                                                        left: 8,
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                          top: 10,
-                                                        ),
-                                                        child: Row(
-                                                          children: <Widget>[
-                                                            Container(
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  0.8,
-                                                              margin: EdgeInsets
-                                                                  .only(
-                                                                left: 15,
-                                                                right: 30,
-                                                              ),
-                                                              child: Text(
-                                                                x.post_description ??
-                                                                    'null',
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize: 15,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                                maxLines: 5,
-                                                                softWrap: false,
-                                                                overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
-                                                              ),
+                                                      child: Row(
+                                                        children: <Widget>[
+                                                          Container(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.8,
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                              left: 15,
+                                                              right: 30,
                                                             ),
-                                                          ],
-                                                        ),
+                                                            child: Text(
+                                                              x.post_description ??
+                                                                  'null',
+                                                              style: TextStyle(
+                                                                fontSize: 15,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                              maxLines: 5,
+                                                              softWrap: false,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                          top: 10,
-                                                          right: 260,
-                                                        ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 15,
+                                                              left: 15,
+                                                              right: 15
+                                                              // right: 260,
+                                                              ),
+                                                      child: SizedBox(
+                                                        width: double.infinity,
                                                         child: RaisedButton(
                                                           splashColor: Colors
                                                               .purpleAccent,
@@ -2081,7 +2079,7 @@ class _PeluangState extends State<Peluang> {
                                                                   32,
                                                                   1),
                                                           child: Text(
-                                                            'SEE DEAL',
+                                                            'KOLABS',
                                                             style: TextStyle(
                                                               color:
                                                                   Colors.white,
@@ -2105,13 +2103,14 @@ class _PeluangState extends State<Peluang> {
                                                           },
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
                                         ),
+                                      ),
                                       ),
                                     )
                                   // ;

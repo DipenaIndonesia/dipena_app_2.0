@@ -514,14 +514,14 @@ class _HomeState extends State<Home> {
                         children: <Widget>[
                           Container(
                             child: Padding(
-                              padding: const EdgeInsets.all(8),
+                              padding: const EdgeInsets.only(top: 8, bottom: 8),
                               child: Padding(
                                 padding: const EdgeInsets.only(
                                   top: 0,
                                 ),
                                 child: Container(
-                                  width: SizeConfig.safeBlockHorizontal * 100,
-                                  height: SizeConfig.safeBlockVertical * 70,
+                                  // width: SizeConfig.safeBlockHorizontal * 100,
+                                  // height: SizeConfig.safeBlockVertical * 70,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                   ),
@@ -533,66 +533,75 @@ class _HomeState extends State<Home> {
                                         ),
                                         child: Column(
                                           children: <Widget>[
-                                            ListTile(
-                                              leading: Container(
-                                                width: 50,
-                                                height: 50,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: CircleAvatar(
-                                                  child: ClipOval(
-                                                    child: Image(
-                                                      width: 50,
-                                                      height: 50,
-                                                      image: AssetImage(
-                                                          "assets/images/Logo_Circle.png"),
-                                                      fit: BoxFit.cover,
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 8, right: 8),
+                                              child: ListTile(
+                                                leading: Container(
+                                                  width: 50,
+                                                  height: 50,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: CircleAvatar(
+                                                    backgroundColor:
+                                                        Color.fromRGBO(
+                                                            244, 217, 66, 1),
+                                                    child: ClipOval(
+                                                      child: Image(
+                                                        width: 50,
+                                                        height: 50,
+                                                        image: AssetImage(
+                                                            "assets/images/Logo_Circle.png"),
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                              // title: InkWell(
-                                              // child:
-                                              title: Text(
-                                                "Dipena",
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
+                                                // title: InkWell(
+                                                // child:
+                                                title: Text(
+                                                  "Dipena",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
-                                              ),
-                                              // onTap: () async {
-                                              //   var navigationResult =
-                                              //       await Navigator.push(
-                                              //     context,
-                                              //     new MaterialPageRoute(
-                                              //       builder: (context) =>
-                                              //           AnotherProfileFromHome(
-                                              //               x),
-                                              //     ),
-                                              //   );
-                                              // },
-                                              // ),
-                                              subtitle: Row(
-                                                children: <Widget>[
-                                                  Icon(
-                                                    Icons.location_on,
-                                                    color: Colors.grey[600],
-                                                    size: 11,
-                                                  ),
-                                                  Text(
-                                                    // x.post_location,
-                                                    "Indonesia",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                // onTap: () async {
+                                                //   var navigationResult =
+                                                //       await Navigator.push(
+                                                //     context,
+                                                //     new MaterialPageRoute(
+                                                //       builder: (context) =>
+                                                //           AnotherProfileFromHome(
+                                                //               x),
+                                                //     ),
+                                                //   );
+                                                // },
+                                                // ),
+                                                subtitle: Row(
+                                                  children: <Widget>[
+                                                    Icon(
+                                                      Icons.location_on,
+                                                      color: Colors.grey[600],
+                                                      size: 11,
                                                     ),
-                                                  ),
-                                                ],
+                                                    Text(
+                                                      // x.post_location,
+                                                      "Indonesia",
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                             Container(
-                                              margin: EdgeInsets.all(10),
+                                              margin: EdgeInsets.only(
+                                                  bottom: 10, top: 10),
                                               width: double.infinity,
+                                              // width: MediaQuery.of(context).size.width,
                                               height: 200,
                                               decoration: BoxDecoration(
                                                 image: DecorationImage(
@@ -743,8 +752,7 @@ class _HomeState extends State<Home> {
                                             // ),
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                top: 10,
-                                              ),
+                                                  top: 10, left: 8),
                                               child: Row(
                                                 children: <Widget>[
                                                   Container(
@@ -758,17 +766,29 @@ class _HomeState extends State<Home> {
                                                       style: TextStyle(
                                                         fontSize: 17,
                                                         fontWeight:
-                                                            FontWeight.w500,
+                                                            FontWeight.bold,
                                                       ),
                                                     ),
                                                   ),
                                                 ],
                                               ),
                                             ),
+                                            // Padding(
+                                            //   padding: const EdgeInsets.only(
+                                            //     top: 10,
+                                            //     right: 225,
+                                            //     left: 20
+                                            //   ),
+                                            //   child: Container(
+                                            //     color: Color.fromRGBO(
+                                            //         244, 217, 66, 1),
+                                            //     width: 110,
+                                            //     height: 1,
+                                            //   ),
+                                            // ),
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                top: 10,
-                                              ),
+                                                  top: 10, left: 8),
                                               child: Row(
                                                 children: <Widget>[
                                                   Container(
@@ -786,8 +806,8 @@ class _HomeState extends State<Home> {
                                                       "Share an oppurtunities here by showing your art and service deals in one post.",
                                                       style: TextStyle(
                                                         fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.w500,
+                                                        // fontWeight:
+                                                        //     FontWeight.w500,
                                                       ),
                                                     ),
                                                   ),
@@ -796,49 +816,56 @@ class _HomeState extends State<Home> {
                                             ),
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                top: 10,
-                                                right: 260,
+                                                top: 15,
+                                                // right: 260,
+                                                right: 15,
+                                                left: 15,
                                               ),
-                                              child: RaisedButton(
-                                                splashColor:
-                                                    Colors.purpleAccent,
-                                                elevation: 2,
-                                                padding: EdgeInsets.all(12),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                ),
-                                                color:
-                                                    // Colors.black,
-                                                    Color.fromRGBO(
-                                                        250, 185, 32, 1),
-                                                // Color.fromRGBO(
-                                                //     244, 217, 66, 1),
-                                                child: Text(
-                                                  'See Deals',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w600,
+                                              child: SizedBox(
+                                                width: double.infinity,
+                                                child: RaisedButton(
+                                                  splashColor:
+                                                      Colors.purpleAccent,
+                                                  elevation: 2,
+                                                  padding: EdgeInsets.all(12),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
                                                   ),
+                                                  color:
+                                                      // Colors.black,
+                                                      Color.fromRGBO(
+                                                          250, 185, 32, 1),
+                                                  // Color.fromRGBO(
+                                                  //     244, 217, 66, 1),
+                                                  child: Text(
+                                                    'KOLABS',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                  onPressed: () {
+                                                    // var navigationResult =
+                                                    //     await Navigator.push(
+                                                    //   context,
+                                                    //   new MaterialPageRoute(
+                                                    //     builder: (context) =>
+                                                    //         SeeDealsFromHome(
+                                                    //             x),
+                                                    //   ),
+                                                    // );
+                                                    Navigator.push(
+                                                      context,
+                                                      new MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              How()),
+                                                    );
+                                                  },
                                                 ),
-                                                onPressed: () {
-                                                  // var navigationResult =
-                                                  //     await Navigator.push(
-                                                  //   context,
-                                                  //   new MaterialPageRoute(
-                                                  //     builder: (context) =>
-                                                  //         SeeDealsFromHome(
-                                                  //             x),
-                                                  //   ),
-                                                  // );
-                                                  Navigator.push(
-                                                    context,
-                                                    new MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            How()),
-                                                  );
-                                                },
                                               ),
                                             ),
                                           ],
@@ -852,14 +879,14 @@ class _HomeState extends State<Home> {
                           ),
                           Container(
                             child: Padding(
-                              padding: const EdgeInsets.all(8),
+                              padding: const EdgeInsets.only(top: 8, bottom: 8),
                               child: Padding(
                                 padding: const EdgeInsets.only(
                                   top: 10,
                                 ),
                                 child: Container(
-                                  width: SizeConfig.safeBlockHorizontal * 100,
-                                  height: SizeConfig.safeBlockVertical * 70,
+                                  // width: SizeConfig.safeBlockHorizontal * 100,
+                                  // height: SizeConfig.safeBlockVertical * 70,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                   ),
@@ -871,65 +898,73 @@ class _HomeState extends State<Home> {
                                         ),
                                         child: Column(
                                           children: <Widget>[
-                                            ListTile(
-                                              leading: Container(
-                                                width: 50,
-                                                height: 50,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: CircleAvatar(
-                                                  child: ClipOval(
-                                                    child: Image(
-                                                      width: 50,
-                                                      height: 50,
-                                                      image: AssetImage(
-                                                          "assets/images/Logo_Circle.png"),
-                                                      fit: BoxFit.cover,
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 8.0, right: 8),
+                                              child: ListTile(
+                                                leading: Container(
+                                                  width: 50,
+                                                  height: 50,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: CircleAvatar(
+                                                    backgroundColor:
+                                                        Color.fromRGBO(
+                                                            244, 217, 66, 1),
+                                                    child: ClipOval(
+                                                      child: Image(
+                                                        width: 50,
+                                                        height: 50,
+                                                        image: AssetImage(
+                                                            "assets/images/Logo_Circle.png"),
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                              // title: InkWell(
-                                              // child:
-                                              title: Text(
-                                                "Dipena",
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
+                                                // title: InkWell(
+                                                // child:
+                                                title: Text(
+                                                  "Dipena",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
-                                              ),
-                                              // onTap: () async {
-                                              //   var navigationResult =
-                                              //       await Navigator.push(
-                                              //     context,
-                                              //     new MaterialPageRoute(
-                                              //       builder: (context) =>
-                                              //           AnotherProfileFromHome(
-                                              //               x),
-                                              //     ),
-                                              //   );
-                                              // },
-                                              // ),
-                                              subtitle: Row(
-                                                children: <Widget>[
-                                                  Icon(
-                                                    Icons.location_on,
-                                                    color: Colors.grey[600],
-                                                    size: 11,
-                                                  ),
-                                                  Text(
-                                                    // x.post_location,
-                                                    "Indonesia",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                // onTap: () async {
+                                                //   var navigationResult =
+                                                //       await Navigator.push(
+                                                //     context,
+                                                //     new MaterialPageRoute(
+                                                //       builder: (context) =>
+                                                //           AnotherProfileFromHome(
+                                                //               x),
+                                                //     ),
+                                                //   );
+                                                // },
+                                                // ),
+                                                subtitle: Row(
+                                                  children: <Widget>[
+                                                    Icon(
+                                                      Icons.location_on,
+                                                      color: Colors.grey[600],
+                                                      size: 11,
                                                     ),
-                                                  ),
-                                                ],
+                                                    Text(
+                                                      // x.post_location,
+                                                      "Indonesia",
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                             Container(
-                                              margin: EdgeInsets.all(10),
+                                              margin: EdgeInsets.only(
+                                                  top: 10, bottom: 10),
                                               width: double.infinity,
                                               height: 200,
                                               decoration: BoxDecoration(
@@ -1082,6 +1117,7 @@ class _HomeState extends State<Home> {
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                 top: 10,
+                                                left: 8,
                                               ),
                                               child: Row(
                                                 children: <Widget>[
@@ -1096,7 +1132,7 @@ class _HomeState extends State<Home> {
                                                       style: TextStyle(
                                                         fontSize: 17,
                                                         fontWeight:
-                                                            FontWeight.w500,
+                                                            FontWeight.bold,
                                                       ),
                                                     ),
                                                   ),
@@ -1106,6 +1142,7 @@ class _HomeState extends State<Home> {
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                 top: 10,
+                                                left: 8,
                                               ),
                                               child: Row(
                                                 children: <Widget>[
@@ -1124,8 +1161,8 @@ class _HomeState extends State<Home> {
                                                       "Share what you could or Take what you should and change the world",
                                                       style: TextStyle(
                                                         fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.w500,
+                                                        // fontWeight:
+                                                        //     FontWeight.w500,
                                                       ),
                                                     ),
                                                   ),
@@ -1134,41 +1171,47 @@ class _HomeState extends State<Home> {
                                             ),
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                top: 10,
-                                                right: 260,
+                                                top: 15,
+                                                left: 15,
+                                                right: 15,
                                               ),
-                                              child: RaisedButton(
-                                                splashColor:
-                                                    Colors.purpleAccent,
-                                                elevation: 2,
-                                                padding: EdgeInsets.all(12),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                ),
-                                                color:
-                                                    //  Colors.black,
-                                                    Color.fromRGBO(
-                                                        250, 185, 32, 1),
-                                                // Color.fromRGBO(
-                                                //     244, 217, 66, 1),
-                                                child: Text(
-                                                  'See Deals',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w600,
+                                              child: SizedBox(
+                                                width: double.infinity,
+                                                child: RaisedButton(
+                                                  splashColor:
+                                                      Colors.purpleAccent,
+                                                  elevation: 2,
+                                                  padding: EdgeInsets.all(12),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
                                                   ),
+                                                  color:
+                                                      //  Colors.black,
+                                                      Color.fromRGBO(
+                                                          250, 185, 32, 1),
+                                                  // Color.fromRGBO(
+                                                  //     244, 217, 66, 1),
+                                                  child: Text(
+                                                    'KOLABS',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                  onPressed: () {
+                                                    // var navigationResult =
+                                                    Navigator.push(
+                                                      context,
+                                                      new MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              Welcome()),
+                                                    );
+                                                  },
                                                 ),
-                                                onPressed: () {
-                                                  // var navigationResult =
-                                                  Navigator.push(
-                                                    context,
-                                                    new MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            Welcome()),
-                                                  );
-                                                },
                                               ),
                                             ),
                                           ],
@@ -1192,16 +1235,17 @@ class _HomeState extends State<Home> {
                               final x = list[i];
                               return Container(
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8),
+                                  padding:
+                                      const EdgeInsets.only(top: 8, bottom: 8),
                                   child: Padding(
                                     padding: const EdgeInsets.only(
                                       top: 10,
                                     ),
                                     child: Container(
-                                      width:
-                                          SizeConfig.safeBlockHorizontal * 100,
-                                      height:
-                                          SizeConfig.safeBlockVertical * 110,
+                                      // width:
+                                      //     SizeConfig.safeBlockHorizontal * 100,
+                                      // height:
+                                      //     SizeConfig.safeBlockVertical * 110,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                       ),
@@ -1213,109 +1257,126 @@ class _HomeState extends State<Home> {
                                             ),
                                             child: Column(
                                               children: <Widget>[
-                                                ListTile(
-                                                  leading: Container(
-                                                    width: 50,
-                                                    height: 50,
-                                                    decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: x.user_img == null
-                                                        ? InkWell(
-                                                            onTap: () async {
-                                                              var navigationResult =
-                                                                  await Navigator
-                                                                      .push(
-                                                                context,
-                                                                new MaterialPageRoute(
-                                                                  builder: (context) =>
-                                                                      AnotherProfileFromHome(
-                                                                          x),
-                                                                ),
-                                                              );
-                                                            },
-                                                            child: placeholder)
-                                                        : InkWell(
-                                                            onTap: () async {
-                                                              var navigationResult =
-                                                                  await Navigator
-                                                                      .push(
-                                                                context,
-                                                                new MaterialPageRoute(
-                                                                  builder: (context) =>
-                                                                      AnotherProfileFromHome(
-                                                                          x),
-                                                                ),
-                                                              );
-                                                            },
-                                                            child: CircleAvatar(
-                                                              child: ClipOval(
-                                                                child: Image(
-                                                                  width: 50,
-                                                                  height: 50,
-                                                                  image: NetworkImage(
-                                                                      ImageUrl.imageProfile +
-                                                                          x.user_img),
-                                                                  fit: BoxFit
-                                                                      .cover,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                  ),
-                                                  title: InkWell(
-                                                    child: Text(
-                                                      x.user_username,
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 8.0, right: 8),
+                                                  child: ListTile(
+                                                    leading: Container(
+                                                      width: 50,
+                                                      height: 50,
+                                                      decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
                                                       ),
-                                                    ),
-                                                    onTap: () async {
-                                                      var navigationResult =
-                                                          await Navigator.push(
-                                                        context,
-                                                        new MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              AnotherProfileFromHome(
-                                                                  x),
-                                                        ),
-                                                      );
-                                                    },
-                                                  ),
-                                                  subtitle: Container(
-                                                    width: 165,
-                                                    child: Row(
-                                                      children: <Widget>[
-                                                        Icon(
-                                                          Icons.location_on,
-                                                          color:
-                                                              Colors.grey[600],
-                                                          size: 11,
-                                                        ),
-                                                        Flexible(
-                                                          child: Container(
-                                                            child: Text(
-                                                              x.post_location,
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              maxLines: 1,
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
+                                                      child: x.user_img == null
+                                                          ? InkWell(
+                                                              onTap: () async {
+                                                                var navigationResult =
+                                                                    await Navigator
+                                                                        .push(
+                                                                  context,
+                                                                  new MaterialPageRoute(
+                                                                    builder: (context) =>
+                                                                        AnotherProfileFromHome(
+                                                                            x),
+                                                                  ),
+                                                                );
+                                                              },
+                                                              child:
+                                                                  placeholder)
+                                                          : InkWell(
+                                                              onTap: () async {
+                                                                var navigationResult =
+                                                                    await Navigator
+                                                                        .push(
+                                                                  context,
+                                                                  new MaterialPageRoute(
+                                                                    builder: (context) =>
+                                                                        AnotherProfileFromHome(
+                                                                            x),
+                                                                  ),
+                                                                );
+                                                              },
+                                                              child:
+                                                                  CircleAvatar(
+                                                                backgroundColor:
+                                                                    Color
+                                                                        .fromRGBO(
+                                                                            244,
+                                                                            217,
+                                                                            66,
+                                                                            1),
+                                                                child: ClipOval(
+                                                                  child: Image(
+                                                                    width: 50,
+                                                                    height: 50,
+                                                                    image: NetworkImage(
+                                                                        ImageUrl.imageProfile +
+                                                                            x.user_img),
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
                                                               ),
-                                                              softWrap: false,
+                                                            ),
+                                                    ),
+                                                    title: InkWell(
+                                                      child: Text(
+                                                        x.user_username,
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      onTap: () async {
+                                                        var navigationResult =
+                                                            await Navigator
+                                                                .push(
+                                                          context,
+                                                          new MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                AnotherProfileFromHome(
+                                                                    x),
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                    subtitle: Container(
+                                                      width: 165,
+                                                      child: Row(
+                                                        children: <Widget>[
+                                                          Icon(
+                                                            Icons.location_on,
+                                                            color: Colors
+                                                                .grey[600],
+                                                            size: 11,
+                                                          ),
+                                                          Flexible(
+                                                            child: Container(
+                                                              child: Text(
+                                                                x.post_location,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                maxLines: 1,
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                                softWrap: false,
+                                                              ),
                                                             ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
                                                 Container(
-                                                  margin: EdgeInsets.all(10),
+                                                  margin: EdgeInsets.only(
+                                                      top: 10, bottom: 10),
                                                   width: double.infinity,
                                                   height: 350,
                                                   decoration: BoxDecoration(
@@ -1327,130 +1388,136 @@ class _HomeState extends State<Home> {
                                                     ),
                                                   ),
                                                 ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: <Widget>[
-                                                    Row(
-                                                      children: <Widget>[
-                                                        Row(
-                                                          children: <Widget>[
-                                                            // IconButton(
-                                                            //   icon: Icon(
-                                                            //     x.like_status ==
-                                                            //             null
-                                                            //         ? Icons
-                                                            //             .favorite_border
-                                                            //         : Icons
-                                                            //             .favorite,
-                                                            //     color: x.like_status ==
-                                                            //             null
-                                                            //         ? Colors
-                                                            //             .black
-                                                            //         : Color
-                                                            //             .fromRGBO(
-                                                            //                 244,
-                                                            //                 217,
-                                                            //                 66,
-                                                            //                 1),
-                                                            //   ),
-                                                            //   iconSize: 30,
-                                                            //   onPressed:
-                                                            //       () async {
-                                                            //     await getPref();
-                                                            //     final response =
-                                                            //         await http.post(
-                                                            //             LikeUrl
-                                                            //                 .addLike,
-                                                            //             body: {
-                                                            //           // "post_cat_id" : post_cat_id,
-                                                            //           "user_id":
-                                                            //               user_id,
-                                                            //           "post_id":
-                                                            //               x.post_id,
-                                                            //           // "follow_status": followed,
-                                                            //         });
-                                                            //     final data =
-                                                            //         jsonDecode(
-                                                            //             response
-                                                            //                 .body);
-                                                            //     int value = data[
-                                                            //         'value'];
-                                                            //     String pesan =
-                                                            //         data[
-                                                            //             'message'];
-                                                            //     if (value ==
-                                                            //         1) {
-                                                            //       print(pesan);
-                                                            //       setState(() {
-                                                            //         x.like_status !=
-                                                            //             null;
-                                                            //       });
-                                                            //     } else {
-                                                            //       print(pesan);
-                                                            //     }
-                                                            //     // follow();
-                                                            //   },
-                                                            // ),
-                                                            // Text(
-                                                            //   x.jumlahLike ??
-                                                            //       '0',
-                                                            //   style: TextStyle(
-                                                            //     fontSize: 14,
-                                                            //     fontWeight:
-                                                            //         FontWeight
-                                                            //             .w600,
-                                                            //   ),
-                                                            // ),
-                                                          ],
-                                                        ),
-                                                        // SizedBox(
-                                                        //   width: 10,
-                                                        // ),
-                                                        Row(
-                                                          children: <Widget>[
-                                                            IconButton(
-                                                              iconSize: 25,
-                                                              icon: Icon(
-                                                                FontAwesomeIcons
-                                                                    .comment,
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10.0, right: 8),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: <Widget>[
+                                                      Row(
+                                                        children: <Widget>[
+                                                          Row(
+                                                            children: <Widget>[
+                                                              // IconButton(
+                                                              //   icon: Icon(
+                                                              //     x.like_status ==
+                                                              //             null
+                                                              //         ? Icons
+                                                              //             .favorite_border
+                                                              //         : Icons
+                                                              //             .favorite,
+                                                              //     color: x.like_status ==
+                                                              //             null
+                                                              //         ? Colors
+                                                              //             .black
+                                                              //         : Color
+                                                              //             .fromRGBO(
+                                                              //                 244,
+                                                              //                 217,
+                                                              //                 66,
+                                                              //                 1),
+                                                              //   ),
+                                                              //   iconSize: 30,
+                                                              //   onPressed:
+                                                              //       () async {
+                                                              //     await getPref();
+                                                              //     final response =
+                                                              //         await http.post(
+                                                              //             LikeUrl
+                                                              //                 .addLike,
+                                                              //             body: {
+                                                              //           // "post_cat_id" : post_cat_id,
+                                                              //           "user_id":
+                                                              //               user_id,
+                                                              //           "post_id":
+                                                              //               x.post_id,
+                                                              //           // "follow_status": followed,
+                                                              //         });
+                                                              //     final data =
+                                                              //         jsonDecode(
+                                                              //             response
+                                                              //                 .body);
+                                                              //     int value = data[
+                                                              //         'value'];
+                                                              //     String pesan =
+                                                              //         data[
+                                                              //             'message'];
+                                                              //     if (value ==
+                                                              //         1) {
+                                                              //       print(pesan);
+                                                              //       setState(() {
+                                                              //         x.like_status !=
+                                                              //             null;
+                                                              //       });
+                                                              //     } else {
+                                                              //       print(pesan);
+                                                              //     }
+                                                              //     // follow();
+                                                              //   },
+                                                              // ),
+                                                              // Text(
+                                                              //   x.jumlahLike ??
+                                                              //       '0',
+                                                              //   style: TextStyle(
+                                                              //     fontSize: 14,
+                                                              //     fontWeight:
+                                                              //         FontWeight
+                                                              //             .w600,
+                                                              //   ),
+                                                              // ),
+                                                            ],
+                                                          ),
+                                                          // SizedBox(
+                                                          //   width: 10,
+                                                          // ),
+                                                          Row(
+                                                            children: <Widget>[
+                                                              IconButton(
+                                                                iconSize: 25,
+                                                                icon: Icon(
+                                                                  FontAwesomeIcons
+                                                                      .comment,
+                                                                ),
+                                                                onPressed:
+                                                                    () async {
+                                                                  var navigationResult =
+                                                                      await Navigator
+                                                                          .push(
+                                                                    context,
+                                                                    new MaterialPageRoute(
+                                                                      builder: (context) =>
+                                                                          CommentFromHome(
+                                                                              x),
+                                                                    ),
+                                                                  );
+                                                                },
                                                               ),
-                                                              onPressed:
-                                                                  () async {
-                                                                var navigationResult =
-                                                                    await Navigator
-                                                                        .push(
-                                                                  context,
-                                                                  new MaterialPageRoute(
-                                                                    builder: (context) =>
-                                                                        CommentFromHome(
-                                                                            x),
-                                                                  ),
-                                                                );
-                                                              },
-                                                            ),
-                                                            Text(
-                                                              x.jumlahKomen ??
-                                                                  '0',
-                                                              style: TextStyle(
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
+                                                              Text(
+                                                                x.jumlahKomen ??
+                                                                    '0',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
                                                               ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                                 Row(
                                                   children: <Widget>[
                                                     Container(
                                                       margin: EdgeInsets.only(
-                                                        left: 15,
+                                                        left: 23,
                                                         right: 30,
                                                       ),
                                                       child: Text(
@@ -1470,6 +1537,7 @@ class _HomeState extends State<Home> {
                                                   padding:
                                                       const EdgeInsets.only(
                                                     top: 10,
+                                                    left: 8,
                                                   ),
                                                   child: Row(
                                                     children: <Widget>[
@@ -1493,8 +1561,7 @@ class _HomeState extends State<Home> {
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
-                                                    top: 10,
-                                                  ),
+                                                          top: 10, left: 8),
                                                   child: Row(
                                                     children: <Widget>[
                                                       Container(
@@ -1526,46 +1593,52 @@ class _HomeState extends State<Home> {
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
-                                                    top: 10,
-                                                    right: 260,
-                                                  ),
-                                                  child: RaisedButton(
-                                                    splashColor:
-                                                        Colors.purpleAccent,
-                                                    elevation: 2,
-                                                    padding: EdgeInsets.all(12),
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15),
-                                                    ),
-                                                    color:
-                                                        // Colors.black,
-                                                        Color.fromRGBO(
-                                                            250, 185, 32, 1),
-                                                    // Color.fromRGBO(
-                                                    //     244, 217, 66, 1),
-                                                    child: Text(
-                                                      'SEE DEAL',
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.w600,
+                                                          top: 15,
+                                                          // right: 260,
+                                                          left: 15,
+                                                          right: 15),
+                                                  child: SizedBox(
+                                                    width: double.infinity,
+                                                    child: RaisedButton(
+                                                      splashColor:
+                                                          Colors.purpleAccent,
+                                                      elevation: 2,
+                                                      padding:
+                                                          EdgeInsets.all(12),
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15),
                                                       ),
-                                                    ),
-                                                    onPressed: () async {
-                                                      var navigationResult =
-                                                          await Navigator.push(
-                                                        context,
-                                                        new MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              SeeDealsFromHome(
-                                                                  x),
+                                                      color:
+                                                          // Colors.black,
+                                                          Color.fromRGBO(
+                                                              250, 185, 32, 1),
+                                                      // Color.fromRGBO(
+                                                      //     244, 217, 66, 1),
+                                                      child: Text(
+                                                        'KOLABS',
+                                                        style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
-                                                      );
-                                                    },
+                                                      ),
+                                                      onPressed: () async {
+                                                        var navigationResult =
+                                                            await Navigator
+                                                                .push(
+                                                          context,
+                                                          new MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                SeeDealsFromHome(
+                                                                    x),
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
                                                   ),
                                                 ),
                                               ],
@@ -2135,7 +2208,7 @@ class _WelcomeState extends State<Welcome> {
                                     // Color.fromRGBO(
                                     //     244, 217, 66, 1),
                                     child: Text(
-                                      'Take Deals',
+                                      'KOLABS',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 20,
@@ -2439,7 +2512,7 @@ class _HowState extends State<How> {
                                     // Color.fromRGBO(
                                     //     244, 217, 66, 1),
                                     child: Text(
-                                      'Take Deals',
+                                      'KOLABS',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 20,
