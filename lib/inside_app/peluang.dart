@@ -2079,7 +2079,7 @@ class _PeluangState extends State<Peluang> {
                                                                   32,
                                                                   1),
                                                           child: Text(
-                                                            'KOLABS',
+                                                            'COLLABS',
                                                             style: TextStyle(
                                                               color:
                                                                   Colors.white,

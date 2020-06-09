@@ -824,7 +824,7 @@ class _ProfileState extends State<Profile> {
                             Color.fromRGBO(250, 185, 32, 1),
                         // Color.fromRGBO(244, 217, 66, 1),
                         child: Text(
-                          'Make Deals',
+                          'POST',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 15,

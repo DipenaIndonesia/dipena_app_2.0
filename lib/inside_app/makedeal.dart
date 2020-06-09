@@ -428,7 +428,7 @@ class _MakeDealState extends State<MakeDeal> {
                       ),
                       validator: (e) {
                         if (e.isEmpty) {
-                          return "Please Insert Service Deals";
+                          return "Please Insert Service";
                         }
                       },
                       // controller: controller,
@@ -436,7 +436,7 @@ class _MakeDealState extends State<MakeDeal> {
                       // maxLines: null,
                       onSaved: (e) => post_offer = e,
                       decoration: InputDecoration(
-                        labelText: 'Service Deals',
+                        labelText: 'Service',
                         
                           // hintText: "e.g landscape"
                       ),

@@ -840,7 +840,7 @@ class _HomeState extends State<Home> {
                                                   // Color.fromRGBO(
                                                   //     244, 217, 66, 1),
                                                   child: Text(
-                                                    'KOLABS',
+                                                    'COLLABS',
                                                     style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 15,
@@ -1194,7 +1194,7 @@ class _HomeState extends State<Home> {
                                                   // Color.fromRGBO(
                                                   //     244, 217, 66, 1),
                                                   child: Text(
-                                                    'KOLABS',
+                                                    'COLLABS',
                                                     style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 15,
@@ -1618,7 +1618,7 @@ class _HomeState extends State<Home> {
                                                       // Color.fromRGBO(
                                                       //     244, 217, 66, 1),
                                                       child: Text(
-                                                        'KOLABS',
+                                                        'COLLABS',
                                                         style: TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 15,
@@ -2208,7 +2208,7 @@ class _WelcomeState extends State<Welcome> {
                                     // Color.fromRGBO(
                                     //     244, 217, 66, 1),
                                     child: Text(
-                                      'KOLABS',
+                                      'COLLABS',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 20,
@@ -2512,7 +2512,7 @@ class _HowState extends State<How> {
                                     // Color.fromRGBO(
                                     //     244, 217, 66, 1),
                                     child: Text(
-                                      'KOLABS',
+                                      'COLLABS',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 20,

@@ -368,7 +368,7 @@ class _DealState extends State<Deal> {
                                             child: Row(
                                               children: <Widget>[
                                                 Text(
-                                                  'Service Deals',
+                                                  'Service',
                                                   style: TextStyle(
                                                     fontSize: 22,
                                                     fontWeight: FontWeight.bold,
@@ -657,7 +657,7 @@ class _DealState extends State<Deal> {
                                                 child: Row(
                                                   children: <Widget>[
                                                     Text(
-                                                      'Service Deals',
+                                                      'Service',
                                                       style: TextStyle(
                                                         fontSize: 22,
                                                         fontWeight:
@@ -745,7 +745,7 @@ class _DealState extends State<Deal> {
                                                     // Color.fromRGBO(
                                                     //     244, 217, 66, 1),
                                                     child: Text(
-                                                      'KOLABS',
+                                                      'COLLABS',
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 20,

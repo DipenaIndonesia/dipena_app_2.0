@@ -1054,7 +1054,7 @@ class _SelectPostCatState extends State<SelectPostCat> {
                                                                   // Color.fromRGBO(
                                                                   //     244, 217, 66, 1),
                                                                   child: Text(
-                                                                    'KOLABS',
+                                                                    'COLLABS',
                                                                     style:
                                                                         TextStyle(
                                                                       color: Colors

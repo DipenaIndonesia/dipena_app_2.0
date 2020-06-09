@@ -372,7 +372,7 @@ class _SeeDealsProfileState extends State<SeeDealsProfile> {
                                           child: Row(
                                             children: <Widget>[
                                               Text(
-                                                'Service Deals',
+                                                'Service',
                                                 style: TextStyle(
                                                   fontSize: 22,
                                                   fontWeight: FontWeight.bold,
@@ -644,7 +644,7 @@ class _SeeDealsProfileState extends State<SeeDealsProfile> {
                                           child: Row(
                                             children: <Widget>[
                                               Text(
-                                                'Service Deals',
+                                                'Service',
                                                 style: TextStyle(
                                                   fontSize: 22,
                                                   fontWeight: FontWeight.bold,
@@ -731,7 +731,7 @@ class _SeeDealsProfileState extends State<SeeDealsProfile> {
                                               // Colors.black,
                                                   // Color.fromRGBO(244, 217, 66, 1),
                                               child: Text(
-                                                'KOLABS',
+                                                'COLLABS',
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 20,
