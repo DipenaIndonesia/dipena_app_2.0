@@ -601,8 +601,8 @@ class _HomeState extends State<Home> {
                                               margin: EdgeInsets.only(
                                                   bottom: 10, top: 10),
                                               width: double.infinity,
-                                              // width: MediaQuery.of(context).size.width,
-                                              height: 200,
+                                              // width: MediaQuery.of(context).size.width, 
+                                              height: 350,
                                               decoration: BoxDecoration(
                                                 image: DecorationImage(
                                                   image: AssetImage(
@@ -614,7 +614,7 @@ class _HomeState extends State<Home> {
                                             // Row(
                                             //   mainAxisAlignment:
                                             //       MainAxisAlignment
-                                            //           .spaceBetween,
+                                            //           .spaceBetween, 
                                             //   children: <Widget>[
                                             //     Row(
                                             //       children: <Widget>[
@@ -803,7 +803,7 @@ class _HomeState extends State<Home> {
                                                     ),
                                                     child: Text(
                                                       // x.post_description,
-                                                      "Share an oppurtunities here by showing your art and service deals in one post.",
+                                                      "Share an oppurtunities here by showing your art and service in one post.",
                                                       style: TextStyle(
                                                         fontSize: 15,
                                                         // fontWeight:
@@ -966,7 +966,7 @@ class _HomeState extends State<Home> {
                                               margin: EdgeInsets.only(
                                                   top: 10, bottom: 10),
                                               width: double.infinity,
-                                              height: 200,
+                                              height: 350,
                                               decoration: BoxDecoration(
                                                 image: DecorationImage(
                                                   image: AssetImage(
@@ -1966,7 +1966,7 @@ class _WelcomeState extends State<Welcome> {
                     children: <Widget>[
                       Container(
                           width: SizeConfig.safeBlockHorizontal * 100,
-                          height: SizeConfig.safeBlockVertical * 36,
+                          height: SizeConfig.safeBlockVertical * 55,
                           child: Image.asset("assets/images/WELCOME.png")),
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -2266,14 +2266,17 @@ class _HowState extends State<How> {
                 children: <Widget>[
                   Stack(
                     children: <Widget>[
-                      Container(
-                          width: SizeConfig.safeBlockHorizontal * 100,
-                          height: SizeConfig.safeBlockVertical * 36,
-                          child: Image.asset("assets/images/HOW.png")),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 40.0),
+                        child: Container(
+                            width: SizeConfig.safeBlockHorizontal * 100,
+                            height: SizeConfig.safeBlockVertical * 55,
+                            child: Image.asset("assets/images/HOW.png")),
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 10,
-                          vertical: 20,
+                          vertical: 40,
                         ),
                         child: ClipOval(
                           child: Material(
@@ -2452,7 +2455,7 @@ class _HowState extends State<How> {
                                         // x.post_offer,
                                         // "Put your service here. Millions of people need you but they don't see you.",
                                         // "Your services/skills are matter for everyone. Let other knows about your service here so everyone can take deals on you and work for something big!.",
-                                        "Let others know about your service here so everyone can take deals on you and work for something big!",
+                                        "Let others know about your service here so everyone can collabs with you and work for something big!",
                                         style: TextStyle(
                                           fontSize: 18,
                                         ),
@@ -3098,12 +3101,12 @@ class _ChatHomeState extends State<ChatHome> {
                         //       ),
                         Bubble(
                           message:
-                              "Hay! Love what you’re doing and i want to talk further more about the deal.",
+                              "Hay! Love what you’re doing and i want to talk further more about the service.",
                           isMe: true,
                         ),
                         Bubble(
                           message:
-                              "This is what happen when press the “Take Deal” button. We bring you closer to every opportunity.",
+                              "This is what happen when press the “COLLABS” button. We bring you closer to every opportunity.",
                           isMe: false,
                         )
                         // Text("Gk ada gambar ")

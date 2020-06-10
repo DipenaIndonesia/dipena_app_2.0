@@ -1441,7 +1441,7 @@ class _PeluangState extends State<Peluang> {
               // :
               Container(
                 child: list.isEmpty
-                    ? Center(child: Text("BELUM ADA POST APAPUN"))
+                    ? Center(child: CircularProgressIndicator())
                     : loading
                         ? Center(child: CircularProgressIndicator())
                         : ListView.builder(
