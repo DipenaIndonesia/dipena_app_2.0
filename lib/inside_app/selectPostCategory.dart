@@ -558,6 +558,7 @@ class _SelectPostCatState extends State<SelectPostCat> {
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold,
+                                                                              fontSize: MediaQuery.of(context).size.width*0.045,
                                                                     ),
                                                                   ),
                                                                   onTap:
@@ -605,8 +606,9 @@ class _SelectPostCatState extends State<SelectPostCat> {
                                                                               ? Color.fromRGBO(244, 217, 66, 1)
                                                                               : Colors.black,
                                                                         ),
-                                                                        iconSize:
-                                                                            25,
+                                                                        // iconSize:
+                                                                        //     25,
+                                                                        iconSize: MediaQuery.of(context).size.width*0.058,
                                                                         onPressed:
                                                                             () async {
                                                                           await getPref();
@@ -668,6 +670,7 @@ class _SelectPostCatState extends State<SelectPostCat> {
                                                                             style:
                                                                                 TextStyle(
                                                                               fontWeight: FontWeight.bold,
+                                                                              fontSize: MediaQuery.of(context).size.width*0.039,
                                                                             ),
                                                                             softWrap:
                                                                                 false,
@@ -908,7 +911,8 @@ class _SelectPostCatState extends State<SelectPostCat> {
                                                                                 '0',
                                                                             style:
                                                                                 TextStyle(
-                                                                              fontSize: 14,
+                                                                              // fontSize: 14,
+                                                                              fontSize: MediaQuery.of(context).size.width*0.042,
                                                                               fontWeight: FontWeight.w600,
                                                                             ),
                                                                           ),
@@ -935,8 +939,9 @@ class _SelectPostCatState extends State<SelectPostCat> {
                                                                         .name,
                                                                     style:
                                                                         TextStyle(
-                                                                      fontSize:
-                                                                          18,
+                                                                      // fontSize:
+                                                                      //     18,
+                                                                      fontSize: MediaQuery.of(context).size.width*0.045,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w700,
@@ -965,8 +970,9 @@ class _SelectPostCatState extends State<SelectPostCat> {
                                                                       x.post_title,
                                                                       style:
                                                                           TextStyle(
-                                                                        fontSize:
-                                                                            17,
+                                                                        // fontSize:
+                                                                        //     17,
+                                                                        fontSize: MediaQuery.of(context).size.width*0.045,
                                                                         fontWeight:
                                                                             FontWeight.w500,
                                                                       ),
@@ -997,11 +1003,12 @@ class _SelectPostCatState extends State<SelectPostCat> {
                                                                     ),
                                                                     child: Text(
                                                                       x.post_description ??
-                                                                          'null',
+                                                                          '',
                                                                       style:
                                                                           TextStyle(
-                                                                        fontSize:
-                                                                            15,
+                                                                        // fontSize:
+                                                                        //     15,
+                                                                        fontSize: MediaQuery.of(context).size.width*0.039,
                                                                         fontWeight:
                                                                             FontWeight.w500,
                                                                       ),
@@ -1059,8 +1066,9 @@ class _SelectPostCatState extends State<SelectPostCat> {
                                                                         TextStyle(
                                                                       color: Colors
                                                                           .white,
-                                                                      fontSize:
-                                                                          15,
+                                                                      // fontSize:
+                                                                      //     15,
+                                                                      fontSize: MediaQuery.of(context).size.width*0.042,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w600,

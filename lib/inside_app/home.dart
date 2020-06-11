@@ -564,6 +564,7 @@ class _HomeState extends State<Home> {
                                                   "Dipena",
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
+                                                    fontSize: MediaQuery.of(context).size.width*0.045,
                                                   ),
                                                 ),
                                                 // onTap: () async {
@@ -591,6 +592,7 @@ class _HomeState extends State<Home> {
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold,
+                                                            fontSize: MediaQuery.of(context).size.width*0.039,
                                                       ),
                                                     ),
                                                   ],
@@ -764,7 +766,8 @@ class _HomeState extends State<Home> {
                                                       // x.post_title,
                                                       "Painter.Designer.Photographer",
                                                       style: TextStyle(
-                                                        fontSize: 17,
+                                                        // fontSize: 17,
+                                                        fontSize: MediaQuery.of(context).size.width*0.045,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -805,7 +808,8 @@ class _HomeState extends State<Home> {
                                                       // x.post_description,
                                                       "Share an oppurtunities here by showing your art and service in one post.",
                                                       style: TextStyle(
-                                                        fontSize: 15,
+                                                        // fontSize: 15,
+                                                        fontSize: MediaQuery.of(context).size.width*0.045,
                                                         // fontWeight:
                                                         //     FontWeight.w500,
                                                       ),
@@ -843,7 +847,8 @@ class _HomeState extends State<Home> {
                                                     'COLLABS',
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 15,
+                                                      // fontSize: 15,
+                                                      fontSize: MediaQuery.of(context).size.width*0.042,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -929,6 +934,7 @@ class _HomeState extends State<Home> {
                                                   "Dipena",
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
+                                                    fontSize: MediaQuery.of(context).size.width*0.045,
                                                   ),
                                                 ),
                                                 // onTap: () async {
@@ -956,6 +962,7 @@ class _HomeState extends State<Home> {
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold,
+                                                            fontSize: MediaQuery.of(context).size.width*0.039,
                                                       ),
                                                     ),
                                                   ],
@@ -1130,7 +1137,8 @@ class _HomeState extends State<Home> {
                                                       // x.post_title,
                                                       "Whoever you are",
                                                       style: TextStyle(
-                                                        fontSize: 17,
+                                                        // fontSize: 17,
+                                                        fontSize: MediaQuery.of(context).size.width*0.045,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -1160,7 +1168,8 @@ class _HomeState extends State<Home> {
                                                       // x.post_description,
                                                       "Share what you could or Take what you should and change the world",
                                                       style: TextStyle(
-                                                        fontSize: 15,
+                                                        // fontSize: 15,
+                                                        fontSize: MediaQuery.of(context).size.width*0.039,
                                                         // fontWeight:
                                                         //     FontWeight.w500,
                                                       ),
@@ -1197,7 +1206,8 @@ class _HomeState extends State<Home> {
                                                     'COLLABS',
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 15,
+                                                      // fontSize: 15,
+                                                      fontSize: MediaQuery.of(context).size.width*0.042,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -1326,6 +1336,7 @@ class _HomeState extends State<Home> {
                                                         style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
+                                                              fontSize: MediaQuery.of(context).size.width*0.045,
                                                         ),
                                                       ),
                                                       onTap: () async {
@@ -1364,6 +1375,7 @@ class _HomeState extends State<Home> {
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
+                                                                          fontSize: MediaQuery.of(context).size.width*0.039,
                                                                 ),
                                                                 softWrap: false,
                                                               ),
@@ -1500,10 +1512,11 @@ class _HomeState extends State<Home> {
                                                                     '0',
                                                                 style:
                                                                     TextStyle(
-                                                                  fontSize: 14,
+                                                                  // fontSize: 14,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600,
+                                                                          fontSize: MediaQuery.of(context).size.width*0.042,
                                                                 ),
                                                               ),
                                                             ],
@@ -1525,7 +1538,8 @@ class _HomeState extends State<Home> {
                                                         show_cat(x.post_cat_id),
                                                         // show_cat,
                                                         style: TextStyle(
-                                                          fontSize: 18,
+                                                          // fontSize: 18,
+                                                          fontSize: MediaQuery.of(context).size.width*0.045,
                                                           fontWeight:
                                                               FontWeight.w700,
                                                         ),
@@ -1549,7 +1563,8 @@ class _HomeState extends State<Home> {
                                                         child: Text(
                                                           x.post_title,
                                                           style: TextStyle(
-                                                            fontSize: 17,
+                                                            // fontSize: 17,
+                                                            fontSize: MediaQuery.of(context).size.width*0.045,
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                           ),
@@ -1575,9 +1590,10 @@ class _HomeState extends State<Home> {
                                                           right: 30,
                                                         ),
                                                         child: Text(
-                                                          x.post_description,
+                                                          x.post_description ?? "",
                                                           style: TextStyle(
-                                                            fontSize: 15,
+                                                            // fontSize: 15,
+                                                            fontSize: MediaQuery.of(context).size.width*0.039,
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                           ),
@@ -1621,7 +1637,8 @@ class _HomeState extends State<Home> {
                                                         'COLLABS',
                                                         style: TextStyle(
                                                           color: Colors.white,
-                                                          fontSize: 15,
+                                                          // fontSize: 15,
+                                                          fontSize: MediaQuery.of(context).size.width*0.042,
                                                           fontWeight:
                                                               FontWeight.w600,
                                                         ),
@@ -2044,7 +2061,8 @@ class _WelcomeState extends State<Welcome> {
                                             // x.user_username,
                                             "Dipena",
                                             style: TextStyle(
-                                              fontSize: 18,
+                                              // fontSize: 18,
+                                              fontSize: MediaQuery.of(context).size.width*0.05,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -2079,7 +2097,8 @@ class _WelcomeState extends State<Welcome> {
                                         // x.post_title,
                                         "Whoever you are",
                                         style: TextStyle(
-                                          fontSize: 21,
+                                          // fontSize: 21,
+                                          fontSize: MediaQuery.of(context).size.width*0.05,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -2101,7 +2120,8 @@ class _WelcomeState extends State<Welcome> {
                                         // x.post_description,
                                         "Share what you could or Take what you should and change the world",
                                         style: TextStyle(
-                                          fontSize: 16,
+                                          // fontSize: 16,
+                                          fontSize: MediaQuery.of(context).size.width*0.045,
                                         ),
                                       ),
                                     ),
@@ -2127,9 +2147,10 @@ class _WelcomeState extends State<Welcome> {
                                 child: Row(
                                   children: <Widget>[
                                     Text(
-                                      'Service Deals',
+                                      'Service :',
                                       style: TextStyle(
-                                        fontSize: 22,
+                                        // fontSize: 22,
+                                        fontSize: MediaQuery.of(context).size.width*0.05,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     )
@@ -2150,7 +2171,8 @@ class _WelcomeState extends State<Welcome> {
                                         // x.post_offer,
                                         "This post will be gone once your following user has posted. Go find something here!",
                                         style: TextStyle(
-                                          fontSize: 18,
+                                          // fontSize: 18,
+                                          fontSize: MediaQuery.of(context).size.width*0.045,
                                         ),
                                       ),
                                     ),
@@ -2349,7 +2371,8 @@ class _HowState extends State<How> {
                                             // x.user_username,
                                             "Dipena",
                                             style: TextStyle(
-                                              fontSize: 18,
+                                              fontSize: MediaQuery.of(context).size.width*0.05,
+                                              // fontSize: 18,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -2384,7 +2407,7 @@ class _HowState extends State<How> {
                                         // x.post_title,
                                         "Painter.Designer.Photographer",
                                         style: TextStyle(
-                                          fontSize: 21,
+                                          fontSize: MediaQuery.of(context).size.width*0.05,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -2406,7 +2429,8 @@ class _HowState extends State<How> {
                                         // x.post_description,
                                         "Share an oppurtunities here by showing your art and service deals in one post.",
                                         style: TextStyle(
-                                          fontSize: 16,
+                                          // fontSize: 15,
+                                          fontSize: MediaQuery.of(context).size.width*0.045,
                                         ),
                                       ),
                                     ),
@@ -2432,9 +2456,10 @@ class _HowState extends State<How> {
                                 child: Row(
                                   children: <Widget>[
                                     Text(
-                                      'Service Deals :',
+                                      'Service :',
                                       style: TextStyle(
-                                        fontSize: 22,
+                                        // fontSize: 22,
+                                        fontSize: MediaQuery.of(context).size.width*0.05,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     )
@@ -2457,7 +2482,8 @@ class _HowState extends State<How> {
                                         // "Your services/skills are matter for everyone. Let other knows about your service here so everyone can take deals on you and work for something big!.",
                                         "Let others know about your service here so everyone can collabs with you and work for something big!",
                                         style: TextStyle(
-                                          fontSize: 18,
+                                          // fontSize: 18,
+                                          fontSize: MediaQuery.of(context).size.width*0.045,
                                         ),
                                       ),
                                     ),
