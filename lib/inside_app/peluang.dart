@@ -1792,23 +1792,23 @@ class _PeluangState extends State<Peluang> {
                                                         top: 10, bottom: 10),
                                                     width: double.infinity,
                                                     height: 350,
-                                                    // decoration: BoxDecoration(
-                                                    //   image: DecorationImage(
-                                                    //     image:
-                                                    //     NetworkImage(
-                                                    //         ImageUrl.imageContent +
-                                                    //             x.post_img),
-                                                    //     fit: BoxFit.fitWidth,
-                                                    //   ),
-                                                    // ),
                                                     decoration: BoxDecoration(
                                                       image: DecorationImage(
-                                                        image: CachedNetworkImageProvider(
+                                                        image:
+                                                        NetworkImage(
                                                             ImageUrl.imageContent +
                                                                 x.post_img),
                                                         fit: BoxFit.fitWidth,
                                                       ),
                                                     ),
+                                                    // decoration: BoxDecoration(
+                                                    //   image: DecorationImage(
+                                                    //     image: CachedNetworkImageProvider(
+                                                    //         ImageUrl.imageContent +
+                                                    //             x.post_img),
+                                                    //     fit: BoxFit.fitWidth,
+                                                    //   ),
+                                                    // ),
                                                     // child: CachedNetworkImage(
                                                     //   imageUrl: ImageUrl
                                                     //           .imageContent +
