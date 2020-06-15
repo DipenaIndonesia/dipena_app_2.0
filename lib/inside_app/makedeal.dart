@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dipena/model/tags.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path/path.dart' as path;
 import 'package:async/async.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MakeDeal extends StatefulWidget {
   @override
@@ -75,6 +78,7 @@ class _MakeDealState extends State<MakeDeal> {
   void initState() {
     // ,
     this.getSWData();
+    this.getSWData1();
     super.initState();
     getPref();
   }
@@ -209,6 +213,82 @@ class _MakeDealState extends State<MakeDeal> {
     return "Sucess";
   }
 
+  String _mySelection1;
+
+  final String url1 = "https://dipena.com/flutter/api/tags/showTags.php";
+
+  List data1 = List();
+
+  Future<String> getSWData1() async {
+    var res1 = await http
+        .get(Uri.encodeFull(url1), headers: {"Accept": "application/json"});
+    var resBody = json.decode(res1.body);
+
+    setState(() {
+      data1 = resBody;
+    });
+
+    print(resBody);
+
+    return "Sucess";
+  }
+
+  // List<Tag> _tags=[];
+
+   Widget _popUpGallery(BuildContext context) {
+    return new Transform.scale(
+      scale: 1,
+      child: Opacity(
+        opacity: 1,
+        child: CupertinoAlertDialog(
+            content: Container()
+        //     Column(
+        //   // mainAxisAlignment: MainAxisAlignment.start,
+        //   children: <Widget>[
+        //     Text(
+        //       "WELCOME TO DIPENA!",
+        //       style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
+        //     ),
+        //     Padding(
+        //       padding: const EdgeInsets.all(18.0),
+        //       child: Text(
+        //         user_username,
+        //         style:
+        //             new TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
+        //       ),
+        //     ),
+        //     Text(
+        //         "Ready to Share what you could or Take what you should and change the world ?"),
+        //     Padding(
+        //       padding: const EdgeInsets.only(top: 18.0),
+        //       child: FlatButton(
+        //         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        //         padding: EdgeInsets.all(0),
+        //         color: Colors.green,
+        //         onPressed: () {
+        //           Navigator.push(
+        //             context,
+        //             new MaterialPageRoute(
+        //               builder: (context) => Login(),
+        //             ),
+        //           );
+        //         },
+        //         textColor: Colors.white,
+        //         shape: RoundedRectangleBorder(
+        //             side: BorderSide(
+        //                 color: Colors.blue, width: 1, style: BorderStyle.none),
+        //             borderRadius: BorderRadius.circular(50)),
+        //         child: Align(
+        //             alignment: Alignment.bottomCenter, child: Text("Ready")),
+        //       ),
+        //     ) // Container()
+        //   ],
+        // )
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -227,7 +307,7 @@ class _MakeDealState extends State<MakeDeal> {
           elevation: 1,
           backgroundColor: Color.fromRGBO(244, 217, 66, 1),
           title: Text(
-            'Create Deal',
+            'Create Post',
             style: TextStyle(
               color: Colors.black,
             ),
@@ -315,19 +395,19 @@ class _MakeDealState extends State<MakeDeal> {
                         // right: 180,
                       ),
                       child: DropdownButton(
-                        items: data.map((item) {
+                        items: data1.map((item) {
                           return new DropdownMenuItem(
-                            child: new Text(item['category_name']),
-                            value: item['category_id'].toString(),
+                            child: new Text(item['tag_title'] ?? '') ,
+                            value: item['tag_id'].toString(),
                           );
                         }).toList(),
                         hint: Text('Select Category'),
                         onChanged: (newVal) {
                           setState(() {
-                            _mySelection = newVal;
+                            _mySelection1 = newVal;
                           });
                         },
-                        value: _mySelection,
+                        value: _mySelection1,
                       ),
                     ),
                   ),
@@ -482,6 +562,7 @@ class _MakeDealState extends State<MakeDeal> {
                         onPressed: () {
                           // Navigator.pop(context);
                           check();
+                          // Navigator.push(context, new MaterialPageRoute(builder: (context) => FilterChipDisplay()));
                         },
                       ),
                     ),
@@ -495,3 +576,271 @@ class _MakeDealState extends State<MakeDeal> {
     );
   }
 }
+
+
+// class Tags extends StatefulWidget {
+//   @override
+//   _TagsState createState() => _TagsState();
+// }
+
+// class _TagsState extends State<Tags> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+      
+//     );
+//   }
+// }
+
+
+
+class FilterChipDisplay extends StatefulWidget {
+  @override
+  _FilterChipDisplayState createState() => _FilterChipDisplayState();
+}
+
+class _FilterChipDisplayState extends State<FilterChipDisplay> {
+
+  String _mySelection1;
+
+  final String url1 = "https://dipena.com/flutter/api/tags/showTags.php";
+
+  List data1 = List();
+
+  Future<String> getSWData1() async {
+    var res1 = await http
+        .get(Uri.encodeFull(url1), headers: {"Accept": "application/json"});
+    var resBody = json.decode(res1.body);
+
+    setState(() {
+      data1 = resBody;
+    });
+
+    print(resBody);
+
+    return "Sucess";
+  }
+
+  @override
+  void initState() {
+    // ,
+    // this.getSWData();
+    // this.getSWData1();
+    super.initState();
+    _lihatDataPost();
+  }
+
+  // }
+
+  var loading = false;
+  final list = new List<TagsModel>();
+  Future<void> _lihatDataPost() async {
+    // await getPref();
+    list.clear();
+    setState(() {
+      loading = true;
+    });
+    final response = await http.post("https://dipena.com/flutter/api/tags/showTags.php");
+    if (response.contentLength == 2) {
+      //   await getPref();
+      // final response =
+      //     await http.post("https://dipena.com/flutter/api/updateProfile.php");
+      //   "user_id": user_id,
+      //   "location_country": location_country,
+      //   "location_city": location_city,
+      //   "location_user_id": user_id
+      // });
+
+      // final data = jsonDecode(response.body);
+      // int value = data['value'];
+      // String message = data['message'];
+      // String changeProf = data['changeProf'];
+    } else {
+      final data = jsonDecode(response.body);
+      data.forEach((api) {
+        final ab = new TagsModel(
+          api['tag_id'],
+          api['category_id'],
+          api['tag_title'],
+        );
+        list.add(ab);
+      });
+      setState(() {
+        loading = false;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(FontAwesomeIcons.times, color: Colors.white,),
+            onPressed: () {}),
+        title: Text("Service", style: TextStyle(color: Colors.white,),),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(FontAwesomeIcons.home, color: Colors.white,),
+              onPressed: () {
+                //
+              }),
+        ],
+      ),
+      body: Column(
+        children: <Widget>[
+          Align
+            (
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: _titleContainer("Choose Service"),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left:8.0),
+            child: Align
+              (
+              alignment: Alignment.centerLeft,
+              child: Container(
+                  child: Wrap(
+                    spacing: 5.0,
+                    runSpacing: 3.0,
+                    children: <Widget>[
+                      for(var i = 0; i < list.length; i++)
+                      filterChipWidget(chipName: list[i].tag_title),
+                      // filterChipWidget(chipName: 'Washer/Dryer'),
+                      // filterChipWidget(chipName: 'Fireplace'),
+                      // filterChipWidget(chipName: 'Dogs ok'),
+                      // filterChipWidget(chipName: 'Cats ok'),
+                      // filterChipWidget(chipName: data1.map((item {
+
+                      // });
+                      // )
+                      // ),
+                     
+
+                    ],
+                  )
+              ),
+            ),
+          ),
+          Divider(color: Colors.blueGrey, height: 10.0,),
+          Align
+            (
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: _titleContainer('Choose Neighborhoods'),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left:8.0),
+            child: Align
+              (
+              alignment: Alignment.centerLeft,
+              child: Container(
+                child: Wrap(
+                  spacing: 5.0,
+                  runSpacing: 5.0,
+                  children: <Widget>[
+                    filterChipWidget(chipName: 'Upper Manhattan'),
+                    filterChipWidget(chipName: 'Manhattanville'),
+                    filterChipWidget(chipName: 'Harlem'),
+                    filterChipWidget(chipName: 'Washington Heights'),
+                    filterChipWidget(chipName: 'Inwood'),
+                    filterChipWidget(chipName: 'Morningside Heights'),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Divider(color: Colors.blueGrey, height: 10.0,),
+        ],
+      ),
+    );
+  }
+
+}
+
+Widget _titleContainer(String myTitle) {
+  return Text(
+    myTitle,
+    style: TextStyle(
+        color: Colors.black, fontSize: 24.0, fontWeight: FontWeight.bold),
+  );
+}
+
+class filterChipWidget extends StatefulWidget {
+  final String chipName;
+
+  filterChipWidget({Key key, this.chipName}) : super(key: key);
+
+  @override
+  _filterChipWidgetState createState() => _filterChipWidgetState();
+}
+
+class _filterChipWidgetState extends State<filterChipWidget> {
+  var _isSelected = false;
+  
+  // Widget hey() {
+  //   if(_isSelected == true){
+  //     print(widget.chipName);
+  //   }
+  // }
+
+  // _saveQtyValue(id) async {
+  //   if(_isSelected == true){
+    
+  //   final prefs = await SharedPreferences.getInstance();
+
+  //   List<String> show_id = prefs.getStringList(widget.chipName) ?? List<String>();  // <-EDITED HERE
+  //   print('id====$show_id');
+
+  //   List<String> list = show_id;
+  //   list.add(id);
+  //   prefs.setStringList(widget.chipName, list);
+
+  //   print('list id=====$list');
+  //   }
+  //   // / 5d9890c7773be00ab5b41701
+
+
+  //   // final prefs = await SharedPreferences.getInstance();
+
+  //   // List<String> show_id = prefs.getStringList(widget.chipName) ?? List<String>();  // <-EDITED HERE
+  //   // print('id====$show_id');
+
+  //   // List<String> list = show_id;
+  //   // list.add(id);
+  //   // prefs.setStringList(widget.chipName, list);
+
+  //   // print('list id=====$list');
+
+
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    return FilterChip(
+      label: Text(widget.chipName),
+      labelStyle: TextStyle(color: Color(0xff6200ee),fontSize: 16.0,fontWeight: FontWeight.bold),
+      selected: _isSelected,
+      shape:RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+            30.0),),
+      backgroundColor: Color(0xffededed),
+      onSelected: (isSelected) {
+        setState(() {
+          _isSelected = isSelected;
+          // print(widget.chipName);
+          // hey();
+          // _saveQtyValue(widget.chipName);
+        });
+      },
+      // value: 
+      selectedColor: Color(0xffeadffd),);
+  }
+}
+

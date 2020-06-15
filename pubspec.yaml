@@ -33,6 +33,7 @@ dependencies:
   flutter_plugin_android_lifecycle: ^1.0.6
   flutter_launcher_icons: ^0.7.2
   cached_network_image: ^2.2.0+1
+  flutter_tags: ^0.4.8+2
 
   # flutter_barcode_scanner:
   # audioplayers: ^0.10.1

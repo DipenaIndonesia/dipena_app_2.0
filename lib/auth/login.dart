@@ -3,10 +3,6 @@ import 'package:dipena/inside_app/navbar.dart';
 import 'package:dipena/url.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
-
-// import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-// import 'package:flutter/material.dart';
-// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -49,7 +45,7 @@ class _LoginState extends State<Login> {
     int value = data['value'];
     String message = data['message'];
     String messageEnglish = data['messageEnglish'];
-    String changeProf = data['changeProf'];
+    // String changeProf = data['changeProf'];
     String user_usernameAPI = data['user_username'];
     String user_bioAPI = data['user_bio'];
     String user_emailAPI = data['user_email'];
@@ -78,27 +74,6 @@ class _LoginState extends State<Login> {
     );
     _scaffoldkey.currentState.showSnackBar(snackbar);
   }
-
-  //  void _showToast(BuildContext context) {
-  //   final scaffold = Scaffold.of(context);
-  //   scaffold.showSnackBar(
-  //     SnackBar(
-  //       content: const Text('Added to favorite'),
-  //       action: SnackBarAction(
-  //           label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
-  //     ),
-  //   );
-  // }
-
-  // loginToast(String toast) {
-  //   return Fluttertoast.showToast(
-  //       msg: toast,
-  //       toastLength: Toast.LENGTH_SHORT,
-  //       gravity: ToastGravity.BOTTOM,
-  //       timeInSecForIos: 1,
-  //       backgroundColor: Colors.red,
-  //       textColor: Colors.white);
-  // }
 
   savePref(int value, String user_id, String user_username, String user_email,
       String user_bio, String user_img) async {
@@ -306,15 +281,6 @@ class _LoginState extends State<Login> {
                                     color: Colors.white,
                                     child: Column(
                                       children: <Widget>[
-                                        // Text(
-                                        //   'Doesn\'t have an account?',
-                                        //   style: TextStyle(
-                                        //     color: Colors.black,
-                                        //     fontSize: 15,
-                                        //     fontWeight: FontWeight.w400,
-                                        //     letterSpacing: 1,
-                                        //   ),
-                                        // ),
                                         RichText(
                                           text: TextSpan(
                                               text:
@@ -330,18 +296,6 @@ class _LoginState extends State<Login> {
                                                         color: Colors.blue)),
                                               ]),
                                         )
-                                        // Padding(
-                                        //   padding: const EdgeInsets.only(top: 5.0),
-                                        //   child: Text(
-                                        //     "Sign Up/Register Here!",
-                                        //     style: TextStyle(
-                                        //       color: Colors.blue,
-                                        //       fontSize: 15,
-                                        //       fontWeight: FontWeight.w400,
-                                        //       letterSpacing: 1,
-                                        //     ),
-                                        //   ),
-                                        // )
                                       ],
                                     ),
                                     onPressed: () async {
@@ -375,7 +329,6 @@ class _LoginState extends State<Login> {
         break;
       case LoginStatus.signIn:
         return HomePage(signOut);
-//        return ProfilePage(signOut);
         break;
     }
   }

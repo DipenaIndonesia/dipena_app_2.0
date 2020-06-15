@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:dipena/url.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 import 'login.dart';
@@ -78,15 +77,6 @@ class _SignUpState extends State<SignUp> {
     _scaffoldkey.currentState.showSnackBar(snackbar);
   }
 
-  // registerToast(String toast) {
-  //   return Fluttertoast.showToast(
-  //       msg: toast,
-  //       toastLength: Toast.LENGTH_SHORT,
-  //       gravity: ToastGravity.BOTTOM,
-  //       timeInSecForIos: 1,
-  //       backgroundColor: Colors.red,
-  //       textColor: Colors.white);
-  // }
   String validateEmail(String value) {
     Pattern pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -142,55 +132,6 @@ class _SignUpState extends State<SignUp> {
                 child: Align(
                     alignment: Alignment.bottomCenter, child: Text("Ready")),
               ),
-              //           DecoratedBox(
-              //              decoration:
-              // ShapeDecoration(shape: CircleBorder(), color: Colors.pinkAccent),
-              //                                 child: new OutlineButton(
-              //                 // color: Colors.green,
-              //                 child: Align(
-              //                   alignment: Alignment.bottomCenter,
-              //                   child: new Text("Dismiss")),
-              //                 onPressed: (){},
-              //                 shape: new RoundedRectangleBorder(
-              //                     borderRadius: new BorderRadius.circular(30.0))),
-              //           ))
-              // final x = list[i];
-              // FlatButton(
-              //   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              //   padding: EdgeInsets.all(0),
-              //   onPressed: () {
-              //     // report();
-              //   },
-              //   child: Align(
-              //     alignment: Alignment.centerLeft,
-              //     child: Text("Report",
-              //         style: TextStyle(fontWeight: FontWeight.normal)),
-              //   ),
-              // ),
-              // // for(var i = 0; i < list.length; i++)
-              // // list[i].post_id == report_post_id ?
-              // FlatButton(
-              //   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              //   padding: EdgeInsets.all(0),
-              //   onPressed: () async {
-              //     // var navigationResult = await Navigator.push(
-              //     //   context,
-              //     //   new MaterialPageRoute(
-              //     //     builder: (context) => AnotherProfile(list[i]),
-              //     //   ),
-              //     // );
-              //     // Navigator.pop(context);
-              //   },
-              //   child: Align(
-              //     alignment: Alignment.centerLeft,
-              //     child: Padding(
-              //       padding: EdgeInsets.only(top: 10.0),
-              //       child: Text("See Profile",
-              //           style: TextStyle(fontWeight: FontWeight.normal)),
-              //     ),
-              //   ),
-              // )
-              // :
             ) // Container()
           ],
         )),
@@ -205,13 +146,8 @@ class _SignUpState extends State<SignUp> {
             opacity: 1,
             child: CupertinoAlertDialog(
               content:
-                  //  ListView(
-                  // primary: true,
-                  // children: <Widget>[
                   SingleChildScrollView(
                 child: Column(
-                  // shrinkWrap: true,
-                  // physics: const NeverScrollableScrollPhysics(),
                   children: <Widget>[
                     Container(
                         color: Color.fromRGBO(244, 217, 66, 4),
@@ -257,9 +193,6 @@ class _SignUpState extends State<SignUp> {
                                       style: TextStyle(color: Colors.blue)),
                                 ]),
                           )
-                          // Text(
-                          //     "Please feel free to have any inquiries regarding on terms of use or data policy on halo@dipena.com",
-                          //     style: new TextStyle(fontSize: 15.0)),
                           ),
                     )
                   ],
@@ -277,13 +210,8 @@ class _SignUpState extends State<SignUp> {
             opacity: 1,
             child: CupertinoAlertDialog(
               content:
-                  //  ListView(
-                  // primary: true,
-                  // children: <Widget>[
                   SingleChildScrollView(
                 child: Column(
-                  // shrinkWrap: true,
-                  // physics: const NeverScrollableScrollPhysics(),
                   children: <Widget>[
                     Container(
                         color: Color.fromRGBO(244, 217, 66, 4),
