@@ -615,7 +615,7 @@ class _ChatFromListTwoState extends State<ChatFromListTwo> {
       final response = await http
           .post("https://dipena.com/flutter/api/chat/sendMessage.php", body: {
         "user_id": user_id,
-        "post_user_id": widget.model.chat_user_one,
+        "user_id_two": widget.model.chat_user_one,
         "chat_content": chat_content,
       });
       final data = jsonDecode(response.body);
@@ -638,7 +638,7 @@ class _ChatFromListTwoState extends State<ChatFromListTwo> {
           "https://dipena.com/flutter/api/chat/sendMessageWithImage.php");
       final request = http.MultipartRequest("POST", uri);
       request.fields['user_id'] = user_id;
-      request.fields['post_user_id'] = widget.model.chat_user_one;
+      request.fields['user_id_two'] = widget.model.chat_user_one;
       request.fields['chat_content'] = chat_content;
 
       request.files.add(http.MultipartFile("chat_img", stream, length,
@@ -763,6 +763,8 @@ class _ChatFromListTwoState extends State<ChatFromListTwo> {
     getPref();
     _postsController = new StreamController();
     loadPosts();
+    // print(widget.model.chat_user_one);
+    // print(widget.model.chat_user_two);
     // _chatContent();
     // _chatContentTwo();
   }
@@ -989,12 +991,12 @@ class _ChatFromListTwoState extends State<ChatFromListTwo> {
                 width: 40,
                 height: 40,
                 margin: EdgeInsets.fromLTRB(0, 5, 10, 0),
-                child: widget.model.user_img == null ?
+                child: widget.model.user_img_from == null ?
                 placeholder :
                  CircleAvatar(
                   backgroundImage: NetworkImage(
                       'https://dipena.com/flutter/image_profile/' +
-                          widget.model.user_img),
+                          widget.model.user_img_from),
                   backgroundColor: Colors.grey[200],
                   minRadius: 30,
                 ),
@@ -1004,7 +1006,7 @@ class _ChatFromListTwoState extends State<ChatFromListTwo> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    widget.model.user_username,
+                    widget.model.user_username_from,
                     style: TextStyle(
                       color: Colors.white,
                     ),

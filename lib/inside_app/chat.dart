@@ -45,7 +45,7 @@ class _ChatState extends State<Chat> {
       final response = await http
           .post("https://dipena.com/flutter/api/chat/sendMessage.php", body: {
         "user_id": user_id,
-        "post_user_id": widget.model.post_user_id,
+        "user_id_two": widget.model.post_user_id,
         "chat_content": chat_content,
       });
       final data = jsonDecode(response.body);
@@ -68,7 +68,7 @@ class _ChatState extends State<Chat> {
           "https://dipena.com/flutter/api/chat/sendMessageWithImage.php");
       final request = http.MultipartRequest("POST", uri);
       request.fields['user_id'] = user_id;
-      request.fields['post_user_id'] = widget.model.post_user_id;
+      request.fields['user_id_two'] = widget.model.post_user_id;
       request.fields['chat_content'] = chat_content;
 
       request.files.add(http.MultipartFile("chat_img", stream, length,

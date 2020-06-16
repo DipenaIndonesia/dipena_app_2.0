@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dipena/model/post.dart';
 import 'package:dipena/model/tags.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,49 +12,15 @@ import 'package:path/path.dart' as path;
 import 'package:async/async.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class MakeDeal extends StatefulWidget {
+class EditPost extends StatefulWidget {
+  final PostContent model;
+  final VoidCallback reload;
+  EditPost(this.model, this.reload);
   @override
-  _MakeDealState createState() => _MakeDealState();
+  _EditPostState createState() => _EditPostState();
 }
 
-// class Category {
-//   int category_id;
-//   String category_name;
-//   String category_description;
-
-//   Category(
-//     this.category_id,
-//     this.category_name,
-//     this.category_description,
-//   );
-
-//   static List<Category> getCategories() {
-//     return <Category>[
-//       Category(
-//         1,
-//         'Art',
-//         'Kesenian',
-//       ),
-//       Category(
-//         2,
-//         'Design',
-//         'INI DESAIN',
-//       ),
-//       Category(
-//         3,
-//         'Photography',
-//         'TENTANG POTO',
-//       ),
-//       Category(
-//         4,
-//         'Brand',
-//         'INI BRAND',
-//       ),
-//     ];
-//   }
-// }
-
-class _MakeDealState extends State<MakeDeal> {
+class _EditPostState extends State<EditPost> {
   String user_id,
       post_user_id,
       post_cat_id,
@@ -68,11 +35,50 @@ class _MakeDealState extends State<MakeDeal> {
   String _category = 'Art';
   File _imageFile;
 
-  final TextEditingController controller = new TextEditingController();
-  String result = '';
+  // final TextEditingController controller = new TextEditingController();
+  // String result = '';
   // List<Category> _categories = Category.getCategories();
   // List<DropdownMenuItem<Category>> _dropdownMenuItems;
   // Category _selectedCategory;
+
+  TextEditingController txtTitle, txtLocation, txtDescription, txtService;
+
+  setup(){
+    txtTitle = TextEditingController(text: widget.model.post_title);
+    txtLocation = TextEditingController(text: widget.model.post_location);
+    txtDescription = TextEditingController(text: widget.model.post_description);
+    txtService = TextEditingController(text: widget.model.post_offer);
+    _mySelection = widget.model.post_cat_id;
+
+    
+  
+  }
+
+  changeImage(){
+    if (_imageFile != null) {
+      return Image.file(_imageFile);
+      // CircleAvatar(
+      //   radius: 60,
+      //   // backgroundImage: NetworkImage("https://dipena.com/flutter/image_profile/"+user_img),
+      //   backgroundImage: new FileImage(_imageFile),
+      // );
+    } else if (widget.model.post_img != null) {
+      return Image.network(
+            "https://dipena.com/flutter/image_content/" + widget.model.post_img);
+      // CircleAvatar(
+      //   radius: 60,
+      //   backgroundImage: NetworkImage(
+      //       "https://dipena.com/flutter/image_content/" + widget.model.post_img),
+      // );
+    } else if (_imageFile == null) {
+      return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 265,
+      child: Image.asset('./img/placeholder.png'),
+    );
+      // backgroundImage: new FileImage(_imageFile),;
+    }
+  }
 
   @override
   void initState() {
@@ -80,6 +86,7 @@ class _MakeDealState extends State<MakeDeal> {
     this.getSWData();
     this.getSWData1();
     super.initState();
+    setup();
     getPref();
   }
 
@@ -98,6 +105,8 @@ class _MakeDealState extends State<MakeDeal> {
       _imageFile = image;
     });
   }
+
+  
 
   // List<DropdownMenuItem<Category>> buildDropdownMenuItems(List categories) {
   //   List<DropdownMenuItem<Category>> items = List();
@@ -118,6 +127,8 @@ class _MakeDealState extends State<MakeDeal> {
   //   });
   // }
 
+  
+
   getPref() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
@@ -136,17 +147,52 @@ class _MakeDealState extends State<MakeDeal> {
 
   bool loading;
   submit() async {
-    setState(() {
-      loading = true;
-    });
-    try {
+    // setState(() {
+    //   loading = true;
+    // });
+    if(widget.model.post_img != null && _imageFile == null){
+      try {
+      // var stream =
+      //     http.ByteStream(DelegatingStream.typed(_imageFile.openRead()));
+      // var length = await _imageFile.length();
+      var uri = Uri.parse("https://dipena.com/flutter/api/post/updatePostOnly.php");
+      final request = http.MultipartRequest("POST", uri);
+      // request.fields['post_user_id'] = user_id;
+      request.fields['user_id'] = user_id;
+      request.fields['post_id'] = widget.model.post_id;
+      request.fields['post_title'] = post_title;
+      request.fields['post_location'] = post_location;
+      request.fields['post_offer'] = post_offer;
+      request.fields['post_description'] = post_description;
+      request.fields['post_cat_id'] = _mySelection;
+      request.fields['post_img'] = widget.model.post_img;
+
+      // request.files.add(http.MultipartFile("post_img", stream, length,
+      //     filename: path.basename(_imageFile.path)));
+      var response = await request.send();
+      if (response.statusCode > 2) {
+        print("Image uploaded");
+        setState(() {
+          widget.reload();
+          // loading = false;
+          Navigator.pop(context);
+        });
+      } else {
+        print("Image failed to be upload");
+      }
+    } catch (e) {
+      debugPrint("Error $e");
+    }
+    } else if(_imageFile != null) {
+      try {
       var stream =
           http.ByteStream(DelegatingStream.typed(_imageFile.openRead()));
       var length = await _imageFile.length();
-      var uri = Uri.parse("https://dipena.com/flutter/api/post/addPost.php");
+      var uri = Uri.parse("https://dipena.com/flutter/api/post/updatePost.php");
       final request = http.MultipartRequest("POST", uri);
-      request.fields['post_user_id'] = user_id;
+      // request.fields['post_user_id'] = user_id;
       request.fields['user_id'] = user_id;
+      request.fields['post_id'] = widget.model.post_id;
       request.fields['post_title'] = post_title;
       request.fields['post_location'] = post_location;
       request.fields['post_offer'] = post_offer;
@@ -159,7 +205,8 @@ class _MakeDealState extends State<MakeDeal> {
       if (response.statusCode > 2) {
         print("Image uploaded");
         setState(() {
-          loading = false;
+          // loading = false;
+          widget.reload();
           Navigator.pop(context);
         });
       } else {
@@ -168,6 +215,8 @@ class _MakeDealState extends State<MakeDeal> {
     } catch (e) {
       debugPrint("Error $e");
     }
+    }
+    
 
     // await getPref();
     // final response = await http
@@ -307,7 +356,7 @@ class _MakeDealState extends State<MakeDeal> {
           elevation: 1,
           backgroundColor: Color.fromRGBO(244, 217, 66, 1),
           title: Text(
-            'Create Post',
+            'Edit Post',
             style: TextStyle(
               color: Colors.black,
             ),
@@ -352,9 +401,10 @@ class _MakeDealState extends State<MakeDeal> {
                     ),
                     height: 265,
                     // width: width,
-                    child: _imageFile == null
-                        ? placeholder
-                        : Image.file(_imageFile),
+                    child: changeImage(),
+                    // _imageFile == null
+                    //     ? placeholder
+                    //     : Image.file(_imageFile),
                   ),
                   Row(
                     // crossAxisAlignment: CrossAxisAlignment.center,
@@ -397,7 +447,7 @@ class _MakeDealState extends State<MakeDeal> {
                       child: DropdownButton(
                         items: data.map((item) {
                           return new DropdownMenuItem(
-                            child: new Text(item['category_name']) ,
+                            child: new Text(item['category_name'] ?? '') ,
                             value: item['category_id'].toString(),
                           );
                         }).toList(),
@@ -446,6 +496,7 @@ class _MakeDealState extends State<MakeDeal> {
                           return "Please Insert Title";
                         }
                       },
+                      controller: txtTitle,
                       onSaved: (e) => post_title = e,
                       decoration: InputDecoration(
                         labelText: 'Title',
@@ -468,6 +519,7 @@ class _MakeDealState extends State<MakeDeal> {
                           return "Please Insert Location";
                         }
                       },
+                      controller: txtLocation,
                       onSaved: (e) => post_location = e,
                       decoration: InputDecoration(
                         labelText: 'Location',
@@ -487,6 +539,7 @@ class _MakeDealState extends State<MakeDeal> {
                       style: TextStyle(
                         fontSize: 18,
                       ),
+                      controller: txtDescription,
                       onSaved: (e) => post_description = e,
                       decoration: InputDecoration(
                         labelText: 'Description',
@@ -514,6 +567,7 @@ class _MakeDealState extends State<MakeDeal> {
                       // controller: controller,
                       // keyboardType: TextInputType.multiline,
                       // maxLines: null,
+                       controller: txtService,
                       onSaved: (e) => post_offer = e,
                       decoration: InputDecoration(
                         labelText: 'Service',
