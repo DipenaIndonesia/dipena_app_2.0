@@ -437,32 +437,32 @@ class _SeeDealsFromHomeState extends State<SeeDealsFromHome> {
                                                               FontWeight.bold,
                                                         ),
                                                       ),
-                                                      IconButton(
-                                                        color: Colors.black,
-                                                        // Color.fromRGBO(
-                                                        //     244,
-                                                        //     217,
-                                                        //     66,
-                                                        //     1),
-                                                        icon: Icon(
-                                                          Icons.more_vert,
-                                                        ),
-                                                        onPressed: () async {
-                                                          setState(() {
-                                                            popUpPostId =
-                                                                x.post_id;
-                                                            // report_post_img =
-                                                            //     x.post_img;
-                                                          });
-                                                          showDialog(
-                                                            context: context,
-                                                            builder: (BuildContext
-                                                                    context) =>
-                                                                _popUpMore(
-                                                                    context),
-                                                          );
-                                                        },
-                                                      ),
+                                                      // IconButton(
+                                                      //   color: Colors.black,
+                                                      //   // Color.fromRGBO(
+                                                      //   //     244,
+                                                      //   //     217,
+                                                      //   //     66,
+                                                      //   //     1),
+                                                      //   icon: Icon(
+                                                      //     Icons.more_vert,
+                                                      //   ),
+                                                      //   onPressed: () async {
+                                                      //     setState(() {
+                                                      //       popUpPostId =
+                                                      //           x.post_id;
+                                                      //       // report_post_img =
+                                                      //       //     x.post_img;
+                                                      //     });
+                                                      //     showDialog(
+                                                      //       context: context,
+                                                      //       builder: (BuildContext
+                                                      //               context) =>
+                                                      //           _popUpMore(
+                                                      //               context),
+                                                      //     );
+                                                      //   },
+                                                      // ),
                                                     ],
                                                   ),
                                                 ),

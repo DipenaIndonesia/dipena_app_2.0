@@ -2207,6 +2207,11 @@ class _PeluangState extends State<Peluang> {
                                                     child: Row(
                                                       children: <Widget>[
                                                         Container(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.8,
                                                           margin:
                                                               EdgeInsets.only(
                                                             left: 15,
