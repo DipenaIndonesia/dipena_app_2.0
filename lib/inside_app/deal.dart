@@ -263,7 +263,7 @@ class _DealState extends State<Deal> {
     if (value == 1) {
       // Navigator.pop(context);
       Navigator.push(
-          context, new MaterialPageRoute(builder: (context) => NavToProfile()));
+          context, new MaterialPageRoute(builder: (context) => NavToExplore()));
       // _refresh.currentState.show();
       // print(report_post_id);
       // _showToast(messageEnglish);

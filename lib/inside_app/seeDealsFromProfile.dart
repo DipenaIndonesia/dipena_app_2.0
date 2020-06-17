@@ -1,9 +1,12 @@
 import 'dart:convert';
 
+import 'package:dipena/inside_app/editPostDeal.dart';
+import 'package:dipena/inside_app/navbar.dart';
 import 'package:dipena/model/post.dart';
 import 'package:dipena/model/profilePost.dart';
 import 'package:dipena/model/seeDeals.dart';
 import 'package:dipena/url.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -169,6 +172,150 @@ class _SeeDealsProfileState extends State<SeeDealsProfile> {
     }
   }
 
+  delete() async {
+    // await getPref();
+    await popUpPostId;
+    // await report_post_img;
+    final response = await http
+        .post("https://dipena.com/flutter/api/post/deletePost.php", body: {
+      // "user_username": user_username,
+      // "user_password": user_password,
+      // "user_email": user_email,
+      "post_id": popUpPostId,
+      // "post_img": report_post_img
+    });
+
+    final data = jsonDecode(response.body);
+    int value = data['value'];
+    // String message = data['message'];
+    String messageEnglish = data['messageEnglish'];
+    // String changeProf = data['changeProf'];
+    // String user_usernameAPI = data['user_username'];
+    // String user_bioAPI = data['user_bio'];
+    // String user_emailAPI = data['user_email'];
+    // String user_id = data['user_id'];
+    // String user_img = data['user_img'];
+
+    if (value == 1) {
+      // Navigator.pop(context);
+      Navigator.push(
+          context, new MaterialPageRoute(builder: (context) => NavToProfile()));
+      // _refresh.currentState.show();
+      // print(report_post_id);
+      // _showToast(messageEnglish);
+      // setState(() {
+      //   _loginStatus = LoginStatus.signIn;
+      //   savePref(value, user_id, user_username, user_emailAPI, user_bioAPI, user_img);
+      // });
+      // print(message);
+      // _showToast(message);
+    } else {
+      print("fail");
+      // _showToast(messageEnglish);
+      // print(message);
+      // _showToast(messageEnglish);
+    }
+  }
+
+  Widget _popUpDeleteConfirm(BuildContext context) {
+    return new Transform.scale(
+      scale: 1,
+      child: Opacity(
+        opacity: 1,
+        child: CupertinoAlertDialog(
+            content: Text("Are you sure want to delete this post?"),
+            actions: <Widget>[
+              Container(
+                color: Colors.grey,
+                child: CupertinoDialogAction(
+                  child: Text(
+                    'Cancel',
+                    style: new TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+              Container(
+                color: Colors.red[400],
+                child: CupertinoDialogAction(
+                  child: Text(
+                    'Delete',
+                    style: new TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    delete();
+                    // Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ]),
+      ),
+    );
+  }
+
+  String popUpPostId;
+  Widget _popUpMore(BuildContext context) {
+    return new Transform.scale(
+      scale: 1,
+      child: Opacity(
+        opacity: 1,
+        child: CupertinoAlertDialog(
+            content: Column(
+          // mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            // final x = list[i];
+            for (var i = 0; i < list.length; i++)
+              list[i].post_id == popUpPostId
+                  ? FlatButton(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      padding: EdgeInsets.all(0),
+                      onPressed: () async {
+                        var navigationResult = await Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                            builder: (context) =>
+                                EditPostDeals(list[i], _seeDeals),
+                          ),
+                        );
+                        Navigator.pop(context);
+                      },
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(bottom: 10.0),
+                          child: Text("Edit Post",
+                              style: TextStyle(fontWeight: FontWeight.normal)),
+                        ),
+                      ),
+                    )
+                  : Container(),
+            FlatButton(
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              padding: EdgeInsets.all(0),
+              onPressed: () async {
+                // report();
+                Navigator.pop(context);
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) =>
+                      _popUpDeleteConfirm(context),
+                );
+                // Navigator.of(context, rootNavigator: true).pop(context);
+              },
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Delete Post",
+                    style: TextStyle(fontWeight: FontWeight.normal)),
+              ),
+            ),
+          ],
+        )),
+      ),
+    );
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -296,6 +443,32 @@ class _SeeDealsProfileState extends State<SeeDealsProfile> {
                                                         fontWeight: FontWeight.bold,
                                                       ),
                                                     ),
+                                                    IconButton(
+                                                        color: Colors.black,
+                                                        // Color.fromRGBO(
+                                                        //     244,
+                                                        //     217,
+                                                        //     66,
+                                                        //     1),
+                                                        icon: Icon(
+                                                          Icons.more_vert,
+                                                        ),
+                                                        onPressed: () async {
+                                                          setState(() {
+                                                            popUpPostId =
+                                                                x.post_id;
+                                                            // report_post_img =
+                                                            //     x.post_img;
+                                                          });
+                                                          showDialog(
+                                                            context: context,
+                                                            builder: (BuildContext
+                                                                    context) =>
+                                                                _popUpMore(
+                                                                    context),
+                                                          );
+                                                        },
+                                                      ),
                                                   ],
                                                 ),
                                               ),
