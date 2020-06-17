@@ -92,7 +92,7 @@ class _SeeDealsFromHomeState extends State<SeeDealsFromHome> {
     await getPref();
     final response = await http.post(DealUrl.takeDeals, body: {
       "user_id": user_id,
-      "post_user_id": widget.model.post_user_id,
+      "user_id_two": widget.model.post_user_id,
       // "post_cat_id" : post_cat_id,
     });
     final data = jsonDecode(response.body);
