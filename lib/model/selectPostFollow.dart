@@ -11,6 +11,7 @@ class PostFollow {
   final String post_like_id;
   final String post_img;
   final String post_time;
+  final String user_fullname;
   final String user_username;
   final String user_img;
   final String like_status;
@@ -31,6 +32,7 @@ class PostFollow {
       this.post_like_id,
       this.post_img,
       this.post_time,
+      this.user_fullname,
       this.user_username,
       this.user_img,
       this.like_status,

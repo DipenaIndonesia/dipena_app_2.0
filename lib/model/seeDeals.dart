@@ -11,6 +11,7 @@ class SeeDeals {
   final String post_like_id;
   final String post_img;
   final String post_time;
+  final String user_fullname;
   final String user_username;
   final String user_img;
 
@@ -27,6 +28,7 @@ class SeeDeals {
       this.post_like_id,
       this.post_img,
       this.post_time,
+      this.user_fullname,
       this.user_username,
       this.user_img);
 }
