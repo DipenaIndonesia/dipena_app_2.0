@@ -3,24 +3,44 @@ import 'dart:convert';
 import 'package:dipena/inside_app/chat/chat_user_profile.dart';
 import 'package:dipena/inside_app/home/details.dart';
 import 'package:dipena/inside_app/user_profile_view/user_followers.dart';
+import 'package:dipena/model/anotherProfile.dart';
 import 'package:dipena/model/countFollow.dart';
 import 'package:dipena/model/location.dart';
 import 'package:dipena/model/profilePost.dart';
 import 'package:dipena/model/selectAnotherUserProfileModel.dart';
 import 'package:dipena/url.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserProfile extends StatefulWidget {
   final String user_id;
-  UserProfile(
-      this.user_id);
+  UserProfile(this.user_id);
   @override
   _UserProfileState createState() => _UserProfileState();
 }
 
 class _UserProfileState extends State<UserProfile> {
-  String user_id, user_fullname, user_username, user_img, user_bio, user_email;
+  String user_id,
+      user_fullname,
+      user_username,
+      user_img,
+      user_bio,
+      user_email,
+      user_id_login;
+  final GlobalKey<RefreshIndicatorState> _refreshFollow =
+      GlobalKey<RefreshIndicatorState>();
+
+  getPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      user_id_login = preferences.getString("user_id");
+      // user_username = preferences.getString("user_username");
+      // follow_user_one = preferences.getString("user_id");
+    });
+  }
 
   var loadingg = false;
   // String user_username;
@@ -168,6 +188,50 @@ class _UserProfileState extends State<UserProfile> {
     }
   }
 
+  String status;
+  var loading_follow = false;
+  final follow_status = new List<AnotherProfileFollowStatus>();
+  Future<void> _followStatus() async {
+    await getPref();
+    follow_status.clear();
+    setState(() {
+      loading_follow = true;
+    });
+    final response = await http.post(
+        "https://dipena.com/flutter/api/user/AnotherUserFollowStatus.php",
+        body: {
+          "user_id": user_id_login,
+          "post_user_id": widget.user_id,
+        });
+    if (response.contentLength == 2) {
+      //   await getPref();
+      // final response =
+      //     await http.post("https://dipena.com/flutter/api/updateProfile.php");
+      //   "user_id": user_id,
+      //   "location_country": location_country,
+      //   "location_city": location_city,
+      //   "location_user_id": user_id
+      // });
+
+      // final data = jsonDecode(response.body);
+      // int value = data['value'];
+      // String message = data['message'];
+      // String changeProf = data['changeProf'];
+    } else {
+      final data = jsonDecode(response.body);
+      data.forEach((api) {
+        final ab = new AnotherProfileFollowStatus(api['follow_status']);
+        follow_status.add(ab);
+      });
+      setState(() {
+        for (var i = 0; i < follow_status.length; i++) {
+          status = follow_status[i].follow_status;
+        }
+        loading_follow = false;
+      });
+    }
+  }
+
   var loadinggg = false;
   final listFollow = new List<CountFollow>();
   Future<void> _countFollow() async {
@@ -203,6 +267,25 @@ class _UserProfileState extends State<UserProfile> {
         loadinggg = false;
       });
     }
+  }
+
+  Widget _loading(BuildContext context) {
+    return new Transform.scale(
+      scale: 1,
+      child: Opacity(
+        opacity: 1,
+        child: CupertinoAlertDialog(
+          title: Text("Please Wait..."),
+          content: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: SizedBox(
+                // height: 50,
+                // width: 50,
+                child: Center(child: CircularProgressIndicator())),
+          ),
+        ),
+      ),
+    );
   }
 
   String view = "post";
@@ -426,10 +509,12 @@ class _UserProfileState extends State<UserProfile> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    getPref();
     _selectProfile();
     _lihatDataPostProfile();
     _lihatDataLoc();
     _countFollow();
+    _followStatus();
   }
 
   String user_chat_id;
@@ -491,6 +576,11 @@ class _UserProfileState extends State<UserProfile> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                RefreshIndicator(
+                                  onRefresh: _followStatus,
+                                  key: _refreshFollow,
+                                  child: Container(),
+                                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -516,13 +606,19 @@ class _UserProfileState extends State<UserProfile> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            // 'Tia Nurmala',
-                            user_fullname ?? "",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Poppins Semibold",
-                              fontSize: 18,
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.5,
+                            child: Text(
+                              // 'Tia Nurmala',
+                              user_fullname ?? "",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "Poppins Semibold",
+                                fontSize: 18,
+                              ),
+                              maxLines: 2,
+                              softWrap: false,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           Padding(
@@ -563,23 +659,133 @@ class _UserProfileState extends State<UserProfile> {
                                   ),
                                 ),
                                 SizedBox(width: 10),
+                                // Container(
+                                //   color: status == null
+                                //       ? Colors.white
+                                //       : Color(0xFFF39C12),
+                                //   child:
+                                status == null ?
                                 ButtonTheme(
                                   minWidth: 50,
                                   height: 30,
                                   child: OutlineButton(
                                     borderSide: BorderSide(
-                                      color: Color(0xFFF39C12),
+                                      color: status == null
+                                          ? Color(0xFFF39C12)
+                                          : Colors.black,
                                     ),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                     child: Icon(
-                                      Icons.person_add,
-                                      color: Color(0xFFF39C12),
+                                      status == null
+                                          ? Icons.person_add
+                                          : Icons.person,
+                                      color: status == null
+                                          ? Color(0xFFF39C12)
+                                          : Colors.black,
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () async {
+                                      showDialog(
+                                        barrierDismissible: false,
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            _loading(context),
+                                      );
+                                      await getPref();
+                                      final response = await http
+                                          .post(FollowUrl.follow, body: {
+                                        // "post_cat_id" : post_cat_id,
+                                        "user_id": user_id_login,
+                                        "follow_user_one": user_id_login,
+                                        "valuee": widget.user_id,
+                                        "follow_user_two": widget.user_id,
+                                        // "follow_status": followed,
+                                      });
+                                      final data = jsonDecode(response.body);
+                                      int value = data['value'];
+                                      String pesan = data['message'];
+                                      if (value == 1) {
+                                        
+                                        print(pesan);
+                                        Navigator.pop(context);
+                                        // setState(
+                                        //     () {
+                                        //   xdd['follow_status_user'] !=
+                                        //       null;
+                                        // });
+                                        _refreshFollow.currentState.show();
+                                        for(var i = 0; i < follow_status.length; i++)
+                                        follow_status[i].follow_status != null;
+                                      } else {
+                                        print(pesan);
+                                        Navigator.pop(context);
+                                        _refreshFollow.currentState.show();
+                                      }
+                                    },
+                                  ),
+                                ) : 
+                                ButtonTheme(
+                                  minWidth: 50,
+                                  height: 30,
+                                  child: OutlineButton(
+                                    borderSide: BorderSide(
+                                      color: status == null
+                                          ? Color(0xFFF39C12)
+                                          : Colors.black,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: Icon(
+                                      status == null
+                                          ? Icons.person_add
+                                          : Icons.person,
+                                      color: status == null
+                                          ? Color(0xFFF39C12)
+                                          : Colors.black,
+                                    ),
+                                    onPressed: () async {
+                                      showDialog(
+                                        barrierDismissible: false,
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            _loading(context),
+                                      );
+                                      await getPref();
+                                      final response = await http
+                                          .post(FollowUrl.follow, body: {
+                                        // "post_cat_id" : post_cat_id,
+                                        "user_id": user_id_login,
+                                        "follow_user_one": user_id_login,
+                                        "valuee": widget.user_id,
+                                        "follow_user_two": widget.user_id,
+                                        // "follow_status": followed,
+                                      });
+                                      final data = jsonDecode(response.body);
+                                      int value = data['value'];
+                                      String pesan = data['message'];
+                                      if (value == 1) {
+                                        
+                                        print(pesan);
+                                        Navigator.pop(context);
+                                        // setState(
+                                        //     () {
+                                        //   xdd['follow_status_user'] !=
+                                        //       null;
+                                        // });
+                                        _refreshFollow.currentState.show();
+                                        for(var i = 0; i < follow_status.length; i++)
+                                        follow_status[i].follow_status != null;
+                                      } else {
+                                        print(pesan);
+                                        Navigator.pop(context);
+                                        _refreshFollow.currentState.show();
+                                      }
+                                    },
                                   ),
                                 ),
+                                // ),
                               ],
                             ),
                           )
@@ -598,42 +804,42 @@ class _UserProfileState extends State<UserProfile> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      InkWell(
-                        onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => ListCollabs()));
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 5,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                '10',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontFamily: "Poppins Semibold",
-                                ),
-                              ),
-                              Text(
-                                'Collabs',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontFamily: "Poppins Regular"),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        color: Colors.black,
-                        width: 0.2,
-                        height: 22,
-                      ),
+                      // InkWell(
+                      //   onTap: () {
+                      //     // Navigator.push(
+                      //     //     context,
+                      //     //     MaterialPageRoute(
+                      //     //         builder: (context) => ListCollabs()));
+                      //   },
+                      //   child: Container(
+                      //     width: MediaQuery.of(context).size.width / 5,
+                      //     child: Column(
+                      //       mainAxisAlignment: MainAxisAlignment.center,
+                      //       children: <Widget>[
+                      //         Text(
+                      //           '10',
+                      //           style: TextStyle(
+                      //             color: Colors.black,
+                      //             fontSize: 20,
+                      //             fontFamily: "Poppins Semibold",
+                      //           ),
+                      //         ),
+                      //         Text(
+                      //           'Collabs',
+                      //           style: TextStyle(
+                      //               color: Colors.black,
+                      //               fontSize: 15,
+                      //               fontFamily: "Poppins Regular"),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+                      // Container(
+                      //   color: Colors.black,
+                      //   width: 0.2,
+                      //   height: 22,
+                      // ),
                       InkWell(
                         onTap: () {
                           Navigator.push(

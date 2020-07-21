@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dipena/auth/register/register_one.dart';
 import 'package:dipena/navbar.dart';
 import 'package:dipena/url.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -36,7 +37,31 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  Widget _loading(BuildContext context) {
+    return new Transform.scale(
+      scale: 1,
+      child: Opacity(
+        opacity: 1,
+        child: CupertinoAlertDialog(
+          title: Text("Please Wait..."),
+          content: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: SizedBox(
+                // height: 50,
+                // width: 50,
+                child: Center(child: CircularProgressIndicator())),
+          ),
+        ),
+      ),
+    );
+  }
+
   login() async {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) => _loading(context),
+    );
     final response = await http.post(BaseUrl.login, body: {
       "user_username": user_username,
       "user_password": user_password,
@@ -55,6 +80,7 @@ class _LoginPageState extends State<LoginPage> {
     String user_img = data['user_img'];
 
     if (value == 1) {
+      Navigator.pop(context);
       setState(() {
         _loginStatus = LoginStatus.signIn;
         savePref(value, user_id, user_fullnameAPI, user_username, user_emailAPI, user_bioAPI,
@@ -63,6 +89,7 @@ class _LoginPageState extends State<LoginPage> {
       print(message);
       // _showToast(message);
     } else {
+      Navigator.pop(context);
       print("fail");
       print(message);
       _showToast(messageEnglish);
@@ -156,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               SizedBox(height: 5),
                               Text(
-                                "Whoever you are, make your mom proud.",
+                                "Whoever you are, make your                                 \nmom proud.",
                                 style: TextStyle(
                                   color: Color(0xFFBDC3C7),
                                   fontSize: 14,
@@ -167,7 +194,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         Image.asset("assets/img/wave.png"),
-                        SizedBox(height: 50),
+                        SizedBox(height: 60),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 35),
                           child: Column(
@@ -182,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                                 },
                                 onSaved: (e) => user_username = e,
                                 decoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.all(16),
+                                  contentPadding: const EdgeInsets.all(13),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color(0xFF7F8C8D),
@@ -197,6 +224,7 @@ class _LoginPageState extends State<LoginPage> {
                                   hintStyle: TextStyle(
                                     color: Color(0xFFBDC3C7),
                                     fontWeight: FontWeight.w500,
+                                    fontSize: 13,
                                   ),
                                   prefixIcon: Icon(
                                     Icons.person,
@@ -204,7 +232,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 15),
+                              SizedBox(height: 10),
                               TextFormField(
                                 validator: (e) {
                                   if (e.isEmpty) {
@@ -221,7 +249,7 @@ class _LoginPageState extends State<LoginPage> {
                                                 ? Icons.visibility_off
                                                 : Icons.visibility),
                                           ),
-                                  contentPadding: const EdgeInsets.all(16),
+                                  contentPadding: const EdgeInsets.all(13),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color(0xFF7F8C8D),
@@ -236,6 +264,7 @@ class _LoginPageState extends State<LoginPage> {
                                   hintStyle: TextStyle(
                                     color: Color(0xFFBDC3C7),
                                     fontWeight: FontWeight.w500,
+                                    fontSize: 13,
                                   ),
                                   prefixIcon: Icon(
                                     Icons.lock,
@@ -243,7 +272,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 15),
+                              SizedBox(height: 10),
                               SizedBox(
                                 width: 650,
                                 height: 50,
@@ -257,7 +286,7 @@ class _LoginPageState extends State<LoginPage> {
                                     "Login",
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 18,
+                                      fontSize: 15,
                                       fontFamily: "Poppins Medium",
                                     ),
                                   ),

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dipena/inside_app/chat/chat_page.dart';
 import 'package:dipena/inside_app/chat/chat_user_profile.dart';
+import 'package:dipena/inside_app/user_profile_view/user_profile.dart';
 import 'package:dipena/model/seeDeals.dart';
 import 'package:dipena/model/selectPostFollow.dart';
 import 'package:dipena/url.dart';
@@ -233,46 +234,59 @@ class _DetailsState extends State<Details> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      ListTile(
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 0.0, horizontal: 0.0),
-                        leading: Container(
-                          padding: EdgeInsets.all(0),
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: x.user_img == null
-                              ? placeholder
-                              : CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  // child: ClipOval(
-                                  // child: Image(
-                                  backgroundImage: NetworkImage(
-                                      // "assets/img/icon_one.jpg",
-                                      ImageUrl.imageProfile + x.user_img),
-                                  // fit: BoxFit.fill,
-                                  minRadius: 40,
-                                  // ),
-                                  // ),
+                      InkWell(
+                        onTap: (){
+                          setState(() {
+                                chat_user_id = post_user_id;
+                              });
+                          Navigator.push(
+                                context,
+                                new MaterialPageRoute(
+                                  builder: (context) => UserProfile(chat_user_id),
                                 ),
-                        ),
-                        title: Text(
-                          // "Tia Nurmala",
-                          x.user_fullname,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: "Poppins Semibold",
+                              );
+                        },
+                                              child: ListTile(
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 0.0, horizontal: 0.0),
+                          leading: Container(
+                            padding: EdgeInsets.all(0),
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: x.user_img == null
+                                ? placeholder
+                                : CircleAvatar(
+                                    backgroundColor: Colors.transparent,
+                                    // child: ClipOval(
+                                    // child: Image(
+                                    backgroundImage: NetworkImage(
+                                        // "assets/img/icon_one.jpg",
+                                        ImageUrl.imageProfile + x.user_img),
+                                    // fit: BoxFit.fill,
+                                    minRadius: 40,
+                                    // ),
+                                    // ),
+                                  ),
                           ),
-                        ),
-                        subtitle: Text(
-                          // "@tianurmala_",
-                          x.user_username,
-                          style: TextStyle(
-                            color: Color(0xFF7F8C8D),
-                            fontSize: 15,
-                            fontFamily: "Poppins Regular",
+                          title: Text(
+                            // "Tia Nurmala",
+                            x.user_fullname,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: "Poppins Semibold",
+                            ),
+                          ),
+                          subtitle: Text(
+                            // "@tianurmala_",
+                            x.user_username,
+                            style: TextStyle(
+                              color: Color(0xFF7F8C8D),
+                              fontSize: 15,
+                              fontFamily: "Poppins Regular",
+                            ),
                           ),
                         ),
                       ),

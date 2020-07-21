@@ -837,6 +837,7 @@ import 'dart:convert';
 import 'package:dipena/inside_app/explore/explore_category/category_page.dart';
 import 'package:dipena/inside_app/explore/explore_click.dart';
 import 'package:dipena/inside_app/explore/search/search_page.dart';
+import 'package:dipena/inside_app/home/details.dart';
 import 'package:dipena/model/explore/exploreModel.dart';
 import 'package:dipena/model/navigateCat.dart';
 import 'package:dipena/model/post.dart';
@@ -1186,13 +1187,13 @@ class _ExplorePageState extends State<ExplorePage> {
                                 onTap: () {
                                   setState(() {
                                     post_explore_detail_id =
-                                        list[i].post_user_id;
+                                        list[i].post_id;
                                   });
                                   Navigator.push(
                                     context,
                                     new MaterialPageRoute(
                                       builder: (context) =>
-                                          ExploreClick(post_explore_detail_id),
+                                          Details(post_explore_detail_id),
                                     ),
                                   );
                                 },

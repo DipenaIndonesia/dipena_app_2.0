@@ -4,6 +4,7 @@ import 'package:dipena/auth/login/login_page.dart';
 import 'package:dipena/auth/register/register_two.dart';
 import 'package:dipena/onboarding/onboarding_page.dart';
 import 'package:dipena/url.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -46,6 +47,11 @@ class _RegisterThreeState extends State<RegisterThree> {
   }
 
   save() async {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) => _loading(context),
+    );
     final response = await http.post(BaseUrl.register, body: {
       "user_fullname": user_fullname,
       "user_email": user_email,
@@ -59,7 +65,7 @@ class _RegisterThreeState extends State<RegisterThree> {
     String messageEnglish = data['messageEnglish'];
     if (value == 1) {
       // setState(() {
-      //   Navigator.pop(context);
+        Navigator.pop(context);
       // });
       // showDialog(
       //   context: context,
@@ -78,10 +84,12 @@ class _RegisterThreeState extends State<RegisterThree> {
 
     } else if (value == 2) {
       print(message);
+      Navigator.pop(context);
       _showToast(messageEnglish);
       // registerToast(message);
     } else {
       print(message);
+      Navigator.pop(context);
       _showToast(messageEnglish);
       // registerToast(message);
     }
@@ -108,11 +116,11 @@ class _RegisterThreeState extends State<RegisterThree> {
     if (value == 1) {
       setState(() {
         _loginStatus = LoginStatus.signIn;
-        savePref(value, user_id, user_fullnameAPI, user_username, user_emailAPI, user_bioAPI,
-            user_img);
+        savePref(value, user_id, user_fullnameAPI, user_username, user_emailAPI,
+            user_bioAPI, user_img);
       });
       print(message);
-       Navigator.push(
+      Navigator.push(
         context,
         new MaterialPageRoute(
           builder: (context) => OnboardingPage(),
@@ -134,8 +142,14 @@ class _RegisterThreeState extends State<RegisterThree> {
     _scaffoldkey.currentState.showSnackBar(snackbar);
   }
 
-  savePref(int value, String user_id, String user_fullname, String user_username, String user_email,
-      String user_bio, String user_img) async {
+  savePref(
+      int value,
+      String user_id,
+      String user_fullname,
+      String user_username,
+      String user_email,
+      String user_bio,
+      String user_img) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       preferences.setInt("value", value);
@@ -147,6 +161,25 @@ class _RegisterThreeState extends State<RegisterThree> {
       preferences.setString("user_img", user_img);
       preferences.commit();
     });
+  }
+
+  Widget _loading(BuildContext context) {
+    return new Transform.scale(
+      scale: 1,
+      child: Opacity(
+        opacity: 1,
+        child: CupertinoAlertDialog(
+          title: Text("Please Wait..."),
+          content: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: SizedBox(
+                // height: 50,
+                // width: 50,
+                child: Center(child: CircularProgressIndicator())),
+          ),
+        ),
+      ),
+    );
   }
 
   var value;

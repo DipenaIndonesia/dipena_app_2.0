@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dipena/auth/login/login_page.dart';
 import 'package:dipena/auth/register/register_two.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -30,6 +31,10 @@ class _RegisterOneState extends State<RegisterOne> {
   }
 
   save() async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => _loading(context),
+      );
     final response = await http.post(
         "https://dipena.com/flutter/api/auth/checkRegisterEmail.php",
         body: {
@@ -49,7 +54,7 @@ class _RegisterOneState extends State<RegisterOne> {
       // });
       // showDialog(
       //   context: context,
-      //   builder: (BuildContext context) => _popUpGallery(context),
+      //   builder: (BuildContext context) => _loading(context),
       // );
       Navigator.push(
         context,
@@ -58,14 +63,35 @@ class _RegisterOneState extends State<RegisterOne> {
         ),
       );
       print(message);
+      
       // _showToast(message);
       // registerToast(message);
 
     } else {
       print(message);
       _showToast(messageEnglish);
+      Navigator.pop(context);
       // registerToast(message);
     }
+  }
+
+  Widget _loading(BuildContext context) {
+    return new Transform.scale(
+      scale: 1,
+      child: Opacity(
+        opacity: 1,
+        child: CupertinoAlertDialog(
+          title: Text("Please Wait..."),
+          content: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: SizedBox(
+                // height: 50,
+                // width: 50,
+                child: Center(child: CircularProgressIndicator())),
+          ),
+        ),
+      ),
+    );
   }
 
   _showToast(String toast) {

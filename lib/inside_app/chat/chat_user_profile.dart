@@ -427,13 +427,19 @@ class _ChatUserProfileState extends State<ChatUserProfile> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  // "Sasha Witt",
-                  user_fullname ?? "",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontFamily: "Poppins Medium",
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  child: Text(
+                    // "Sasha Witt",
+                    user_fullname ?? "",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontFamily: "Poppins Medium",
+                    ),
+                    maxLines: 1,
+                    softWrap: false,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 RichText(

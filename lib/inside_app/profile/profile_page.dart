@@ -26,10 +26,21 @@ class _ProfileState extends State<Profile> {
   Widget viewPost() {
     if (view == 'post') {
       return listt.isEmpty
-          ? Center(
-              child: Container(
-                  child: Center(child: Text("You Haven't Post Anything Yet"))),
-            )
+          ? Padding(
+            padding: const EdgeInsets.only(top: 60.0),
+            child: Center(
+                child: Container(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.info_outline, size: 50),
+                    SizedBox(height: 10),
+                    Center(child: Text("You Haven't Post Anything Yet")),
+                  ],
+                )),
+              ),
+          )
           : Container(
               margin: EdgeInsets.all(0),
               padding: EdgeInsets.all(0),
@@ -44,8 +55,10 @@ class _ProfileState extends State<Profile> {
                         setState(() {
                           post_detail_id = listt[i].post_id;
                         });
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Details(post_detail_id)));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Details(post_detail_id)));
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width / 3,
@@ -431,7 +444,8 @@ class _ProfileState extends State<Profile> {
                           context,
                           new MaterialPageRoute(
                             builder: (context) => EditProfile(
-                                LocationModel(location_country, location_city), getPref),
+                                LocationModel(location_country, location_city),
+                                getPref),
                           ),
                         );
                       },
@@ -510,7 +524,8 @@ class _ProfileState extends State<Profile> {
                           Navigator.push(
                             context,
                             new MaterialPageRoute(
-                              builder: (context) => EditProfile(list[i], getPref),
+                              builder: (context) =>
+                                  EditProfile(list[i], getPref),
                             ),
                           );
                         },
@@ -654,42 +669,42 @@ class _ProfileState extends State<Profile> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      InkWell(
-                        onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => ListCollabs()));
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 5,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                '10',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontFamily: "Poppins Semibold",
-                                ),
-                              ),
-                              Text(
-                                'Collabs',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontFamily: "Poppins Regular"),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        color: Colors.black,
-                        width: 0.2,
-                        height: 22,
-                      ),
+                      // InkWell(
+                      //   onTap: () {
+                      //     // Navigator.push(
+                      //     //     context,
+                      //     //     MaterialPageRoute(
+                      //     //         builder: (context) => ListCollabs()));
+                      //   },
+                      //   child: Container(
+                      //     width: MediaQuery.of(context).size.width / 5,
+                      //     child: Column(
+                      //       mainAxisAlignment: MainAxisAlignment.center,
+                      //       children: <Widget>[
+                      //         Text(
+                      //           '10',
+                      //           style: TextStyle(
+                      //             color: Colors.black,
+                      //             fontSize: 20,
+                      //             fontFamily: "Poppins Semibold",
+                      //           ),
+                      //         ),
+                      //         Text(
+                      //           'Collabs',
+                      //           style: TextStyle(
+                      //               color: Colors.black,
+                      //               fontSize: 15,
+                      //               fontFamily: "Poppins Regular"),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+                      // Container(
+                      //   color: Colors.black,
+                      //   width: 0.2,
+                      //   height: 22,
+                      // ),
                       InkWell(
                         onTap: () {
                           Navigator.push(

@@ -117,7 +117,8 @@ class _ListChatState extends State<ListChat> {
         itemCount: list.length,
         itemBuilder: (context, i) {
           final x = list[i];
-          return ListTile(
+          return x.user_username != user_username ? 
+          ListTile(
             contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             leading: Container(
               width: 50,
@@ -143,6 +144,64 @@ class _ListChatState extends State<ListChat> {
             title: Text(
               // name,
               x.user_fullname_from,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+                fontFamily: "Poppins Semibold",
+              ),
+            ),
+            subtitle: Text(
+              // chat,
+              x.chat_content,
+              style: TextStyle(
+                color: Color(0xFF7F8C8D),
+                fontSize: 15,
+                fontFamily: "Poppins Regular",
+              ),
+            ),
+            trailing: Text(
+              // time,
+              x.chat_time,
+              style: TextStyle(
+                color: new Color(0xFF7F8C8D),
+                fontFamily: "Poppins Regular",
+              ),
+            ),
+            onTap: () async {
+              var navigationResult = await Navigator.push(
+                context,
+                new MaterialPageRoute(
+                  builder: (context) => Chat(x),
+                ),
+              );
+            },
+          ) :
+          ListTile(
+            contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            leading: Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+              ),
+              child: x.user_img == null
+                  ? placeholder
+                  : CircleAvatar(
+                      backgroundColor: Color(0xFF7F8C8D),
+                      // child: ClipOval(
+                      // child: Image(
+                      // image: NetworkImage(ImageUrl.imageProfile + x.user_img_from),
+                      // fit: BoxFit.cover
+                      backgroundImage:
+                          NetworkImage(ImageUrl.imageProfile + x.user_img),
+                      minRadius: 40,
+                    ),
+              // ),
+              // ),
+            ),
+            title: Text(
+              // name,
+              x.user_fullname,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
