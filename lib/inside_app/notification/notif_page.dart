@@ -27,20 +27,22 @@ class _NotificationsState extends State<Notifications> {
         child: ListView(
           shrinkWrap: true,
           children: <Widget>[
-            new Notify(
-              profile: "assets/img/icon_one.jpg",
-              username: "Joseph Buttler",
-              aktifitas: "commented your post.",
-              waktu: "4 days ago",
-              post: 'assets/img/post_one.jpg',
-            ),
-            new Notify(
-              profile: "assets/img/icon_two.png",
-              username: "Joseph Buttler",
-              aktifitas: "wants collab with you.",
-              waktu: "4 hours ago",
-              post: 'assets/img/post_two.jpg',
-            ),
+            SizedBox(height: 40,),
+            Text("You don't have any notification yet")
+            // new Notify(
+            //   profile: "assets/img/icon_one.jpg",
+            //   username: "Joseph Buttler",
+            //   aktifitas: "commented your post.",
+            //   waktu: "4 days ago",
+            //   post: 'assets/img/post_one.jpg',
+            // ),
+            // new Notify(
+            //   profile: "assets/img/icon_two.png",
+            //   username: "Joseph Buttler",
+            //   aktifitas: "wants collab with you.",
+            //   waktu: "4 hours ago",
+            //   post: 'assets/img/post_two.jpg',
+            // ),
           ],
         ),
       ),

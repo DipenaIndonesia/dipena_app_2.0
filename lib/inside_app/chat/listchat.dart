@@ -126,7 +126,7 @@ class _ListChatState extends State<ListChat> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
               ),
-              child: x.user_img_from == null
+              child: x.user_img == null
                   ? placeholder
                   : CircleAvatar(
                       backgroundColor: Color(0xFF7F8C8D),
@@ -135,7 +135,7 @@ class _ListChatState extends State<ListChat> {
                       // image: NetworkImage(ImageUrl.imageProfile + x.user_img_from),
                       // fit: BoxFit.cover
                       backgroundImage:
-                          NetworkImage(ImageUrl.imageProfile + x.user_img_from),
+                          NetworkImage(ImageUrl.imageProfile + x.user_img),
                       minRadius: 40,
                     ),
               // ),
@@ -143,7 +143,7 @@ class _ListChatState extends State<ListChat> {
             ),
             title: Text(
               // name,
-              x.user_fullname_from,
+              x.user_fullname,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
@@ -175,7 +175,7 @@ class _ListChatState extends State<ListChat> {
                 ),
               );
             },
-          ) :
+          ) : 
           ListTile(
             contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             leading: Container(
@@ -184,7 +184,7 @@ class _ListChatState extends State<ListChat> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
               ),
-              child: x.user_img == null
+              child: x.user_img_from == null
                   ? placeholder
                   : CircleAvatar(
                       backgroundColor: Color(0xFF7F8C8D),
@@ -193,7 +193,7 @@ class _ListChatState extends State<ListChat> {
                       // image: NetworkImage(ImageUrl.imageProfile + x.user_img_from),
                       // fit: BoxFit.cover
                       backgroundImage:
-                          NetworkImage(ImageUrl.imageProfile + x.user_img),
+                          NetworkImage(ImageUrl.imageProfile + x.user_img_from),
                       minRadius: 40,
                     ),
               // ),
@@ -201,7 +201,7 @@ class _ListChatState extends State<ListChat> {
             ),
             title: Text(
               // name,
-              x.user_fullname,
+              x.user_fullname_from,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
