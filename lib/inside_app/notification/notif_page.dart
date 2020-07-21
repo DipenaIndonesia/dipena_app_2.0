@@ -27,8 +27,26 @@ class _NotificationsState extends State<Notifications> {
         child: ListView(
           shrinkWrap: true,
           children: <Widget>[
-            SizedBox(height: 40,),
-            Text("You don't have any notification yet")
+           Padding(
+            padding: const EdgeInsets.only(top: 60.0),
+            child: Center(
+                child: Container(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset(
+                      "assets/img/warning.png",
+                      width: 50,
+                      height: 50
+                    ),
+                    SizedBox(height: 10),
+                    Center(child: Text("You Don't Have Any Notification Yet")),
+                  ],
+                )),
+              ),
+          )
+            // Text("You don't have any notification yet")
             // new Notify(
             //   profile: "assets/img/icon_one.jpg",
             //   username: "Joseph Buttler",

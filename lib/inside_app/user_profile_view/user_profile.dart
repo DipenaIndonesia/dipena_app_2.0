@@ -293,10 +293,23 @@ class _UserProfileState extends State<UserProfile> {
   Widget viewPost() {
     if (view == 'post') {
       return list.isEmpty
-          ? Center(
-              child: Container(
-                  child: Center(child: Text("You Haven't Post Anything Yet"))),
-            )
+          ? Padding(
+            padding: const EdgeInsets.only(top: 60.0),
+            child: Center(
+                child: Container(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset(
+                      "assets/img/warning.png"
+                    ),
+                    SizedBox(height: 10),
+                    Center(child: Text("You Haven't Post Anything Yet")),
+                  ],
+                )),
+              ),
+          )
           : Container(
               margin: EdgeInsets.all(0),
               padding: EdgeInsets.all(0),

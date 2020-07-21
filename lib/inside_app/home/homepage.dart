@@ -311,15 +311,15 @@ class _HomePageState extends State<HomePage>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 SizedBox(height: 5),
-                                Text(
-                                  "People you might know",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontFamily: "Poppins Medium",
-                                  ),
-                                ),
-                                SizedBox(height: 8),
+                                // Text(
+                                //   "People you might know",
+                                //   style: TextStyle(
+                                //     color: Colors.black,
+                                //     fontSize: 13,
+                                //     fontFamily: "Poppins Medium",
+                                //   ),
+                                // ),
+                                // SizedBox(height: 8),
                                 Expanded(
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
@@ -403,7 +403,7 @@ class _HomePageState extends State<HomePage>
                                                               null
                                                           ? Colors.white
                                                           : Color(0xFFF39C12),
-                                                  width: 85,
+                                                  width: 90,
                                                   height: 25,
                                                   child: OutlineButton(
                                                     borderSide: BorderSide(
@@ -513,7 +513,7 @@ class _HomePageState extends State<HomePage>
                         SizedBox(height: 10,),
                         Container(
                           height: 50,
-                          width: 75,
+                          width: 85,
                           child: OutlineButton(
                               borderSide: BorderSide(
                                 color: Color(0xFFF39C12),

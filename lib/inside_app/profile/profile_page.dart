@@ -34,7 +34,11 @@ class _ProfileState extends State<Profile> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Icon(Icons.info_outline, size: 50),
+                    Image.asset(
+                      "assets/img/warning.png",
+                      width: 50,
+                      height: 50,
+                    ),
                     SizedBox(height: 10),
                     Center(child: Text("You Haven't Post Anything Yet")),
                   ],
