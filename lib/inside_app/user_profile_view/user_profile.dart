@@ -302,7 +302,9 @@ class _UserProfileState extends State<UserProfile> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Image.asset(
-                      "assets/img/warning.png"
+                      "assets/img/warning.png",
+                      width: 50,
+                      height: 50
                     ),
                     SizedBox(height: 10),
                     Center(child: Text("You Haven't Post Anything Yet")),
