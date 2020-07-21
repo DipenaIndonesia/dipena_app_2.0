@@ -107,8 +107,8 @@ class _RegisterTwoState extends State<RegisterTwo> {
 
     } else {
       // print(message);
-      _showToast(messageEnglish);
       Navigator.pop(context);
+      _showToast(messageEnglish);
       // registerToast(message);
     }
   }

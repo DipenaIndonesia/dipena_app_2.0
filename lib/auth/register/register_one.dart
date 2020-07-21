@@ -68,9 +68,9 @@ class _RegisterOneState extends State<RegisterOne> {
       // registerToast(message);
 
     } else {
+      Navigator.pop(context);
       print(message);
       _showToast(messageEnglish);
-      Navigator.pop(context);
       // registerToast(message);
     }
   }
